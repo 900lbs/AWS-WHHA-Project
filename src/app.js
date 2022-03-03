@@ -115,7 +115,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, StackPanel, TextBloc
                         var menuPosition = function(){
                             if(menuIsOpen)
                             {
-                                learnMoreMenuMaskBox.leftInPixels = -300;
+                                learnMoreMenuMaskBox.left = "-15.65%";
                             }
 
                             else
