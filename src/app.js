@@ -120,7 +120,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, StackPanel, TextBloc
 
                             else
                             {
-                                learnMoreMenuMaskBox.leftInPixels = 0;
+                                learnMoreMenuMaskBox.leftInPixels = 0;""
                             }
                         }
 
@@ -375,7 +375,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, StackPanel, TextBloc
                         welcomeBox.addControl(welcomeText);
                 
                         var navButtonMenu = Button.CreateSimpleButton("navButtonMenu", "Navigation");
-                        navButtonMenu.width = "12.5%" // 120px
+                        navButtonMenu.width = "12.5%"; // 120px
                         navButtonMenu.height = "19.04%"; //80px
                         navButtonMenu.color = "white";
                         navButtonMenu.cornerRadius = 0;
@@ -498,7 +498,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, StackPanel, TextBloc
                         welcomeBox.addControl(menuText);
                 
                         var exitMenuButton = Button.CreateSimpleButton("exitMenuButton", "X");
-                        exitMenuButton.width = "2.29%" //44px
+                        exitMenuButton.width = "2.29%"; //44px
                         exitMenuButton.height = "4%"; //44px
                         exitMenuButton.color = "transparent";
                         exitMenuButton.cornerRadius = 0;
