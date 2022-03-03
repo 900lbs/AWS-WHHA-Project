@@ -1,5 +1,5 @@
 import { Engine, Scene, Color3, Animation, setAndStartTimer, CubicEase, EasingFunction, ArcRotateCamera, TransformNode, Vector3, Tools, HemisphericLight } from "@babylonjs/core";
-import { AdvancedDynamicTexture, Control, Rectangle, Image, StackPanel, TextBlock, Button} from "@babylonjs/gui";
+import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} from "@babylonjs/gui";
 
         var canvas = document.createElement("canvas");
         document.getElementById("renderCanvas").appendChild(canvas);
