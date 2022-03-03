@@ -120,7 +120,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                             else
                             {
-                                learnMoreMenuMaskBox.leftInPixels = 0;""
+                                learnMoreMenuMaskBox.leftInPixels = 0;
                             }
                         }
 
