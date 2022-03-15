@@ -281,23 +281,47 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         {
                             if(menuIsUp)
                             {
-                                menuPicMain.top = "-18.52%";
-                                menuBarPicAMain.alpha = 0;
-                                menuBarPicBMain.alpha = 0;
-                                menuTabText.alpha = 1;
-                                menuPicMainRect.topInPixels = 0;
+                                easyAnimation(menuPicMain, 'top', 30, 0, -18.52, 60);
+                                easyFade(menuBarPicAMain, 30, 1, 0, 90);
+                                easyFade(menuBarPicBMain, 30, 1, 0, 90);
+                                easyFade(menuTabText, 30, 0, 1, 90);
+                                easyAnimation(menuPicMainRect, 'top', 30, 18.4, 0, 60);
                             }
                             
                             else
                             {
-                                menuPicMain.topInPixels = 0;
-                                menuBarPicAMain.alpha = 1;
-                                menuBarPicBMain.alpha = 1;
-                                menuTabText.alpha = 0;
-                                menuPicMainRect.top = "18.52%";
+                                easyAnimation(menuPicMain, 'top', 30, -18.52, 0, 60);
+                                easyFade(menuBarPicAMain, 30, 0, 1, 90);
+                                easyFade(menuBarPicBMain, 30, 0, 1, 90);
+                                easyFade(menuTabText, 30, 1, 0, 90);
+                                easyAnimation(menuPicMainRect, 'top', 30, 0, 18.4, 60);
                             }
                         }
+
+                        var easyAnimation = function(control, direction, totalFrames, startPos, endPos, speed)
+                        {
+                            if(direction == 'top')
+                            {
+                                var endPosConvert = (canvas.height / 100) * endPos;
+                                var startPosConvert = (canvas.height / 100) * startPos;
+                            }
+
+                            if(direction == 'left')
+                            {
+                                var endPosConvert = (canvas.width / 100) * endPos;
+                                var startPosConvert = (canvas.width / 100) * startPos;
+                            }
+    
+                            var ease = new CubicEase();
+                            ease.setEasingMode(EasingFunction.EASINGMODE_EASEIN);
+                            Animation.CreateAndStartAnimation('at1', control, direction, speed, totalFrames, startPosConvert, endPosConvert, 0, ease);
+                        }
                 
+                        var easyFade = function(control, totalFrames, start, end, speed)
+                        {
+                            Animation.CreateAndStartAnimation('at1', control, 'alpha', speed, totalFrames, start, end, 0);
+                        }
+
                         var changeToBlueRoom = function ()
                         {
                             advancedTextureEntrance.isForeground = false;
@@ -324,44 +348,41 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         }
                 
                     //Entrance
-        
-                
                         var advancedTextureEntrance = AdvancedDynamicTexture.CreateFullscreenUI("ui0");
-                
                         advancedTextureEntrance.isForeground = true;
-                        advancedTextureEntrance.idealWidth = 1080;
-                        advancedTextureEntrance.idealHeight = 1920;
-                
+                        
+                        var entranceRect = new Rectangle("entranceContainer");
+                        entranceRect.width = "100%";
+                        entranceRect.height = "100%";
+                        entranceRect.color = "transparent";
+                        advancedTextureEntrance.addControl(entranceRect);
+
                         var imgA = new Image();
                         imgA.color = "transparent";
                         imgA.source = "https://i.imgur.com/pQo0dPM.jpg";
-                        //advancedTexture.addControl(imgA);
-                        advancedTextureEntrance.addControl(imgA);
-                
-                
-        
+                        entranceRect.addControl(imgA);
+            
                     
                     //Menu Box
                         var welcomeBox = new Rectangle("label for welcome box" );
                         welcomeBox.width = "50%"; // 960px
                         welcomeBox.height = "38.88%"; //420px
                         welcomeBox.color = "transparent";
-                        welcomeBox.background = "#235BA0";
+                        welcomeBox.background = "#2B3E56";
                         welcomeBox.shadowColor = "#00000066";
-                        welcomeBox.shadowBlur = 99;
-                        welcomeBox.shadowOffsetX = 10;
-                        welcomeBox.shadowOffsetY = -10;
-                        welcomeBox.alpha = 0.90;
+                        welcomeBox.shadowBlur = 6;
+                        welcomeBox.shadowOffsetX = 3;
+                        welcomeBox.shadowOffsetY = 3;
+                        welcomeBox.alpha = 0.97;
                         welcomeBox.zIndex = 0;
                         welcomeBox.left = "25%";
                         welcomeBox.top = "28%";
                         welcomeBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         welcomeBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
-                        advancedTextureEntrance.addControl(welcomeBox);
+                        entranceRect.addControl(welcomeBox);
                 
                         var welcomeText = new TextBlock("Welcome");
-                        
-                        welcomeText.fontFamily = "Calendas Plus, Regular";
+                        welcomeText.fontFamily = "Calendas Plus";
                         welcomeText.textWrapping = true;
                         welcomeText.width = "87.5%"; //840px
                         welcomeText.height = "9.5%"; //40px
@@ -371,20 +392,53 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeText.top = "16.5%"; // 75px
                         welcomeText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         welcomeText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
-                        
                         welcomeBox.addControl(welcomeText);
                 
-                        var navButtonMenu = Button.CreateSimpleButton("navButtonMenu", "Navigation");
-                        navButtonMenu.width = "12.5%"; // 120px
-                        navButtonMenu.height = "19.04%"; //80px
-                        navButtonMenu.color = "white";
-                        navButtonMenu.cornerRadius = 0;
+                        var navButtonMenu = Button.CreateSimpleButton("navButtonMenu", "");
+                        navButtonMenu.width = "12.5%"; //"120px";
+                        navButtonMenu.height = "19.05%"; //"80px";
+                        navButtonMenu.color = "#2B3E56";
                         navButtonMenu.background = "#2B3E56";
+                        navButtonMenu.shadowColor = "#0000004D";
+                        navButtonMenu.shadowBlur = 6;
+                        navButtonMenu.shadowOffsetX = 2;
+                        navButtonMenu.shadowOffsetY = 2;
                         navButtonMenu.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                         navButtonMenu.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                         navButtonMenu.left = "12.5%"; //120px
                         navButtonMenu.top = "39.04%"; //164px
                         welcomeBox.addControl(navButtonMenu);
+
+                        var navButtonMenuStroke = new Rectangle("label for button stroke" );
+                        navButtonMenuStroke.width = "95%"; //"114px";
+                        navButtonMenuStroke.height = "92.5%" //"74px";
+                        navButtonMenuStroke.left = ".75%";
+                        navButtonMenuStroke.top = "0.75%";
+                        navButtonMenuStroke.color = "white";
+                        navButtonMenu.addControl(navButtonMenuStroke);
+
+                        var navButtonMenuImg = new Image();
+                        navButtonMenuImg.color = "transparent";
+                        navButtonMenuImg.width = "50%"; //57.4px
+                        navButtonMenuImg.height = "47%"; //35.43px
+                        navButtonMenuImg.top = "16%"; //11.23px
+                        navButtonMenuImg.source = "https://i.imgur.com/cmNSnse.png";
+                        navButtonMenuImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        navButtonMenuImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        navButtonMenu.addControl(navButtonMenuImg);
+
+                        var navButtonMenuText = new TextBlock("navButtonText");    
+                        navButtonMenuText.fontFamily = "Calendas Plus";
+                        navButtonMenuText.textWrapping = true;
+                        navButtonMenuText.width = "99.16%"; //119px
+                        navButtonMenuText.height = "22%"; //15px
+                        navButtonMenuText.text = "Navigation";
+                        navButtonMenuText.color = "white";
+                        navButtonMenuText.fontSize = "19%"; //14px
+                        navButtonMenuText.top = "70%"; //57px
+                        navButtonMenuText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        navButtonMenuText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        navButtonMenu.addControl(navButtonMenuText);
                 
                         var navText = new TextBlock("navText");    
                         navText.fontFamily = "Calendas Plus";
@@ -402,9 +456,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                 
                         var arrowImgMenuA = new Image();
                         arrowImgMenuA.color = "transparent";
-                        arrowImgMenuA.width = "3.75%"; //36px
-                        arrowImgMenuA.height = "8.57%"; //36px
-                        arrowImgMenuA.top = "46%"; //193.5px
+                        arrowImgMenuA.width = "4.125%"; //36px
+                        arrowImgMenuA.height = "10.71%"; //36px
+                        arrowImgMenuA.top = "43%"; //193.5px
                         arrowImgMenuA.left = "-1.25%"; //-12px
                         arrowImgMenuA.source = "https://i.imgur.com/obU8TgU.png";
                         arrowImgMenuA.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -414,9 +468,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var arrowImgMenuB = new Image();
                         arrowImgMenuB.color = "transparent";
                         arrowImgMenuB.alpha = 0.60;
-                        arrowImgMenuB.width = "3.75%"; //36px
-                        arrowImgMenuB.height = "8.57%"; //36px
-                        arrowImgMenuB.top = "46%"; //193.5px
+                        arrowImgMenuB.width = "4.125%"; //36px
+                        arrowImgMenuB.height = "10.71%"; //36px
+                        arrowImgMenuB.top = "43%"; //193.5px
                         arrowImgMenuB.left = "0px";
                         arrowImgMenuB.source = "https://i.imgur.com/obU8TgU.png";
                         arrowImgMenuB.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -426,9 +480,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var arrowImgMenuC = new Image();
                         arrowImgMenuC.color = "transparent";
                         arrowImgMenuC.alpha = 0.30;
-                        arrowImgMenuC.width = "3.75%"; //36px
-                        arrowImgMenuC.height = "8.57%"; //36px
-                        arrowImgMenuC.top = "46%"; //193.5px
+                        arrowImgMenuC.width = "4.125%"; //36px
+                        arrowImgMenuC.height = "10.71%"; //36px
+                        arrowImgMenuC.top = "43%"; //193.5px
                         arrowImgMenuC.left = "1.25%"; //12px
                         arrowImgMenuC.source = "https://i.imgur.com/obU8TgU.png";
                         arrowImgMenuC.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -452,8 +506,12 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var menuPic = new Rectangle("menuPic" );
                         menuPic.width = "25%"; //240px
                         menuPic.height = "9.5%"; //40px
-                        menuPic.color = "transparent";
+                        menuPic.color = "white";
                         menuPic.background = "#2B3E56";
+                        menuPic.shadowColor = "#0000004D";
+                        menuPic.shadowBlur = 6;
+                        menuPic.shadowOffsetX = 2;
+                        menuPic.shadowOffsetY = 2;
                         menuPic.left = "68.75%"; //660px
                         menuPic.top = "44%"; //185px
                         menuPic.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -483,7 +541,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         menuPic.addControl( menuBarPicB);
                 
                         var menuText = new TextBlock("menuText");
-                        
                         menuText.fontFamily = "Calendas Plus";
                         menuText.textWrapping = true;
                         menuText.width = "25%"; //240px
@@ -514,19 +571,23 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             rightArrowBox.scaleX = .65;
                             rightArrowBox.scaleY = .65;
                             rightArrowBox.left = "50px";
-                            welcomeBox.alpha = 0;
+                            easyFade(welcomeBox, 30, 1, 0, 60);
+                            easyFade(exitMenuButton, 30, 1, 0, 60);
+                            //welcomeBox.alpha = 0;
                             menuIsUp = true;
                             openMenu();
                             exitMenuButton.isEnabled = false;
-                            exitMenuButton.isVisible = false;
+                            //exitMenuButton.isVisible = false;
                         });
-                        advancedTextureEntrance.addControl(exitMenuButton);
+                        entranceRect.addControl(exitMenuButton);
                         
                         var xButton = new Image();
-                        xButton.color = "transparent";
-                        xButton.width = "27.27%"; //12px
-                        xButton.height = "27.27%"; //12px
-                        xButton.source = "https://i.imgur.com/NjbQrlP.png";
+                        xButton.color = "black";
+                        xButton.width = "35%"; //12px
+                        xButton.height = "35%"; //12px
+                        xButton.source = "https://i.imgur.com/YH78eY3.png";
+                        xButton.left = ".75%";
+                        xButton.top = ".75%";
                         xButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         xButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         exitMenuButton.addControl(xButton);
@@ -542,7 +603,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         greyBoxExplore.zIndex = 1;
                         greyBoxExplore.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         greyBoxExplore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
-                        advancedTextureEntrance.addControl(greyBoxExplore);
+                        entranceRect.addControl(greyBoxExplore);
                 
                         var exploreText = new TextBlock("Explore");
                         exploreText.fontFamily = "Calendas Plus";
@@ -559,16 +620,26 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         greyBoxExplore.addControl(exploreText);
                 
                         //Red room
+                            var redRoomMaskBox = new Rectangle("label for red room mask" );
+                            redRoomMaskBox.width = "28.125%"; //"540px";
+                            redRoomMaskBox.height = "27.77%"; //"300px";
+                            redRoomMaskBox.color = "transparent";
+                            redRoomMaskBox.background = "transparent";
+                            redRoomMaskBox.cornerRadius = 10;
+                            redRoomMaskBox.top = "33.46%"; //361.33px"
+                            redRoomMaskBox.left = "4.56%"; //"87.49px";
+                            redRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            redRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            greyBoxExplore.addControl(redRoomMaskBox);
+
                             var redRoom = new Image();
                             redRoom.color = "transparent";
-                            redRoom.width = "28.125%"; //"540px";
-                            redRoom.height = "27.77%"; //"300px";
-                            redRoom.left = "4.56%"; //"87.49px";
-                            redRoom.top = "33.46%"; //361.33px"
+                            redRoom.width = "100%"; //"540px";
+                            redRoom.height = "100%"; //"300px";
                             redRoom.source = "https://i.imgur.com/Tjrsr1N.jpg";
                             redRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             redRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
-                            greyBoxExplore.addControl(redRoom);
+                            redRoomMaskBox.addControl(redRoom);
                 
                             var redRoomText = new TextBlock("redRoomText");
                             redRoomText.fontFamily = "Calendas Plus";
@@ -586,16 +657,26 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greyBoxExplore.addControl(redRoomText);
                 
                         //Blue room
+                            var blueRoomMaskBox = new Rectangle("label for blue room mask" );
+                            blueRoomMaskBox.width = "28.125%"; //"540px";
+                            blueRoomMaskBox.height = "27.77%"; //"300px";
+                            blueRoomMaskBox.color = "transparent";
+                            blueRoomMaskBox.background = "transparent";
+                            blueRoomMaskBox.cornerRadius = 10;
+                            blueRoomMaskBox.top = "33.46%"; //361.33px"
+                            blueRoomMaskBox.left = "35.9375%"; //"690px";
+                            blueRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            blueRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            greyBoxExplore.addControl(blueRoomMaskBox);
+
                             var blueRoom = new Image();
                             blueRoom.color = "transparent";
-                            blueRoom.width = "28.125%"; //"540px";
-                            blueRoom.height = "27.77%"; //"300px";
-                            blueRoom.left = "35.9375%"; //"690px";
-                            blueRoom.top = "33.46%"; //361.33px"
+                            blueRoom.width = "100%"; //"540px";
+                            blueRoom.height = "100%"; //"300px";
                             blueRoom.source = "https://i.imgur.com/oE5zBb7.jpg";
                             blueRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             blueRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
-                            greyBoxExplore.addControl(blueRoom);
+                            blueRoomMaskBox.addControl(blueRoom);
                 
                             var blueRoomButton = Button.CreateSimpleButton("blueRoomButton", "");
                             blueRoomButton.width = "28.125%"; //"540px";
@@ -627,16 +708,26 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greyBoxExplore.addControl(blueRoomText);
                 
                         //Green room
+                            var greenRoomMaskBox = new Rectangle("label for blue room mask" );
+                            greenRoomMaskBox.width = "28.125%"; //"540px";
+                            greenRoomMaskBox.height = "27.77%"; //"300px";
+                            greenRoomMaskBox.color = "transparent";
+                            greenRoomMaskBox.background = "transparent";
+                            greenRoomMaskBox.cornerRadius = 10;
+                            greenRoomMaskBox.top = "33.46%"; //361.33px"
+                            greenRoomMaskBox.left = "67.11%"; //"1288.51px";
+                            greenRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            greenRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            greyBoxExplore.addControl(greenRoomMaskBox);
+
                             var greenRoom = new Image();
                             greenRoom.color = "transparent";
-                            greenRoom.width = "28.125%"; //"540px";
-                            greenRoom.height = "27.77%"; //"300px";
-                            greenRoom.left = "67.11%"; //"1288.51px";
-                            greenRoom.top = "33.46%"; //361.33px"
+                            greenRoom.width = "100%"; //"540px";
+                            greenRoom.height = "100%"; //"300px";
                             greenRoom.source = "https://i.imgur.com/OKpC4ma.jpg";
                             greenRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             greenRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
-                            greyBoxExplore.addControl(greenRoom);
+                            greenRoomMaskBox.addControl(greenRoom);
                 
                             var greenRoomText = new TextBlock("blueRoomText");
                             greenRoomText.fontFamily = "Calendas Plus";
@@ -1390,17 +1481,52 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             var navButton = Button.CreateSimpleButton("nav", "Navigation");
                             navButton.width = "6.25%"; //"120px"
                             navButton.height = "7.4%"; //"80px";
-                            navButton.color = "white";
-                            navButton.cornerRadius = 0;
                             navButton.background = "#2B3E56";
+                            navButton.color = "#2B3E56";
+                            navButton.shadowColor = "#00000080";
+                            navButton.shadowOffsetX = 3;
+                            navButton.shadowOffsetY = 3;
+                            navButton.shadowBlur = 6;
                             navButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             navButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                             navButton.left = "1.04%"; //"20px";
                             navButton.top = "1.85%"; //"20px";
                             navButton.onPointerUpObservable.add(function() {
-                                alert("you did it!");
+                                easyAnimation(navBackgroundRect, 'left', 30, -100, 0, 90);
+                                easyAnimation(entranceRect, 'left', 30, 0, 30, 90);
                             });
                             advancedTextureConstant.addControl(navButton);
+
+                            var navButtonStroke = new Rectangle("label for button stroke" );
+                            navButtonStroke.width = "95%"; //"114px";
+                            navButtonStroke.height = "92.5%" //"74px";
+                            navButtonStroke.left = ".75%";
+                            navButtonStroke.top = "0.75%";
+                            navButtonStroke.color = "white";
+                            navButton.addControl(navButtonMenuStroke);
+
+                            var navButtonImg = new Image();
+                            navButtonImg.color = "transparent";
+                            navButtonImg.width = "50%"; //57.4px
+                            navButtonImg.height = "47%"; //35.43px
+                            navButtonImg.top = "16%"; //11.23px
+                            navButtonImg.source = "https://i.imgur.com/cmNSnse.png";
+                            navButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            navButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            navButton.addControl(navButtonImg);
+
+                            var navButtonText = new TextBlock("navButtonText");    
+                            navButtonText.fontFamily = "Calendas Plus";
+                            navButtonText.textWrapping = true;
+                            navButtonText.width = "99.16%"; //119px
+                            navButtonText.height = "22%"; //15px
+                            navButtonText.text = "Navigation";
+                            navButtonText.color = "white";
+                            navButtonText.fontSize = "19%"; //14px
+                            navButtonText.top = "70%"; //57px
+                            navButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            navButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            navButton.addControl(navButtonText);
                 
                         //Main Menu Tab
                             var menuPicMain = Button.CreateSimpleButton("menuTab", "");
@@ -1408,7 +1534,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPicMain.height = "4.5%"; //"40px";
                             menuPicMain.color = "transparent";
                             menuPicMain.background = "#2B3E56";
-                            //menuPicMain.topInPixels = 0;
+                            //menuPicMain.topInPixels = 5;
                             menuPicMain.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                             menuPicMain.horizontalAlignment = Control.VERTICAL_ALIGNMENT_CENTER;  
                             menuPicMain.onPointerUpObservable.add(function() {
@@ -1459,10 +1585,44 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPicMainRect.height = "18.52%"; //"200px";
                             menuPicMainRect.color = "transparent";
                             menuPicMainRect.background = "#2B3E56";
-                            menuPicMainRect.top = "18.52%";
+                            menuPicMainRect.top = "18.4%";
                             menuPicMainRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                             menuPicMainRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                             advancedTextureConstant.addControl( menuPicMainRect);
+
+                        //Main Menu Stars
+                            var menuStarAImg = new Image();
+                            menuStarAImg.color = "transparent";
+                            menuStarAImg.width = ".65%"; //8.36px
+                            menuStarAImg.height = "6.5%"; //8.36px
+                            menuStarAImg.top = "8%"; //8px
+                            menuStarAImg.left = "-.7%";
+                            menuStarAImg.source = "https://i.imgur.com/6fRUrr7.png";
+                            menuStarAImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            menuStarAImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            menuPicMainRect.addControl(menuStarAImg);
+
+                            var menuStarBImg = new Image();
+                            menuStarBImg.color = "transparent";
+                            menuStarBImg.width = ".65%"; //8.36px
+                            menuStarBImg.height = "6.5%"; //8.36px
+                            menuStarBImg.top = "8%"; //8px
+                            menuStarBImg.source = "https://i.imgur.com/6fRUrr7.png";
+                            menuStarBImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            menuStarBImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            menuPicMainRect.addControl(menuStarBImg);
+
+                            var menuStarCImg = new Image();
+                            menuStarCImg.color = "transparent";
+                            menuStarCImg.width = ".65%"; //8.36px
+                            menuStarCImg.height = "6.5%"; //8.36px
+                            menuStarCImg.top = "8%"; //8px
+                            menuStarCImg.left = ".65%";
+                            menuStarCImg.source = "https://i.imgur.com/6fRUrr7.png";
+                            menuStarCImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            menuStarCImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            menuPicMainRect.addControl(menuStarCImg);
+                            
                 
                         //Menu Bar bars
                             var menuPicMainLeftBar = new Rectangle("menuPicLeftBar" );
@@ -1677,24 +1837,25 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             audioButton.top = "40%"; //"80px";
                             audioButton.onPointerUpObservable.add(function() {
                                 fullscreenGo();
-                                //engine.enterFullscreen();
                             });
                             menuPicMainRect.addControl(audioButton);
                 
                             var audioButtonStroke = new Rectangle("audioButtonStroke" );
-                            audioButtonStroke.height = "90%"; //"54px";
-                            audioButtonStroke.width = "90%"; //"54px";
+                            audioButtonStroke.height = "95%"; //"54px";
+                            audioButtonStroke.width = "95%"; //"54px";
                             audioButtonStroke.color = "black";
                             audioButtonStroke.background = "transparent";
-                            audioButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
-                            audioButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                            audioButtonStroke.left = "3.25%";
+                            audioButtonStroke.top = "4%";
+                            audioButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            audioButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                             audioButton.addControl( audioButtonStroke);
                 
                             var speakerButton = new Image();
                             speakerButton.color = "transparent";
                             speakerButton.width = "46.66%"; //"28px";
                             speakerButton.height = "46.66%"; //"28px";
-                            speakerButton.source = "https://i.imgur.com/NjbQrlP.png";
+                            speakerButton.source = "https://i.imgur.com/89lytUS.png";
                             speakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             speakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             audioButton.addControl(speakerButton);
@@ -1785,7 +1946,447 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             nextButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             nextButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             nextButton.addControl(nextButtonText);
-        
+
+
+//#region Navigation Page
+                    var advancedTextureNavigation = AdvancedDynamicTexture.CreateFullscreenUI("uiNavigation");
+
+                    var navBackgroundRect = new Rectangle("navBackgroundRect" );
+                    navBackgroundRect.height = "100%"; //"50px";
+                    navBackgroundRect.width = "100%"; //"230px";
+                    navBackgroundRect.color = "#D9D9D9";
+                    navBackgroundRect.background = "#D9D9D9";
+                    navBackgroundRect.left = canvas.width * -1;
+                    navBackgroundRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    navBackgroundRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                    advancedTextureNavigation.addControl( navBackgroundRect);
+
+                    var whiteHouseIconImg = new Image();
+                    whiteHouseIconImg.color = "transparent";
+                    whiteHouseIconImg.width = "46.875%"; //900px
+                    whiteHouseIconImg.height = "43.89%"; //474px
+                    //whiteHouseIconImg.top = "-6%"; //11.23px
+                    whiteHouseIconImg.alpha = .10;
+                    whiteHouseIconImg.source = "https://i.imgur.com/ij7gPpq.png";
+                    whiteHouseIconImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
+                    whiteHouseIconImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                    navBackgroundRect.addControl(whiteHouseIconImg);
+
+                    var navBackgroundStroke = new Rectangle("label for background stroke" );
+                    navBackgroundStroke.width = "97.4%"; //"114px";
+                    navBackgroundStroke.height = "95.37%" //"74px";
+                    navBackgroundStroke.color = "#959BA1";
+                    navBackgroundStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                    navBackgroundStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                    navBackgroundRect.addControl(navBackgroundStroke);
+//#endregion
+
+//#region Text for Navigation
+                    var entranceHallText = new TextBlock("entranceHallText");
+                    entranceHallText.fontFamily = "Calendas Plus";
+                    entranceHallText.fontStyle = "italic";
+                    entranceHallText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    entranceHallText.width = "8%"; //"61px";
+                    entranceHallText.height = "2.96%"; //"27px";
+                    entranceHallText.text = "Entrance Hall";
+                    entranceHallText.color = "#235BA0";
+                    entranceHallText.left = "9.375%";
+                    entranceHallText.top = "19.26%";
+                    entranceHallText.resizeToFit = true;
+                    entranceHallText.fontSize = "2.5%"; //"32px";
+                    entranceHallText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    entranceHallText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navBackgroundRect.addControl(entranceHallText);
+
+                    var entranceHallTextUnderline = new Rectangle("entranceHallTextUnderline" );
+                    entranceHallTextUnderline.height = ".185%"; //"50px";
+                    entranceHallTextUnderline.width = "7.7%"; //"230px";
+                    entranceHallTextUnderline.color = "#235BA0";
+                    entranceHallTextUnderline.background = "#235BA0";
+                    entranceHallTextUnderline.left = "9.375%";
+                    entranceHallTextUnderline.top = "21.785%";
+                    entranceHallTextUnderline.resizeToFit = true;
+                    entranceHallTextUnderline.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    entranceHallTextUnderline.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                    navBackgroundRect.addControl(entranceHallTextUnderline);
+
+                    var redRoomButton = Button.CreateSimpleButton("redRoom", "");
+                    redRoomButton.width = "12.45%"; //"239px"
+                    redRoomButton.height = "4.72%"; //"51px";
+                    redRoomButton.background = "transparent";
+                    redRoomButton.color = "transparent";
+                    redRoomButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    redRoomButton.left = "9.375%"; //"181px";
+                    redRoomButton.top = "27.8%"; //"300px";
+                    redRoomButton.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(redRoomButton);
+
+                    var redRoomButtonText = new TextBlock("redRoomButtonText");
+                    redRoomButtonText.fontFamily = "Calendas Plus";
+                    redRoomButtonText.fontStyle = "italic";
+                    redRoomButtonText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomButtonText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    redRoomButtonText.width = "100%"; //"61px";
+                    redRoomButtonText.height = "100%"; //"27px";
+                    redRoomButtonText.text = "Red Room";
+                    redRoomButtonText.color = "black";
+                    redRoomButtonText.top = "-15%";
+                    redRoomButtonText.resizeToFit = true;
+                    redRoomButtonText.fontSize = "100%"; //"32px";
+                    redRoomButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    redRoomButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomButton.addControl(redRoomButtonText);
+
+                    var redRoomEventsText = new TextBlock("entranceHallText");
+                    redRoomEventsText.fontFamily = "Calendas Plus";
+                    redRoomEventsText.fontStyle = "italic";
+                    redRoomEventsText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventsText.width = "5%"; //"61px";
+                    redRoomEventsText.height = "2.96%"; //"27px";
+                    redRoomEventsText.text = "Events:";
+                    redRoomEventsText.color = "#235BA0";
+                    redRoomEventsText.left = "9.375%";
+                    redRoomEventsText.top = "36.67%";
+                    redRoomEventsText.resizeToFit = true;
+                    redRoomEventsText.fontSize = "2.5%"; //"32px";
+                    redRoomEventsText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    redRoomEventsText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navBackgroundRect.addControl(redRoomEventsText);
+
+                    var redRoomEventButtonA = Button.CreateSimpleButton("redRoomEventButtonA", "");
+                    redRoomEventButtonA.width = "21.875%"; //"420px"
+                    redRoomEventButtonA.height = "9.62%"; //"104px";
+                    redRoomEventButtonA.background = "transparent";
+                    redRoomEventButtonA.color = "transparent";
+                    redRoomEventButtonA.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventButtonA.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    redRoomEventButtonA.left = "9.375%"; //"180px";
+                    redRoomEventButtonA.top = "42.5%"; //"459px";
+                    redRoomEventButtonA.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(redRoomEventButtonA);
+
+                    var redRoomEventButtonAText = new TextBlock("redRoomEventButtonAText");
+                    redRoomEventButtonAText.fontFamily = "Calendas Plus";
+                    redRoomEventButtonAText.textWrapping = true;
+                    redRoomEventButtonAText.underline = true;
+                    redRoomEventButtonAText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventButtonAText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    redRoomEventButtonAText.lineSpacing = 8;
+                    redRoomEventButtonAText.width = "100%"; //"61px";
+                    redRoomEventButtonAText.height = "100%"; //"27px";
+                    redRoomEventButtonAText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt esse";
+                    redRoomEventButtonAText.color = "#363D45";
+                    redRoomEventButtonAText.resizeToFit = true;
+                    redRoomEventButtonAText.fontSize = "25%"; //"24px";
+                    redRoomEventButtonAText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    redRoomEventButtonAText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventButtonA.addControl(redRoomEventButtonAText);
+
+                    var redRoomEventButtonB = Button.CreateSimpleButton("redRoomEventButtonB", "");
+                    redRoomEventButtonB.width = "21.875%"; //"420px"
+                    redRoomEventButtonB.height = "5.92%"; //"64px";
+                    redRoomEventButtonB.background = "transparent";
+                    redRoomEventButtonB.color = "transparent";
+                    redRoomEventButtonB.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventButtonB.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    redRoomEventButtonB.left = "9.375%"; //"180px";
+                    redRoomEventButtonB.top = "57.685%"; //"623px";
+                    redRoomEventButtonB.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(redRoomEventButtonB);
+
+                    var redRoomEventButtonBText = new TextBlock("redRoomEventButtonBText");
+                    redRoomEventButtonBText.fontFamily = "Calendas Plus";
+                    redRoomEventButtonBText.textWrapping = true;
+                    redRoomEventButtonBText.underline = true;
+                    redRoomEventButtonBText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventButtonBText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    redRoomEventButtonBText.lineSpacing = 8;
+                    redRoomEventButtonBText.width = "100%"; //"61px";
+                    redRoomEventButtonBText.height = "100%"; //"27px";
+                    redRoomEventButtonBText.text = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu";
+                    redRoomEventButtonBText.color = "#363D45";
+                    redRoomEventButtonBText.resizeToFit = true;
+                    redRoomEventButtonBText.fontSize = "40%"; //"24px";
+                    redRoomEventButtonBText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    redRoomEventButtonBText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    redRoomEventButtonB.addControl(redRoomEventButtonBText);
+
+//#region blue room nav
+                    var blueRoomButton = Button.CreateSimpleButton("blueRoomButton", "");
+                    blueRoomButton.width = "12.45%"; //"239px"
+                    blueRoomButton.height = "4.72%"; //"51px";
+                    blueRoomButton.background = "transparent";
+                    blueRoomButton.color = "transparent";
+                    blueRoomButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    blueRoomButton.left = "40.73%"; //"789px"
+                    blueRoomButton.top = "27.8%"; //"300px";
+                    blueRoomButton.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(blueRoomButton);
+
+                    var blueRoomButtonText = new TextBlock("blueRoomButtonText");
+                    blueRoomButtonText.fontFamily = "Calendas Plus";
+                    blueRoomButtonText.fontStyle = "italic";
+                    blueRoomButtonText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomButtonText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    blueRoomButtonText.width = "100%"; //"61px";
+                    blueRoomButtonText.height = "100%"; //"27px";
+                    blueRoomButtonText.text = "Blue Room";
+                    blueRoomButtonText.color = "black";
+                    blueRoomButtonText.top = "-15%";
+                    blueRoomButtonText.resizeToFit = true;
+                    blueRoomButtonText.fontSize = "100%"; //"32px";
+                    blueRoomButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    blueRoomButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomButton.addControl(blueRoomButtonText);
+
+                    var blueRoomEventsText = new TextBlock("blueRoomEventsText");
+                    blueRoomEventsText.fontFamily = "Calendas Plus";
+                    blueRoomEventsText.fontStyle = "italic";
+                    blueRoomEventsText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventsText.width = "5%"; //"61px";
+                    blueRoomEventsText.height = "2.96%"; //"27px";
+                    blueRoomEventsText.text = "Events:";
+                    blueRoomEventsText.color = "#235BA0";
+                    blueRoomEventsText.left = "40.73%"; //"789px"
+                    blueRoomEventsText.top = "36.67%";
+                    blueRoomEventsText.resizeToFit = true;
+                    blueRoomEventsText.fontSize = "2.5%"; //"32px";
+                    blueRoomEventsText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    blueRoomEventsText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navBackgroundRect.addControl(blueRoomEventsText);
+
+                    var blueRoomEventButtonA = Button.CreateSimpleButton("blueRoomEventButtonA", "");
+                    blueRoomEventButtonA.width = "21.875%"; //"420px"
+                    blueRoomEventButtonA.height = "9.62%"; //"104px";
+                    blueRoomEventButtonA.background = "transparent";
+                    blueRoomEventButtonA.color = "transparent";
+                    blueRoomEventButtonA.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventButtonA.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    blueRoomEventButtonA.left = "40.73%"; //"789px"
+                    blueRoomEventButtonA.top = "42.5%"; //"459px";
+                    blueRoomEventButtonA.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(blueRoomEventButtonA);
+
+                    var blueRoomEventButtonAText = new TextBlock("blueRoomEventButtonAText");
+                    blueRoomEventButtonAText.fontFamily = "Calendas Plus";
+                    blueRoomEventButtonAText.textWrapping = true;
+                    blueRoomEventButtonAText.underline = true;
+                    blueRoomEventButtonAText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventButtonAText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    blueRoomEventButtonAText.lineSpacing = 8;
+                    blueRoomEventButtonAText.width = "100%"; //"61px";
+                    blueRoomEventButtonAText.height = "100%"; //"27px";
+                    blueRoomEventButtonAText.text = "Signing of the Emancipation Proclamation following the New Year’s Day Reception";
+                    blueRoomEventButtonAText.color = "#363D45";
+                    blueRoomEventButtonAText.resizeToFit = true;
+                    blueRoomEventButtonAText.fontSize = "25%"; //"24px";
+                    blueRoomEventButtonAText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    blueRoomEventButtonAText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventButtonA.addControl(blueRoomEventButtonAText);
+
+                    var blueRoomEventButtonB = Button.CreateSimpleButton("blueRoomEventButtonB", "");
+                    blueRoomEventButtonB.width = "21.875%"; //"420px"
+                    blueRoomEventButtonB.height = "5.92%"; //"64px";
+                    blueRoomEventButtonB.background = "transparent";
+                    blueRoomEventButtonB.color = "transparent";
+                    blueRoomEventButtonB.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventButtonB.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    blueRoomEventButtonB.left = "40.73%"; //"789px"
+                    blueRoomEventButtonB.top = "57.685%"; //"623px";
+                    blueRoomEventButtonB.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(blueRoomEventButtonB);
+
+                    var blueRoomEventButtonBText = new TextBlock("blueRoomEventButtonBText");
+                    blueRoomEventButtonBText.fontFamily = "Calendas Plus";
+                    blueRoomEventButtonBText.textWrapping = true;
+                    blueRoomEventButtonBText.underline = true;
+                    blueRoomEventButtonBText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventButtonBText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    blueRoomEventButtonBText.lineSpacing = 8;
+                    blueRoomEventButtonBText.width = "100%"; //"61px";
+                    blueRoomEventButtonBText.height = "100%"; //"27px";
+                    blueRoomEventButtonBText.text = "President Ulysses S. Grant hosts King Kalahaua of the Kingdom of Hawaii";
+                    blueRoomEventButtonBText.color = "#363D45";
+                    blueRoomEventButtonBText.resizeToFit = true;
+                    blueRoomEventButtonBText.fontSize = "40%"; //"24px";
+                    blueRoomEventButtonBText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    blueRoomEventButtonBText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    blueRoomEventButtonB.addControl(blueRoomEventButtonBText);
+//#endregion
+
+//#region blue room nav
+                    var greenRoomButton = Button.CreateSimpleButton("greenRoomButton", "");
+                    greenRoomButton.width = "12.45%"; //"239px"
+                    greenRoomButton.height = "4.72%"; //"51px";
+                    greenRoomButton.background = "transparent";
+                    greenRoomButton.color = "transparent";
+                    greenRoomButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    greenRoomButton.left = "71.92%"; //"1381px"
+                    greenRoomButton.top = "27.8%"; //"300px";
+                    greenRoomButton.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(greenRoomButton);
+
+                    var greenRoomButtonText = new TextBlock("greenRoomButtonText");
+                    greenRoomButtonText.fontFamily = "Calendas Plus";
+                    greenRoomButtonText.fontStyle = "italic";
+                    greenRoomButtonText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomButtonText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    greenRoomButtonText.width = "100%"; //"61px";
+                    greenRoomButtonText.height = "100%"; //"27px";
+                    greenRoomButtonText.text = "Green Room";
+                    greenRoomButtonText.color = "black";
+                    greenRoomButtonText.top = "-15%";
+                    greenRoomButtonText.resizeToFit = true;
+                    greenRoomButtonText.fontSize = "100%"; //"32px";
+                    greenRoomButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    greenRoomButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomButton.addControl(greenRoomButtonText);
+
+                    var greenRoomEventsText = new TextBlock("greenRoomEventsText");
+                    greenRoomEventsText.fontFamily = "Calendas Plus";
+                    greenRoomEventsText.fontStyle = "italic";
+                    greenRoomEventsText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventsText.width = "5%"; //"61px";
+                    greenRoomEventsText.height = "2.96%"; //"27px";
+                    greenRoomEventsText.text = "Events:";
+                    greenRoomEventsText.color = "#235BA0";
+                    greenRoomEventsText.left = "71.92%"; //"1381px"
+                    greenRoomEventsText.top = "36.67%";
+                    greenRoomEventsText.resizeToFit = true;
+                    greenRoomEventsText.fontSize = "2.5%"; //"32px";
+                    greenRoomEventsText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    greenRoomEventsText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navBackgroundRect.addControl(greenRoomEventsText);
+
+                    var greenRoomEventButtonA = Button.CreateSimpleButton("greenRoomEventButtonA", "");
+                    greenRoomEventButtonA.width = "21.875%"; //"420px"
+                    greenRoomEventButtonA.height = "5.92%"; //"64px";
+                    greenRoomEventButtonA.background = "transparent";
+                    greenRoomEventButtonA.color = "transparent";
+                    greenRoomEventButtonA.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventButtonA.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    greenRoomEventButtonA.left = "71.92%"; //"1381px"
+                    greenRoomEventButtonA.top = "42.5%"; //"459px";
+                    greenRoomEventButtonA.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(greenRoomEventButtonA);
+
+                    var greenRoomEventButtonAText = new TextBlock("greenRoomEventButtonAText");
+                    greenRoomEventButtonAText.fontFamily = "Calendas Plus";
+                    greenRoomEventButtonAText.textWrapping = true;
+                    greenRoomEventButtonAText.underline = true;
+                    greenRoomEventButtonAText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventButtonAText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    greenRoomEventButtonAText.lineSpacing = 8;
+                    greenRoomEventButtonAText.width = "100%"; //"61px";
+                    greenRoomEventButtonAText.height = "100%"; //"27px";
+                    greenRoomEventButtonAText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do";
+                    greenRoomEventButtonAText.color = "#363D45";
+                    greenRoomEventButtonAText.resizeToFit = true;
+                    greenRoomEventButtonAText.fontSize = "40%"; //"24px";
+                    greenRoomEventButtonAText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    greenRoomEventButtonAText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventButtonA.addControl(greenRoomEventButtonAText);
+
+                    var greenRoomEventButtonB = Button.CreateSimpleButton("greenRoomEventButtonB", "");
+                    greenRoomEventButtonB.width = "21.875%"; //"420px"
+                    greenRoomEventButtonB.height = "5.92%"; //"64px";
+                    greenRoomEventButtonB.background = "transparent";
+                    greenRoomEventButtonB.color = "transparent";
+                    greenRoomEventButtonB.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventButtonB.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    greenRoomEventButtonB.left = "71.92%"; //"1381px"
+                    greenRoomEventButtonB.top = "57.685%"; //"623px";
+                    greenRoomEventButtonB.onPointerUpObservable.add(function() {
+                        //add functionality here
+                    });
+                    navBackgroundRect.addControl(greenRoomEventButtonB);
+
+                    var greenRoomEventButtonBText = new TextBlock("blueRoomEventButtonBText");
+                    greenRoomEventButtonBText.fontFamily = "Calendas Plus";
+                    greenRoomEventButtonBText.textWrapping = true;
+                    greenRoomEventButtonBText.underline = true;
+                    greenRoomEventButtonBText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventButtonBText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    greenRoomEventButtonBText.lineSpacing = 8;
+                    greenRoomEventButtonBText.width = "100%"; //"61px";
+                    greenRoomEventButtonBText.height = "100%"; //"27px";
+                    greenRoomEventButtonBText.text = "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum";
+                    greenRoomEventButtonBText.color = "#363D45";
+                    greenRoomEventButtonBText.resizeToFit = true;
+                    greenRoomEventButtonBText.fontSize = "40%"; //"24px";
+                    greenRoomEventButtonBText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    greenRoomEventButtonBText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    greenRoomEventButtonB.addControl(greenRoomEventButtonBText);
+//#endregion
+
+//#endregion
+
+//#region close nav button
+                    var closeNavButton = Button.CreateSimpleButton("closeNav", "");
+                    closeNavButton.width = "6.25%"; //"120px"
+                    closeNavButton.height = "7.4%"; //"80px";
+                    closeNavButton.background = "#FFFFFF";
+                    closeNavButton.color = "#FFFFFF";
+                    closeNavButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    closeNavButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    closeNavButton.left = "2%"; //"40px";
+                    closeNavButton.top = "3.7%"; //"20px";
+                    closeNavButton.onPointerUpObservable.add(function() {
+                        easyAnimation(navBackgroundRect, 'left', 30, 0, -100, 90);
+                        easyAnimation(entranceRect, 'left', 30, 30, 0, 90);
+                    });
+                    navBackgroundRect.addControl(closeNavButton);
+
+                    var closeNavButtonStroke = new Rectangle("label for button stroke" );
+                    closeNavButtonStroke.width = "95%"; //"114px";
+                    closeNavButtonStroke.height = "92.5%" //"74px";
+                    closeNavButtonStroke.left = ".75%";
+                    closeNavButtonStroke.top = "0.75%";
+                    closeNavButtonStroke.color = "black";
+                    closeNavButton.addControl(closeNavButtonStroke);
+
+                    var closeNavButtonImg = new Image();
+                    closeNavButtonImg.color = "transparent";
+                    closeNavButtonImg.width = "23%"; //57.4px
+                    closeNavButtonImg.height = "35%"; //35.43px
+                    closeNavButtonImg.top = "-6%"; //11.23px
+                    closeNavButtonImg.source = "https://i.imgur.com/YH78eY3.png";
+                    closeNavButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                    closeNavButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                    closeNavButton.addControl(closeNavButtonImg);
+
+                    var closeNavButtonText = new TextBlock("closeNavButtonText");    
+                    closeNavButtonText.fontFamily = "Calendas Plus";
+                    closeNavButtonText.textWrapping = true;
+                    closeNavButtonText.width = "99.16%"; //119px
+                    closeNavButtonText.height = "22%"; //15px
+                    closeNavButtonText.text = "Close";
+                    closeNavButtonText.color = "black";
+                    closeNavButtonText.fontSize = "15%"; //14px
+                    closeNavButtonText.top = "70%"; //57px
+                    closeNavButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    closeNavButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                    closeNavButton.addControl(closeNavButtonText);
+//#endregion
             return scene;
         };
 
