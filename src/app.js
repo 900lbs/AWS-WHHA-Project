@@ -1965,7 +1965,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     whiteHouseIconImg.color = "transparent";
                     whiteHouseIconImg.width = "46.875%"; //900px
                     whiteHouseIconImg.height = "43.89%"; //474px
-                    //whiteHouseIconImg.top = "-6%"; //11.23px
                     whiteHouseIconImg.alpha = .10;
                     whiteHouseIconImg.source = "https://i.imgur.com/ij7gPpq.png";
                     whiteHouseIconImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
@@ -2010,6 +2009,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     entranceHallTextUnderline.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                     navBackgroundRect.addControl(entranceHallTextUnderline);
 
+//#region red room nav
                     var redRoomButton = Button.CreateSimpleButton("redRoom", "");
                     redRoomButton.width = "12.45%"; //"239px"
                     redRoomButton.height = "4.72%"; //"51px";
@@ -2117,6 +2117,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     redRoomEventButtonBText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                     redRoomEventButtonBText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     redRoomEventButtonB.addControl(redRoomEventButtonBText);
+
+//#endregion
 
 //#region blue room nav
                     var blueRoomButton = Button.CreateSimpleButton("blueRoomButton", "");
@@ -2228,7 +2230,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     blueRoomEventButtonB.addControl(blueRoomEventButtonBText);
 //#endregion
 
-//#region blue room nav
+//#region green room nav
                     var greenRoomButton = Button.CreateSimpleButton("greenRoomButton", "");
                     greenRoomButton.width = "12.45%"; //"239px"
                     greenRoomButton.height = "4.72%"; //"51px";
