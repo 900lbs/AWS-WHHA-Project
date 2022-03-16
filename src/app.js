@@ -53,6 +53,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
             "Following Lincoln’s election in 1860, pro-slavery southern states began to secede from the Union, prompting the start of the Civil War in the spring of 1861. Throughout the war, Lincoln considered all approaches to giving the Union a wartime advantage. One of the options put forth included the Emancipation Proclamation, which granted freedom to enslaved people in Confederate States that remained in rebellion.",
             "Lincoln believed this document would hurt the southern economy, negatively impact the South’s ability to continue the war, and further the cause of freedom for enslaved people. After the reception, President Lincoln left the Blue Room and went upstairs to his office, ready to sign the Emancipation Proclamation. With a slightly trembling hand, stiff and numb from greeting so many people, Lincoln signed the document.",
             "Watch this short video on how the Emancipation Proclamation signed by President Abraham Lincoln during the Civil War laid the groundwork for future legislation abolishing, or ending, slavery.",
+            "",
             ""];
         
             let menuIsUp = false;
@@ -63,6 +64,15 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
         
             // Default intensity is 1. Let's dim the light a small amount
             light.intensity = 0.7;
+
+            //Class
+            class TextBlockWithUnderlineColor extends TextBlock {
+                underlineColor = "black";
+                _applyStates(context) {
+                    super._applyStates(context);
+                    context.strokeStyle = this.underlineColor;
+                }
+            }
                 
                     //Functions
                         var imageCarousel = function (control, startPos, endPos, speed, controlImg) {
@@ -89,6 +99,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                         var learnMoreWaiting = function()
                         {
+                            console.log("hit");
                             examineText.alpha = 0;
                             lincolnMaskBox.alpha = 0;
                             lincolnMaskBox.isEnabled = false;
@@ -910,7 +921,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         examineText.textWrapping = true;
                         examineText.width = "51%"; //"979px";
                         examineText.height = "8.4%"; //"80px";
-                        examineText.text = "Examine the different topics and primary sources \nrelated to the Emancipation Proclamation";
+                        examineText.text = "Examine the different topics and primary sources related to the Emancipation Proclamation";
                         examineText.color = "white";
                         examineText.fontSize = "3.7%"; //"40px";
                         examineText.top = "16.66%"; //"180px";
@@ -985,7 +996,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         waitingImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         waitingImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         waitingImgBox.onPointerClickObservable.add(function() {
+                            console.log("hit");
                             learnMoreWaiting();
+                            console.log("hit");
                         });
                         waitingMaskBox.addControl(waitingImgBox);
 
@@ -1037,7 +1050,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         engravingText1.textWrapping = true;
                         engravingText1.width = "23.4375%"; //"450px";
                         engravingText1.height = "6%"; //"65px";
-                        engravingText1.text = "Engraving: The First Reading of \nthe Emancipation Proclamation";
+                        engravingText1.text = "Engraving: The First Reading of the Emancipation Proclamation";
                         engravingText1.color = "white";
                         engravingText1.fontSize = "2.75%"; //"30px";
                         engravingText1.top = "69.81%"; //"754px";
@@ -1127,7 +1140,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         scrollbarSideForLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         labelForLearnAboutWaiting.addControl( scrollbarSideForLearnMore);
 
-                        var textTitleLearnMore = new TextBlock("textTitleLearnMore");
+                        var textTitleLearnMore = new TextBlockWithUnderlineColor("textTitleLearnMore");
                         textTitleLearnMore.fontFamily = "Calendas Plus";
                         textTitleLearnMore.textWrapping = true;
                         textTitleLearnMore.width = "32%"; //"480px";
@@ -1142,7 +1155,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         textTitleLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         labelForLearnAboutWaiting.addControl(textTitleLearnMore);
 
-                        var textBodyLearnMore = new TextBlock("textBodyLearnMore");
+                        var textBodyLearnMore = new TextBlockWithUnderlineColor("textBodyLearnMore");
                         textBodyLearnMore.fontFamily = "Calendas Plus";
                         textBodyLearnMore.textWrapping = true;
                         textBodyLearnMore.width = "32%"; //"480px";
@@ -1271,7 +1284,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         learnMoreMenuMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         greyBoxBlurRoomImage.addControl(learnMoreMenuMaskBox);
 
-                        var textBodyLearnMoreMenu = new TextBlock("textBodyLearnMoreMenu");
+                        var textBodyLearnMoreMenu = new TextBlockWithUnderlineColor("textBodyLearnMoreMenu");
                         textBodyLearnMoreMenu.fontFamily = "Calendas Plus";
                         textBodyLearnMoreMenu.textWrapping = true;
                         textBodyLearnMoreMenu.width = "68%"; //"230px";
@@ -1338,10 +1351,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         });
                         learnMoreMenuBoxStroke.addControl(learnMoreMenuBoxButton);
                 
-                    //Constant UI
+//#region Constant UI
                         var advancedTextureConstant = AdvancedDynamicTexture.CreateFullscreenUI("uiConstant");
                 
-                                    //Walk Left Button
+//#region Walk Left Button
                         var leftArrowBox = Button.CreateSimpleButton("leftArrowBox", "walk left");;
                         leftArrowBox.width = "13.8%"; //"265px"; 
                         leftArrowBox.height = "7.685%"; //"83px";
@@ -1406,8 +1419,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         walkLeftText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         walkLeftText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                         leftArrowBox.addControl(walkLeftText);
+//#endregion
                 
-                    //Walk Right Button
+//#region Walk Right Button
                         var rightArrowBox = Button.CreateSimpleButton("rightArrowBox", "walk right");;
                         rightArrowBox.width = "13.8%"; //"265px"; 
                         rightArrowBox.height = "7.685%"; //"83px";
@@ -1475,9 +1489,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         walkRightText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         walkRightText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                         rightArrowBox.addControl(walkRightText);
-                
+//#endregion
         
-                        //Navigation Button
+//#region Navigation Button
                             var navButton = Button.CreateSimpleButton("nav", "Navigation");
                             navButton.width = "6.25%"; //"120px"
                             navButton.height = "7.4%"; //"80px";
@@ -1527,8 +1541,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             navButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             navButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             navButton.addControl(navButtonText);
-                
-                        //Main Menu Tab
+//#endregion
+    
+//#region Main Menu
+
+//#region Main Menu Tab
                             var menuPicMain = Button.CreateSimpleButton("menuTab", "");
                             menuPicMain.width = "12.5%"; //"240px";
                             menuPicMain.height = "4.5%"; //"40px";
@@ -1578,8 +1595,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuTabText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             menuTabText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMain.addControl(menuTabText);
-                
-                        //Main menu rect
+//#endregion
+
+//#region Main menu rect
                             var menuPicMainRect = new Rectangle("menuPicRect" );
                             menuPicMainRect.width = "100%";
                             menuPicMainRect.height = "18.52%"; //"200px";
@@ -1589,8 +1607,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPicMainRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                             menuPicMainRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                             advancedTextureConstant.addControl( menuPicMainRect);
+//#endregion
 
-                        //Main Menu Stars
+//#region Main Menu Stars
                             var menuStarAImg = new Image();
                             menuStarAImg.color = "transparent";
                             menuStarAImg.width = ".65%"; //8.36px
@@ -1622,9 +1641,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuStarCImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             menuStarCImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuStarCImg);
-                            
+//#endregion
                 
-                        //Menu Bar bars
+//#region Menu Bar bars
                             var menuPicMainLeftBar = new Rectangle("menuPicLeftBar" );
                             menuPicMainLeftBar.height = "75%"; //"150px";
                             menuPicMainLeftBar.width = "1px";
@@ -1647,9 +1666,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPicMainRightBar.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             menuPicMainRightBar.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                             menuPicMainRect.addControl( menuPicMainRightBar);
+//#endregion
                 
-                
-                        //Menu Bar Text
+//#region Menu Bar Text
                             var menuBarText = new TextBlock("menuBarText");
                             menuBarText.fontFamily = "Calendas Plus";
                             menuBarText.textWrapping = true;
@@ -1664,6 +1683,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuBarText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             menuBarText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuBarText);
+//#endregion
+
+//#endregion
+
                 
                         //Menu Callouts
                             /*var architectCalloutButton = Button.CreateSimpleButton("architect", "architect");
@@ -1824,7 +1847,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             });
                             menuPicMainRect.addControl(secCalloutButton);*/
                 
-                        //Audio Button
+//#region Audio Button
                             var audioButton = Button.CreateSimpleButton("audio", "");
                             audioButton.width = "3.125%"; //"60px"
                             audioButton.height = "30%"; //"60px";
@@ -1859,8 +1882,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             speakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             speakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             audioButton.addControl(speakerButton);
+//#endregion
+
                 
-                        //Back Button
+//#region Back Button
                             var backButton = Button.CreateSimpleButton("back", "");
                             backButton.width = "3.645%"; //"70px"
                             backButton.height = "9.5%"; //"19px";
@@ -1898,7 +1923,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             backButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             backButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             backButton.addControl(backButtonText);
-                
+//#endregion
+
+//#region Next Button          
                         //Next Button
                             var nextButton = Button.CreateSimpleButton("next", "");
                             nextButton.width = "12.5%"; //"240px"
@@ -1946,7 +1973,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             nextButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             nextButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             nextButton.addControl(nextButtonText);
+//#endregion
 
+//#endregion
 
 //#region Navigation Page
                     var advancedTextureNavigation = AdvancedDynamicTexture.CreateFullscreenUI("uiNavigation");
@@ -1981,7 +2010,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#endregion
 
 //#region Text for Navigation
-                    var entranceHallText = new TextBlock("entranceHallText");
+                    var entranceHallText = new TextBlockWithUnderlineColor("entranceHallText");
                     entranceHallText.fontFamily = "Calendas Plus";
                     entranceHallText.fontStyle = "italic";
                     entranceHallText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
@@ -1989,6 +2018,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     entranceHallText.height = "2.96%"; //"27px";
                     entranceHallText.text = "Entrance Hall";
                     entranceHallText.color = "#235BA0";
+                    entranceHallText.underline = true;
+                    entranceHallText.underlineColor = "#235BA0";
                     entranceHallText.left = "9.375%";
                     entranceHallText.top = "19.26%";
                     entranceHallText.resizeToFit = true;
@@ -1996,18 +2027,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     entranceHallText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                     entranceHallText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     navBackgroundRect.addControl(entranceHallText);
-
-                    var entranceHallTextUnderline = new Rectangle("entranceHallTextUnderline" );
-                    entranceHallTextUnderline.height = ".185%"; //"50px";
-                    entranceHallTextUnderline.width = "7.7%"; //"230px";
-                    entranceHallTextUnderline.color = "#235BA0";
-                    entranceHallTextUnderline.background = "#235BA0";
-                    entranceHallTextUnderline.left = "9.375%";
-                    entranceHallTextUnderline.top = "21.785%";
-                    entranceHallTextUnderline.resizeToFit = true;
-                    entranceHallTextUnderline.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
-                    entranceHallTextUnderline.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
-                    navBackgroundRect.addControl(entranceHallTextUnderline);
 
 //#region red room nav
                     var redRoomButton = Button.CreateSimpleButton("redRoom", "");
@@ -2070,10 +2089,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     });
                     navBackgroundRect.addControl(redRoomEventButtonA);
 
-                    var redRoomEventButtonAText = new TextBlock("redRoomEventButtonAText");
+                    var redRoomEventButtonAText = new TextBlockWithUnderlineColor("redRoomEventButtonAText");
                     redRoomEventButtonAText.fontFamily = "Calendas Plus";
                     redRoomEventButtonAText.textWrapping = true;
                     redRoomEventButtonAText.underline = true;
+                    redRoomEventButtonAText.underlineColor = "#363D45";
                     redRoomEventButtonAText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     redRoomEventButtonAText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                     redRoomEventButtonAText.lineSpacing = 8;
@@ -2101,10 +2121,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     });
                     navBackgroundRect.addControl(redRoomEventButtonB);
 
-                    var redRoomEventButtonBText = new TextBlock("redRoomEventButtonBText");
+                    var redRoomEventButtonBText = new TextBlockWithUnderlineColor("redRoomEventButtonBText");
                     redRoomEventButtonBText.fontFamily = "Calendas Plus";
                     redRoomEventButtonBText.textWrapping = true;
                     redRoomEventButtonBText.underline = true;
+                    redRoomEventButtonBText.underlineColor = "#363D45";
                     redRoomEventButtonBText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     redRoomEventButtonBText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                     redRoomEventButtonBText.lineSpacing = 8;
@@ -2181,10 +2202,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     });
                     navBackgroundRect.addControl(blueRoomEventButtonA);
 
-                    var blueRoomEventButtonAText = new TextBlock("blueRoomEventButtonAText");
+                    var blueRoomEventButtonAText = new TextBlockWithUnderlineColor("blueRoomEventButtonAText");
                     blueRoomEventButtonAText.fontFamily = "Calendas Plus";
                     blueRoomEventButtonAText.textWrapping = true;
                     blueRoomEventButtonAText.underline = true;
+                    blueRoomEventButtonAText.underlineColor = "#363D45";
                     blueRoomEventButtonAText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     blueRoomEventButtonAText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                     blueRoomEventButtonAText.lineSpacing = 8;
@@ -2212,10 +2234,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     });
                     navBackgroundRect.addControl(blueRoomEventButtonB);
 
-                    var blueRoomEventButtonBText = new TextBlock("blueRoomEventButtonBText");
+                    var blueRoomEventButtonBText = new TextBlockWithUnderlineColor("blueRoomEventButtonBText");
                     blueRoomEventButtonBText.fontFamily = "Calendas Plus";
                     blueRoomEventButtonBText.textWrapping = true;
                     blueRoomEventButtonBText.underline = true;
+                    blueRoomEventButtonBText.underlineColor = "#363D45";
                     blueRoomEventButtonBText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     blueRoomEventButtonBText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                     blueRoomEventButtonBText.lineSpacing = 8;
@@ -2291,10 +2314,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     });
                     navBackgroundRect.addControl(greenRoomEventButtonA);
 
-                    var greenRoomEventButtonAText = new TextBlock("greenRoomEventButtonAText");
+                    var greenRoomEventButtonAText = new TextBlockWithUnderlineColor("greenRoomEventButtonAText");
                     greenRoomEventButtonAText.fontFamily = "Calendas Plus";
                     greenRoomEventButtonAText.textWrapping = true;
                     greenRoomEventButtonAText.underline = true;
+                    greenRoomEventButtonAText.underlineColor = "#363D45";
                     greenRoomEventButtonAText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     greenRoomEventButtonAText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                     greenRoomEventButtonAText.lineSpacing = 8;
@@ -2322,10 +2346,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     });
                     navBackgroundRect.addControl(greenRoomEventButtonB);
 
-                    var greenRoomEventButtonBText = new TextBlock("blueRoomEventButtonBText");
+                    var greenRoomEventButtonBText = new TextBlockWithUnderlineColor("blueRoomEventButtonBText");
                     greenRoomEventButtonBText.fontFamily = "Calendas Plus";
                     greenRoomEventButtonBText.textWrapping = true;
                     greenRoomEventButtonBText.underline = true;
+                    greenRoomEventButtonBText.underlineColor = "#363D45";
                     greenRoomEventButtonBText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     greenRoomEventButtonBText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                     greenRoomEventButtonBText.lineSpacing = 8;
@@ -2389,6 +2414,97 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     closeNavButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                     closeNavButton.addControl(closeNavButtonText);
 //#endregion
+
+//#region Nav Audio Button
+                    var navAudioButton = Button.CreateSimpleButton("audio", "");
+                    navAudioButton.width = "3.125%"; //"60px"
+                    navAudioButton.height = "5.55%"; //"60px";
+                    navAudioButton.color = "transparent";
+                    navAudioButton.cornerRadius = 0;
+                    navAudioButton.background = "#D9D9D9";
+                    navAudioButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navAudioButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    navAudioButton.left = "3.125%"; //"60px";
+                    navAudioButton.top = "88.88%"; //"960px";
+                    navAudioButton.onPointerUpObservable.add(function() {
+                        fullscreenGo();
+                    });
+                    navBackgroundRect.addControl(navAudioButton);
+
+                    var navAudioButtonStroke = new Rectangle("audioButtonStroke" );
+                    navAudioButtonStroke.height = "95%"; //"54px";
+                    navAudioButtonStroke.width = "95%"; //"54px";
+                    navAudioButtonStroke.color = "black";
+                    navAudioButtonStroke.background = "transparent";
+                    navAudioButtonStroke.left = "3.25%";
+                    navAudioButtonStroke.top = "4%";
+                    navAudioButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    navAudioButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                    navAudioButton.addControl( navAudioButtonStroke);
+
+                    var navSpeakerButton = new Image();
+                    navSpeakerButton.color = "transparent";
+                    navSpeakerButton.width = "46.66%"; //"28px";
+                    navSpeakerButton.height = "46.66%"; //"28px";
+                    navSpeakerButton.source = "https://i.imgur.com/89lytUS.png";
+                    navSpeakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                    navSpeakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                    navAudioButton.addControl(navSpeakerButton);
+//#endregion
+
+//#region Nav Reset Button
+                    var navResetButton = Button.CreateSimpleButton("reset", "");
+                    navResetButton.width = "5.73%"; //"110px"
+                    navResetButton.height = "5.55%"; //"60px";
+                    navResetButton.color = "transparent";
+                    navResetButton.cornerRadius = 0;
+                    navResetButton.background = "#D9D9D9";
+                    navResetButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navResetButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    navResetButton.left = "6.77%"; //"130px";
+                    navResetButton.top = "88.88%"; //"960px";
+                    navResetButton.onPointerUpObservable.add(function() {
+                        window.location.reload();
+                    });
+                    navBackgroundRect.addControl(navResetButton);
+
+                    var navResetButtonStroke = new Rectangle("audioButtonStroke" );
+                    navResetButtonStroke.height = "95%"; //"54px";
+                    navResetButtonStroke.width = "95%"; //"54px";
+                    navResetButtonStroke.color = "black";
+                    navResetButtonStroke.background = "transparent";
+                    navResetButtonStroke.left = "3.25%";
+                    navResetButtonStroke.top = "4%";
+                    navResetButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                    navResetButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                    navResetButton.addControl( navResetButtonStroke);
+
+                    var navResetImg = new Image();
+                    navResetImg.color = "transparent";
+                    navResetImg.width = "11.21%"; //"12.33px";
+                    navResetImg.height = "23.63%"; //"14.18px";
+                    navResetImg.left = "16.1%"; //"17.67px";
+                    navResetImg.source = "https://i.imgur.com/wiaNJ05.png";
+                    navResetImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                    navResetImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navResetButton.addControl(navResetImg);
+
+                    var resetButtonText = new TextBlock("resetButtonText");    
+                    resetButtonText.fontFamily = "Calendas Plus";
+                    resetButtonText.textWrapping = true;
+                    resetButtonText.width = "61.82%"; //68px
+                    resetButtonText.height = "31.67%"; //19px
+                    resetButtonText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    resetButtonText.text = "Restart";
+                    resetButtonText.color = "black";
+                    resetButtonText.fontSize = "32.5%"; //14px
+                    resetButtonText.left = "32.73%"; //36px
+                    resetButtonText.resizeToFit = true;
+                    resetButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                    resetButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    navResetButton.addControl(resetButtonText);
+//#endregion
+
             return scene;
         };
 
