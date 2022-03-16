@@ -292,7 +292,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         {
                             if(menuIsUp)
                             {
-                                easyAnimation(menuPicMain, 'top', 30, 0, -18.52, 60);
+                                easyAnimation(menuPicMain, 'top', 30, 0, -18.4, 60);
                                 easyFade(menuBarPicAMain, 30, 1, 0, 90);
                                 easyFade(menuBarPicBMain, 30, 1, 0, 90);
                                 easyFade(menuTabText, 30, 0, 1, 90);
@@ -301,7 +301,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             
                             else
                             {
-                                easyAnimation(menuPicMain, 'top', 30, -18.52, 0, 60);
+                                easyAnimation(menuPicMain, 'top', 30, -18.4, 0, 60);
                                 easyFade(menuBarPicAMain, 30, 0, 1, 90);
                                 easyFade(menuBarPicBMain, 30, 0, 1, 90);
                                 easyFade(menuTabText, 30, 1, 0, 90);
@@ -770,11 +770,15 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         advancedTextureBlueRoom.isForeground = false;
                 
                         var img1 = new Image();
+                        img1.width = "100%";
+                        img1.height = "100%";
                         img1.source = "https://i.imgur.com/XRTE8dS.jpg";
                         img1.color = "transparent";
                         label.addControl(img1);
                 
                         var img2 = new Image();
+                        img2.width = "100%";
+                        img2.height = "100%";
                         img2.source = "https://i.imgur.com/ZnXnhdS.jpg";
                         img2.color = "transparent";
                         img2.zIndex = 1;
@@ -1353,6 +1357,12 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                 
 //#region Constant UI
                         var advancedTextureConstant = AdvancedDynamicTexture.CreateFullscreenUI("uiConstant");
+
+                        var constantRect = new Rectangle("constantContainer");
+                        constantRect.width = "100%";
+                        constantRect.height = "100%";
+                        constantRect.color = "transparent";
+                        advancedTextureConstant.addControl(constantRect);
                 
 //#region Walk Left Button
                         var leftArrowBox = Button.CreateSimpleButton("leftArrowBox", "walk left");;
@@ -1372,7 +1382,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             }
                             imageCarousel(img1, (screen.width / 2) * -1, 0, 100, img2);
                         });
-                        advancedTextureConstant.addControl(leftArrowBox); 
+                        constantRect.addControl(leftArrowBox); 
                 
                         var arrowImgA = new Image();
                         arrowImgA.color = "transparent";
@@ -1439,7 +1449,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             }
                             imageCarousel(img2, screen.width - (screen.width / 2), 0, 100, img1);
                         });
-                        advancedTextureConstant.addControl(rightArrowBox); 
+                        constantRect.addControl(rightArrowBox); 
                 
                         var arrowImgARight = new Image();
                         arrowImgARight.color = "transparent";
@@ -1508,8 +1518,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             navButton.onPointerUpObservable.add(function() {
                                 easyAnimation(navBackgroundRect, 'left', 30, -100, 0, 90);
                                 easyAnimation(entranceRect, 'left', 30, 0, 30, 90);
+                                easyAnimation(constantRect, 'left', 30, 0, 30, 90);
+                                easyAnimation(label, 'left', 30, 0, 30, 90);
+                                easyAnimation(greyBoxBlurRoomImage, 'left', 30, 0, 30, 90);
                             });
-                            advancedTextureConstant.addControl(navButton);
+                            constantRect.addControl(navButton);
 
                             var navButtonStroke = new Rectangle("label for button stroke" );
                             navButtonStroke.width = "95%"; //"114px";
@@ -1558,7 +1571,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 menuIsUp = !menuIsUp;
                                 openMenu();
                             });
-                            advancedTextureConstant.addControl( menuPicMain);
+                            constantRect.addControl( menuPicMain);
                 
                             var menuBarPicAMain = new Rectangle("menuBarPicA" );
                             menuBarPicAMain.width = "21.35%"; //"50px";
@@ -1606,7 +1619,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPicMainRect.top = "18.4%";
                             menuPicMainRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                             menuPicMainRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
-                            advancedTextureConstant.addControl( menuPicMainRect);
+                            constantRect.addControl( menuPicMainRect);
 //#endregion
 
 //#region Main Menu Stars
@@ -1684,7 +1697,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuBarText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuBarText);
 //#endregion
-
 //#endregion
 
                 
@@ -2380,6 +2392,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     closeNavButton.onPointerUpObservable.add(function() {
                         easyAnimation(navBackgroundRect, 'left', 30, 0, -100, 90);
                         easyAnimation(entranceRect, 'left', 30, 30, 0, 90);
+                        easyAnimation(constantRect, 'left', 30, 30, 0, 90);
+                        easyAnimation(label, 'left', 30, 30, 0, 90);
+                        easyAnimation(greyBoxBlurRoomImage, 'left', 30, 30, 0, 90);
                     });
                     navBackgroundRect.addControl(closeNavButton);
 
@@ -2481,9 +2496,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                     var navResetImg = new Image();
                     navResetImg.color = "transparent";
-                    navResetImg.width = "11.21%"; //"12.33px";
+                    navResetImg.width = "11.35%"; //"12.33px";
                     navResetImg.height = "23.63%"; //"14.18px";
                     navResetImg.left = "16.1%"; //"17.67px";
+                    navResetImg.resizeToFit = true;
                     navResetImg.source = "https://i.imgur.com/wiaNJ05.png";
                     navResetImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                     navResetImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
@@ -2503,6 +2519,184 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     resetButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                     resetButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     navResetButton.addControl(resetButtonText);
+//#endregion
+
+//#region Welcome Page
+                        var advancedTextureWelcome = AdvancedDynamicTexture.CreateFullscreenUI("uiWelcome");
+
+                        var welBackgroundRect = new Rectangle("welBackgroundRect" );
+                        welBackgroundRect.height = "100%"; //"1080px";
+                        welBackgroundRect.width = "100%"; //"1920px";
+                        welBackgroundRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        welBackgroundRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                        advancedTextureWelcome.addControl( welBackgroundRect);
+
+                        var welcomeSplashScreen = new Image();
+                        welcomeSplashScreen.color = "transparent";
+                        welcomeSplashScreen.width = "140%"; //1920px
+                        welcomeSplashScreen.height = "140%"; //1080px
+                        welcomeSplashScreen.source = "https://i.imgur.com/mVFHZmz.jpg";
+                        welcomeSplashScreen.top = "15%";
+                        welcomeSplashScreen.left = "-1.25%";
+                        welcomeSplashScreen.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeSplashScreen.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        welBackgroundRect.addControl(welcomeSplashScreen);
+
+                        var welcomeBackgroundMask = new Rectangle("label for background mask" );
+                        welcomeBackgroundMask.width = "100%"; //"114px";
+                        welcomeBackgroundMask.height = "100%" //"74px";
+                        welcomeBackgroundMask.color = "#000000";
+                        welcomeBackgroundMask.background = "000000";
+                        welcomeBackgroundMask.alpha = .45;
+                        welcomeBackgroundMask.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeBackgroundMask.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        welBackgroundRect.addControl(welcomeBackgroundMask);
+
+                        var welcomeBackgroundStroke = new Rectangle("label for background stroke" );
+                        welcomeBackgroundStroke.width = "97.4%"; //"114px";
+                        welcomeBackgroundStroke.height = "95.37%" //"74px";
+                        welcomeBackgroundStroke.color = "#FFFFFF";
+                        welcomeBackgroundStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeBackgroundStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        welBackgroundRect.addControl(welcomeBackgroundStroke);
+
+                        var welcomeTextImg = new Image();
+                        welcomeTextImg.color = "transparent";
+                        welcomeTextImg.width = "35.47%"; //680px
+                        welcomeTextImg.height = "20.37%"; //220px
+                        welcomeTextImg.source = "https://i.imgur.com/8Wc9d2D.png";
+                        welcomeTextImg.top = "-5%";
+                        welcomeTextImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeTextImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        welBackgroundRect.addControl(welcomeTextImg);
+
+//#region Next Button          
+                        //Next Button
+                        var startButton = Button.CreateSimpleButton("startButton", "");
+                        startButton.width = "12.5%"; //"240px"
+                        startButton.height = "5.55%"; //"60px"; 
+                        startButton.color = "transparent";
+                        startButton.background = "#235BA0";
+                        startButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        startButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                        //startButton.left = "43.75%"; //"840px";
+                        startButton.top = "63%"; //"656px";
+                        startButton.onPointerUpObservable.add(function() {
+                            console.log("start");
+                            easyFade(welBackgroundRect, 30, 1, 0, 90);
+                        });
+                        welBackgroundRect.addControl(startButton);
+            
+                        var startButtonStroke = new Rectangle("startButtonStroke" );
+                        startButtonStroke.height = "83.33%"; //"50px";
+                        startButtonStroke.width = "95.83%"; //"230px";
+                        startButtonStroke.color = "white";
+                        startButtonStroke.background = "transparent";
+                        startButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        startButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                        startButton.addControl( startButtonStroke);
+            
+                        var startButtonImg = new Image();
+                        startButtonImg.color = "transparent";
+                        startButtonImg.width = "21px";
+                        startButtonImg.height = "21px";
+                        startButtonImg.rotation = 3.15;
+                        startButtonImg.left = "63.33%"; //"152px";
+                        startButtonImg.source = "https://i.imgur.com/u2mV0JU.png";
+                        startButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        startButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                        startButton.addControl(startButtonImg);
+            
+                        var startButtonText = new TextBlock("startButtonText");
+                        startButtonText.fontFamily = "Calendas Plus";
+                        startButtonText.fontStyle = "italic";
+                        startButtonText.textWrapping = true;
+                        startButtonText.width = "25.42%"; //"61px";
+                        startButtonText.height = "45%"; //"27px";
+                        startButtonText.text = "Start";
+                        startButtonText.color = "white";
+                        startButtonText.fontSize = "50%"; //"26px";
+                        startButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        startButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        startButton.addControl(startButtonText);
+//#endregion
+
+//#region Nav Audio Button
+                        var welcomeAudioButton = Button.CreateSimpleButton("welcomeaudio", "");
+                        welcomeAudioButton.width = "3.125%"; //"60px"
+                        welcomeAudioButton.height = "5.55%"; //"60px";
+                        welcomeAudioButton.color = "transparent";
+                        welcomeAudioButton.cornerRadius = 0;
+                        welcomeAudioButton.background = "#D9D9D9";
+                        welcomeAudioButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                        welcomeAudioButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                        welcomeAudioButton.left = "3.125%"; //"60px";
+                        welcomeAudioButton.top = "88.88%"; //"960px";
+                        welcomeAudioButton.onPointerUpObservable.add(function() {
+                            fullscreenGo();
+                        });
+                        welBackgroundRect.addControl(welcomeAudioButton);
+
+                        var welcomeAudioButtonStroke = new Rectangle("welcomeAudioButtonStroke" );
+                        welcomeAudioButtonStroke.height = "95%"; //"54px";
+                        welcomeAudioButtonStroke.width = "95%"; //"54px";
+                        welcomeAudioButtonStroke.color = "black";
+                        welcomeAudioButtonStroke.background = "transparent";
+                        welcomeAudioButtonStroke.left = "3.25%";
+                        welcomeAudioButtonStroke.top = "4%";
+                        welcomeAudioButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        welcomeAudioButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                        welcomeAudioButton.addControl( welcomeAudioButtonStroke);
+
+                        var welcomeSpeakerButton = new Image();
+                        welcomeSpeakerButton.color = "transparent";
+                        welcomeSpeakerButton.width = "46.66%"; //"28px";
+                        welcomeSpeakerButton.height = "46.66%"; //"28px";
+                        welcomeSpeakerButton.source = "https://i.imgur.com/89lytUS.png";
+                        welcomeSpeakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeSpeakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        welcomeAudioButton.addControl(welcomeSpeakerButton);
+//#endregion
+                        
+//#region Welcome screen logos
+                        var welLogoRect = new Rectangle("welLogoRect" );
+                        welLogoRect.height = "5.6%"; //"60.32px";
+                        welLogoRect.width = "18.75%"; //"360px";
+                        welLogoRect.color = "transparent";
+                        welLogoRect.left = "-3.125%"; //"60px";
+                        welLogoRect.top = "88.88%"; //"960px";
+                        welLogoRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        welLogoRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;  
+                        welBackgroundRect.addControl(welLogoRect);
+
+                        var welcomeWhitehouseLogo = new Image();
+                        welcomeWhitehouseLogo.color = "transparent";
+                        welcomeWhitehouseLogo.width = "62.22%"; //"224px";
+                        welcomeWhitehouseLogo.height = "59.68%"; //"36px";
+                        welcomeWhitehouseLogo.source = "https://i.imgur.com/cPdvEX4.png";
+                        welcomeWhitehouseLogo.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeWhitehouseLogo.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                        welLogoRect.addControl(welcomeWhitehouseLogo);
+
+                        var welLogoLine = new Rectangle("welLogoLine" );
+                        welLogoLine.height = "100%"; //"60px";
+                        welLogoLine.width = "0.55%%"; //"2px";
+                        welLogoLine.color = "white";
+                        welLogoLine.left = "-65.5%"; //"60px";
+                        welLogoLine.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welLogoLine.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;  
+                        welLogoRect.addControl(welLogoLine);
+
+                        var welcomeAWSLogo = new Image();
+                        welcomeAWSLogo.color = "transparent";
+                        welcomeAWSLogo.width = "25.23%"; //"120px";
+                        welcomeAWSLogo.height = "90%"; //"72px";
+                        welcomeAWSLogo.source = "https://i.imgur.com/smOUoJv.png";
+                        welcomeAWSLogo.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        welcomeAWSLogo.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                        welLogoRect.addControl(welcomeAWSLogo);
+//#endregion
+
 //#endregion
 
             return scene;
