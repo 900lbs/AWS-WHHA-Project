@@ -49,7 +49,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
             "This is the Blue Room, an oval shaped room on the State Floor of the White House. The Blue Room was designed to be an elegant space by White House architect James Hoban, and has been used often as a reception room. However, did you know that the Blue Room was not always blue? At different times, the room was red and green until 1837, when President Martin Van Buren turned it into the Blue Room.",
             "Image caption:\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
             "",
-            "On the morning of January 1, 1863, President Abraham Lincoln hosted the annual New Year’s Day reception at the White House, spending several hours here in the Blue Room shaking hands with hundreds of citizens. \nDuring Lincoln’s presidency from 1861-1865, the Civil War was fought between the Union and the Confederacy.",
+            "On the morning of January 1, 1863, President Abraham Lincoln hosted the annual New Year’s Day reception at the White House, spending several hours here in the Blue Room shaking hands with hundreds of citizens. During Lincoln’s presidency from 1861-1865, the Civil War was fought between the Union and the Confederacy.",
             "Following Lincoln’s election in 1860, pro-slavery southern states began to secede from the Union, prompting the start of the Civil War in the spring of 1861. Throughout the war, Lincoln considered all approaches to giving the Union a wartime advantage. One of the options put forth included the Emancipation Proclamation, which granted freedom to enslaved people in Confederate States that remained in rebellion.",
             "Lincoln believed this document would hurt the southern economy, negatively impact the South’s ability to continue the war, and further the cause of freedom for enslaved people. After the reception, President Lincoln left the Blue Room and went upstairs to his office, ready to sign the Emancipation Proclamation. With a slightly trembling hand, stiff and numb from greeting so many people, Lincoln signed the document.",
             "Watch this short video on how the Emancipation Proclamation signed by President Abraham Lincoln during the Civil War laid the groundwork for future legislation abolishing, or ending, slavery.",
@@ -88,13 +88,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             Animation.CreateAndStartAnimation('at1', control, 'left', speed * 1.5, 120, startPos,endPos, 0, ease);
                             Animation.CreateAndStartAnimation('at2', control, 'alpha', speed, 120, 0,1, 0, ease2);
                 
-                            setAndStartTimer({
-                            timeout: 3000,
-                            contextObservable: scene.onBeforeRenderObservable,
-                            onEnded: () => {
-                            console.log("Timer worked!");
-                            }
-                            });
+                            
                         }
 
                         var learnMoreWaiting = function()
@@ -152,23 +146,210 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             }
                         }
                 
-                        var updateText = function()
+                        var updateText = function(direction)
                         {
                             previousTextIndex = currentTextIndex;
-                            currentTextIndex++;
+
+                            if(direction == 'back')
+                            {
+                                if(currentTextIndex > 0)
+                                {
+                                    currentTextIndex--;
+                                }
+
+                                else
+                                {
+                                    welcomeSplashScreen.width = "140%";
+                                    welcomeSplashScreen.height = "140%";
+                                    easyFade(welBackgroundRect, 30, 0, 1, 90);
+                                    startButton.isEnabled = true;
+                                    if(menuIsUp)
+                                    {
+                                        menuIsUp = false;
+                                        openMenu();
+                                    }
+                                    //window.location.reload();
+                                }
+                            }
+
+                            if(direction == 'forward')
+                            {
+                                if(currentTextIndex < textForMenu.length - 1)
+                                {
+                                    currentTextIndex++;
+                                }
+                                
+                                else
+                                {
+                                    return;
+                                }
+                            }
+
+                            if(direction == 'entrance')
+                            {
+                                currentTextIndex = 0;
+                            }
+
+                            if(currentTextIndex == 0)
+                            {
+                                //Turn off if necessary
+                                greyBoxExplore.alpha = 0;
+                                greyBoxExplore.isEnabled = false;
+                                redRoomMaskBox.width = "0%";
+                                redRoomMaskBox.height = "0%";
+                                redRoomText.alpha = 0;
+                                blueRoomMaskBox.width = "0%";
+                                blueRoomMaskBox.height = "0%";
+                                blueRoomText.alpha = 0;
+                                greenRoomMaskBox.width = "0%";
+                                greenRoomMaskBox.height = "0%";
+                                greenRoomText.alpha = 0;
+                                exploreText.alpha = 0;
+                                greyBoxBlurRoomImage.isEnabled = false;
+
+                                //architectCalloutButton.alpha = 0;
+                                //architectCalloutButton.isEnabled = false;
+                                advancedTextureEntrance.isForeground = true;
+                                blueRoomButton.isEnabled = true;
+                                menuTabText.text = "Welcome";
+                                leftArrowBox.isEnabled = false;
+                                rightArrowBox.isEnabled = false; 
+                    
+                                if(menuIsUp)
+                                {
+                                    menuIsUp = !menuIsUp;
+                                    openMenu();
+                                }
+
+                                greyBoxBlurRoomImage.alpha = 0;
+                                redRoomMaskBox.width = "0%";
+                                redRoomMaskBox.height = "0%";
+                                redRoomText.alpha = 0;
+                                blueRoomMaskBox.width = "0%";
+                                blueRoomMaskBox.height = "0%";
+                                blueRoomText.alpha = 0;
+                                greenRoomMaskBox.width = "0%";
+                                greenRoomMaskBox.height = "0%";
+                                greenRoomText.alpha = 0;
+                                exploreText.alpha = 0;
+                                greyBoxBlurRoomImage.isEnabled = false;
+
+                                blueRoomImgBox.alpha = 1;
+                                blueRoomImgBox.isEnabled = true;
+                                wantToLearnMore.alpha = 0;
+                                wantToLearnMore.isEnabled = false;
+                                learnMoreMaskBox1.alpha = 0;
+                                learnMoreMaskBox1.isEnabled = false;
+                                learnMoreImgBox1.alpha = 0;
+                                learnMoreImgBox1.isEnabled = false;
+                                learnMoreText1.alpha = 0;
+                                learnMoreText1.isEnabled = false;
+                                learnMoreMaskBox2.alpha = 0;
+                                learnMoreMaskBox2.isEnabled = false;
+                                learnMoreImgBox2.alpha = 0;
+                                learnMoreImgBox2.isEnabled = false;
+                                learnMoreText2.alpha = 0;
+                                learnMoreText2.isEnabled = false;
+
+                                openIframe("", 'none');
+                                leftArrowBox.isEnabled = true;
+                                leftArrowBox.alpha = 1;
+                                rightArrowBox.isEnabled = true;
+                                rightArrowBox.alpha = 1;
+
+                                greyBoxBlurRoomImage.alpha = 0;
+                                greyBoxBlurRoomImage.isEnabled = false;
+                                examineText.alpha = 0;
+                                lincolnMaskBox.alpha = 0;
+                                lincolnMaskBox.isEnabled = false;
+                                lincolnText1.alpha = 0;
+                                lincolnText1.isEnabled = false;
+                                waitingMaskBox.alpha = 0;
+                                waitingMaskBox.isEnabled = false;
+                                waitingText1.alpha = 0;
+                                waitingText1.isEnabled = false;
+                                engravingMaskBox.alpha = 0;
+                                engravingMaskBox.isEnabled = false;
+                                engravingText1.alpha = 0;
+                                engravingText1.isEnabled = false;
+                                frederickMaskBox.alpha = 0;
+                                frederickMaskBox.isEnabled = false;
+                                frederickText1.alpha = 0;
+                                frederickText1.isEnabled = false;
+
+
+                            }
+
+                            if(currentTextIndex == 1)
+                            {
+                                //Turn off if necessary
+                                greyBoxExplore.alpha = 0;
+                                greyBoxExplore.isEnabled = false;
+                                redRoomMaskBox.width = "0%";
+                                redRoomMaskBox.height = "0%";
+                                redRoomText.alpha = 0;
+                                blueRoomMaskBox.width = "0%";
+                                blueRoomMaskBox.height = "0%";
+                                blueRoomText.alpha = 0;
+                                greenRoomMaskBox.width = "0%";
+                                greenRoomMaskBox.height = "0%";
+                                greenRoomText.alpha = 0;
+                                exploreText.alpha = 0;
+                                greyBoxBlurRoomImage.isEnabled = false;
+                            }
                 
                             if(currentTextIndex == 2)
                             {
                                 menuIsUp = false;
                                 openMenu();
-                                greyBoxExplore.alpha = 1;
                                 greyBoxExplore.isEnabled = true;
+                                pickRoomModals(30, 0, 28.125, 0, 27.77, 30);
+
+                                //Turn off if necessary
+                                //architectCalloutButton.alpha = 0;
+                                //architectCalloutButton.isEnabled = false;
+                                advancedTextureEntrance.isForeground = true;
+                                blueRoomButton.isEnabled = true;
+                                menuTabText.text = "Welcome";
+                                leftArrowBox.isEnabled = false;
+                                rightArrowBox.isEnabled = false; 
+                    
+                                if(menuIsUp)
+                                {
+                                    menuIsUp = !menuIsUp;
+                                    openMenu();
+                                }
                             }
                 
                             if(currentTextIndex == 3)
                             {
+                                advancedTextureEntrance.isForeground = false;
+                                blueRoomButton.isEnabled = false;
+                                menuTabText.text = "Blue Room";
+                                leftArrowBox.isEnabled = true;
+                                rightArrowBox.isEnabled = true; 
+                    
+                                if(!menuIsUp)
+                                {
+                                    menuIsUp = !menuIsUp;
+                                    openMenu();
+                                }
                                 //architectCalloutButton.alpha = 1;
                                 //architectCalloutButton.isEnabled = true;
+
+                                //Turn off if necessary
+                                greyBoxBlurRoomImage.alpha = 0;
+                                redRoomMaskBox.width = "0%";
+                                redRoomMaskBox.height = "0%";
+                                redRoomText.alpha = 0;
+                                blueRoomMaskBox.width = "0%";
+                                blueRoomMaskBox.height = "0%";
+                                blueRoomText.alpha = 0;
+                                greenRoomMaskBox.width = "0%";
+                                greenRoomMaskBox.height = "0%";
+                                greenRoomText.alpha = 0;
+                                exploreText.alpha = 0;
+                                greyBoxBlurRoomImage.isEnabled = false;
                             }
                 
                             if(currentTextIndex == 4)
@@ -177,6 +358,24 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 //architectCalloutButton.isEnabled = false;
                                 greyBoxBlurRoomImage.alpha = 1;
                                 greyBoxBlurRoomImage.isEnabled = true;
+
+                                //Turn off if necessary
+                                blueRoomImgBox.alpha = 1;
+                                blueRoomImgBox.isEnabled = true;
+                                wantToLearnMore.alpha = 0;
+                                wantToLearnMore.isEnabled = false;
+                                learnMoreMaskBox1.alpha = 0;
+                                learnMoreMaskBox1.isEnabled = false;
+                                learnMoreImgBox1.alpha = 0;
+                                learnMoreImgBox1.isEnabled = false;
+                                learnMoreText1.alpha = 0;
+                                learnMoreText1.isEnabled = false;
+                                learnMoreMaskBox2.alpha = 0;
+                                learnMoreMaskBox2.isEnabled = false;
+                                learnMoreImgBox2.alpha = 0;
+                                learnMoreImgBox2.isEnabled = false;
+                                learnMoreText2.alpha = 0;
+                                learnMoreText2.isEnabled = false;
                             }
                 
                             if(currentTextIndex == 5)
@@ -199,6 +398,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 learnMoreText2.isEnabled = true;
                                 menuIsUp = false;
                                 openMenu();
+
+                                //Turn off if necessary
+
                             }
                 
                             if(currentTextIndex == 6)
@@ -228,6 +430,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 //conCalloutButton.isEnabled = true;
                                 menuIsUp = true;
                                 openMenu();
+
+                                //Turn off if necessary
+                                //secCalloutButton.fontSize = 21.25;
+                                //secCalloutButton.alpha = 0;
+                                //secCalloutButton.isEnabled = false;
                             }
                 
                             if(currentTextIndex == 7)
@@ -246,6 +453,13 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             {
                                 //secCalloutButton.alpha = 0;
                                 //secCalloutButton.isEnabled = false;
+
+                                //Turn off if necessary
+                                openIframe("", 'none');
+                                leftArrowBox.isEnabled = true;
+                                leftArrowBox.alpha = 1;
+                                rightArrowBox.isEnabled = true;
+                                rightArrowBox.alpha = 1;
                             }
                 
                             if(currentTextIndex == 9)
@@ -256,6 +470,27 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 leftArrowBox.alpha = 0;
                                 rightArrowBox.isEnabled = false;
                                 rightArrowBox.alpha = 0;
+
+                                //Turn off if necessary
+                                greyBoxBlurRoomImage.alpha = 0;
+                                greyBoxBlurRoomImage.isEnabled = false;
+                                examineText.alpha = 0;
+                                lincolnMaskBox.alpha = 0;
+                                lincolnMaskBox.isEnabled = false;
+                                lincolnText1.alpha = 0;
+                                lincolnText1.isEnabled = false;
+                                waitingMaskBox.alpha = 0;
+                                waitingMaskBox.isEnabled = false;
+                                waitingText1.alpha = 0;
+                                waitingText1.isEnabled = false;
+                                engravingMaskBox.alpha = 0;
+                                engravingMaskBox.isEnabled = false;
+                                engravingText1.alpha = 0;
+                                engravingText1.isEnabled = false;
+                                frederickMaskBox.alpha = 0;
+                                frederickMaskBox.isEnabled = false;
+                                frederickText1.alpha = 0;
+                                frederickText1.isEnabled = false;
                             }
         
                             if(currentTextIndex == 10)
@@ -333,20 +568,94 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             Animation.CreateAndStartAnimation('at1', control, 'alpha', speed, totalFrames, start, end, 0);
                         }
 
-                        var changeToBlueRoom = function ()
+                        var easyScale = function(control, totalFrames, startW, endW, startH, endH, speed)
                         {
-                            advancedTextureEntrance.isForeground = false;
-                            blueRoomButton.isEnabled = false;
-                            menuTabText.text = "Blue Room";
-                            updateText();
-                            leftArrowBox.isEnabled = true;
-                            rightArrowBox.isEnabled = true; 
-                
-                            if(!menuIsUp)
-                            {
-                                menuIsUp = !menuIsUp;
-                                openMenu();
-                            }
+                            var endHConvert = (canvas.height / 100) * endH;
+                            var startHConvert = (canvas.height / 100) * startH;
+
+                            var endWConvert = (canvas.width / 100) * endW;
+                            var startWConvert = (canvas.width / 100) * startW;
+
+                            var ease = new CubicEase();
+                            ease.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT);
+
+                            Animation.CreateAndStartAnimation('at1', control, 'widthInPixels', speed, totalFrames, startWConvert, endWConvert, 0, ease);
+                            Animation.CreateAndStartAnimation('at1', control, 'heightInPixels', speed, totalFrames, startHConvert, endHConvert, 0, ease);
+                            
+                            setAndStartTimer({
+                                timeout: 1250,
+                                contextObservable: scene.onBeforeRenderObservable,
+                                onEnded: () => {
+                                    easyFade(welBackgroundRect, 30, 1, 0, 90);
+
+                                    setAndStartTimer({
+                                        timeout: 1000,
+                                        contextObservable: scene.onBeforeRenderObservable,
+                                        onEnded: () => {
+                                            easyFade(welcomeBox, 30, 0, 0.97, 90);
+                                            easyFade(exitMenuButton, 30, 0, 1, 90);
+                                            exitMenuButton.isEnabled = true;
+                                        }
+                                        });
+                                }
+                                });
+
+                            
+                        }
+
+                        var pickRoomModals = function ( totalFrames, startW, endW, startH, endH, speed)
+                        {
+                            easyFade(greyBoxExplore, 30, 0, 1, 90);
+
+                            var endHConvert = (canvas.height / 100) * endH;
+                            var startHConvert = (canvas.height / 100) * startH;
+
+                            var endWConvert = (canvas.width / 100) * endW;
+                            var startWConvert = (canvas.width / 100) * startW;
+
+                            var ease = new CubicEase();
+                            ease.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT);
+
+                            setAndStartTimer({
+                                timeout: 1250,
+                                contextObservable: scene.onBeforeRenderObservable,
+                                onEnded: () => {
+                                    easyFade(exploreText, 30, 0, 1, 90);
+
+                                    setAndStartTimer({
+                                        timeout: 1000,
+                                        contextObservable: scene.onBeforeRenderObservable,
+                                        onEnded: () => {
+                                            easyFade(redRoomMaskBox, 30, 0, 1, 90);
+                                            easyFade(redRoomText, 30, 0, 1, 30);
+                                            Animation.CreateAndStartAnimation('at1', redRoomMaskBox, 'widthInPixels', speed, totalFrames, startWConvert, endWConvert, 0, ease);
+                                            Animation.CreateAndStartAnimation('at1', redRoomMaskBox, 'heightInPixels', speed, totalFrames, startHConvert, endHConvert, 0, ease);
+                                            easyFade(blueRoomMaskBox, 30, 0, 1, 90);
+                                            easyFade(blueRoomText, 30, 0, 1, 30);
+                                            Animation.CreateAndStartAnimation('at1', blueRoomMaskBox, 'widthInPixels', speed, totalFrames, startWConvert, endWConvert, 0, ease);
+                                            Animation.CreateAndStartAnimation('at1', blueRoomMaskBox, 'heightInPixels', speed, totalFrames, startHConvert, endHConvert, 0, ease);
+                                            easyFade(greenRoomMaskBox, 30, 0, 1, 90);
+                                            easyFade(greenRoomText, 30, 0, 1, 30);
+                                            Animation.CreateAndStartAnimation('at1', greenRoomMaskBox, 'widthInPixels', speed, totalFrames, startWConvert, endWConvert, 0, ease);
+                                            Animation.CreateAndStartAnimation('at1', greenRoomMaskBox, 'heightInPixels', speed, totalFrames, startHConvert, endHConvert, 0, ease);
+                                            exitMenuButton.isEnabled = true;
+
+                                            setAndStartTimer({
+                                                timeout: 1500,
+                                                contextObservable: scene.onBeforeRenderObservable,
+                                                onEnded: () => {
+                                                    redRoomMaskBox.width = "28.125%"; //"540px";
+                                                    redRoomMaskBox.height = "27.77%"; //"300px";
+                                                    blueRoomMaskBox.width = "28.125%"; //"540px";
+                                                    blueRoomMaskBox.height = "27.77%"; //"300px";
+                                                    greenRoomMaskBox.width = "28.125%"; //"540px";
+                                                    greenRoomMaskBox.height = "27.77%"; //"300px";
+                                                }
+                                                });
+                                        }
+                                        });
+                                }
+                                });
                         }
         
                         var openIframe = function(URL, styleDisplay)
@@ -372,6 +681,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         imgA.color = "transparent";
                         imgA.source = "https://i.imgur.com/pQo0dPM.jpg";
                         entranceRect.addControl(imgA);
+
+                        var imgB = new Image();
+                        imgB.color = "transparent";
+                        imgB.source = "https://i.imgur.com/pQo0dPM.jpg";
+                        entranceRect.addControl(imgB);
             
                     
                     //Menu Box
@@ -384,7 +698,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeBox.shadowBlur = 6;
                         welcomeBox.shadowOffsetX = 3;
                         welcomeBox.shadowOffsetY = 3;
-                        welcomeBox.alpha = 0.97;
+                        welcomeBox.alpha = 0;
                         welcomeBox.zIndex = 0;
                         welcomeBox.left = "25%";
                         welcomeBox.top = "28%";
@@ -575,7 +889,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         exitMenuButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                         exitMenuButton.left = "-23.85%"; //1418px
                         exitMenuButton.top = "25.74%"; //278px
+                        exitMenuButton.alpha = 0;
                         exitMenuButton.onPointerUpObservable.add(function() {
+                            exitMenuButton.isEnabled = false;
                             leftArrowBox.scaleX = .65;
                             leftArrowBox.scaleY = .65;
                             leftArrowBox.left = "-50px";
@@ -584,11 +900,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             rightArrowBox.left = "50px";
                             easyFade(welcomeBox, 30, 1, 0, 60);
                             easyFade(exitMenuButton, 30, 1, 0, 60);
-                            //welcomeBox.alpha = 0;
                             menuIsUp = true;
                             openMenu();
-                            exitMenuButton.isEnabled = false;
-                            //exitMenuButton.isVisible = false;
                         });
                         entranceRect.addControl(exitMenuButton);
                         
@@ -624,6 +937,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         exploreText.height = "5%"; //"40px";
                         exploreText.text = "Ok! Which room would you like to explore?";
                         exploreText.color = "white";
+                        exploreText.alpha = 0;
                         exploreText.fontSize = "4%" //40px;
                         exploreText.top = "16.66%" //"180px";
                         exploreText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -635,12 +949,13 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             redRoomMaskBox.width = "28.125%"; //"540px";
                             redRoomMaskBox.height = "27.77%"; //"300px";
                             redRoomMaskBox.color = "transparent";
+                            redRoomMaskBox.alpha = 0;
                             redRoomMaskBox.background = "transparent";
                             redRoomMaskBox.cornerRadius = 10;
-                            redRoomMaskBox.top = "33.46%"; //361.33px"
-                            redRoomMaskBox.left = "4.56%"; //"87.49px";
-                            redRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
-                            redRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            redRoomMaskBox.top = "-3%"; //"0px";
+                            redRoomMaskBox.left = "-31.25%"; //"-600px";
+                            redRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            redRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                             greyBoxExplore.addControl(redRoomMaskBox);
 
                             var redRoom = new Image();
@@ -660,7 +975,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             redRoomText.height = "2.87%"; //"31px";
                             redRoomText.text = "Red Room";
                             redRoomText.color = "white";
-                            redRoomText.fontSize = "3.5%"; //"30px";
+                            redRoomText.alpha = 0;
+                            redRoomText.fontSize = "2.25%"; //"30px";
                             redRoomText.top = "65.3%"; //"705.33px";
                             redRoomText.left = "11.77%"; //"226px";
                             redRoomText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -672,12 +988,13 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             blueRoomMaskBox.width = "28.125%"; //"540px";
                             blueRoomMaskBox.height = "27.77%"; //"300px";
                             blueRoomMaskBox.color = "transparent";
+                            blueRoomMaskBox.alpha = 0;
                             blueRoomMaskBox.background = "transparent";
                             blueRoomMaskBox.cornerRadius = 10;
-                            blueRoomMaskBox.top = "33.46%"; //361.33px"
-                            blueRoomMaskBox.left = "35.9375%"; //"690px";
-                            blueRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
-                            blueRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            blueRoomMaskBox.top = "-3%"; //"0px";
+                            blueRoomMaskBox.left = "0%"; //"960px";
+                            blueRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            blueRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                             greyBoxExplore.addControl(blueRoomMaskBox);
 
                             var blueRoom = new Image();
@@ -699,7 +1016,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             blueRoomButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             blueRoomButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             blueRoomButton.onPointerUpObservable.add(function() {
-                                changeToBlueRoom();
+                                updateText('forward');
                             });
                             greyBoxExplore.addControl( blueRoomButton);
                 
@@ -711,7 +1028,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             blueRoomText.height = "2.87%"; //"31px";
                             blueRoomText.text = "Blue Room";
                             blueRoomText.color = "white";
-                            blueRoomText.fontSize = "3.5%"; //"30px";
+                            blueRoomText.alpha = 0;
+                            blueRoomText.fontSize = "2.25%"; //"30px";
                             blueRoomText.top = "65.3%"; //"705.33px";
                             blueRoomText.left = "43.02%"; //"826px";
                             blueRoomText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -723,12 +1041,13 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greenRoomMaskBox.width = "28.125%"; //"540px";
                             greenRoomMaskBox.height = "27.77%"; //"300px";
                             greenRoomMaskBox.color = "transparent";
+                            greenRoomMaskBox.alpha = 0;
                             greenRoomMaskBox.background = "transparent";
                             greenRoomMaskBox.cornerRadius = 10;
-                            greenRoomMaskBox.top = "33.46%"; //361.33px"
-                            greenRoomMaskBox.left = "67.11%"; //"1288.51px";
-                            greenRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
-                            greenRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            greenRoomMaskBox.top = "-3%"; //"0px";
+                            greenRoomMaskBox.left = "31.25%"; //"600px";
+                            greenRoomMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            greenRoomMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                             greyBoxExplore.addControl(greenRoomMaskBox);
 
                             var greenRoom = new Image();
@@ -748,7 +1067,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greenRoomText.height = "2.87%"; //"31px";
                             greenRoomText.text = "Green Room";
                             greenRoomText.color = "white";
-                            greenRoomText.fontSize = "3.5%"; //"30px";
+                            greenRoomText.alpha = 0;
+                            greenRoomText.fontSize = "2.25%"; //"30px";
                             greenRoomText.top = "65.3%"; //"705.33px";
                             greenRoomText.left = "74.27%"; //"1426px";
                             greenRoomText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -858,7 +1178,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         learnMoreImgBox1.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         learnMoreImgBox1.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         learnMoreImgBox1.onPointerClickObservable.add(function() {
-                            updateText();
+                            updateText('forward');
                         });
                         learnMoreMaskBox1.addControl(learnMoreImgBox1);
                 
@@ -1687,12 +2007,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuBarText.textWrapping = true;
                             menuBarText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             menuBarText.width = "50%"; //"960px";
-                            menuBarText.height = "75%"; //"122px";
+                            menuBarText.height = "82.5%"; //"122px";
                             menuBarText.text = "Welcome to the White House located in Washington, D.C. at 1600 Pennsylvania Avenue! Constructed from 1792-1800, the White House was built with the labor of free and enslaved people. John Adams was the first president to live in the White House and since then the building has served as the official workplace and residence for the President of the United States and their family.";
                             menuBarText.color = "white";
                             menuBarText.fontSize = "11%"; //21.5;
                             menuBarText.lineSpacing = "5%";
-                            //menuBarText.resizeToFit = true;
                             menuBarText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             menuBarText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuBarText);
@@ -1908,7 +2227,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             backButton.left = "12.5%"; //"240px";
                             backButton.top = "50.25%"; //"100.5px";
                             backButton.onPointerUpObservable.add(function() {
-                                alert("you did it!");
+                                updateText('back');
                             });
                             menuPicMainRect.addControl(backButton);
                 
@@ -1949,7 +2268,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             nextButton.left = "-3.125%"; //"-60px";
                             nextButton.top = "40%"; //"80px";
                             nextButton.onPointerUpObservable.add(function() {
-                                updateText();
+                                updateText('forward');
                             });
                             menuPicMainRect.addControl(nextButton);
                 
@@ -2022,6 +2341,25 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#endregion
 
 //#region Text for Navigation
+                    var entranceHallButton = Button.CreateSimpleButton("entranceHallButton", "");
+                    entranceHallButton.width = "8%"; //"61px";
+                    entranceHallButton.height = "2.96%"; //"27px";
+                    entranceHallButton.background = "transparent";
+                    entranceHallButton.color = "transparent";
+                    entranceHallButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                    entranceHallButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                    entranceHallButton.left = "9.375%";
+                    entranceHallButton.top = "19.26%";
+                    entranceHallButton.onPointerUpObservable.add(function() {
+                        updateText('entrance');
+                        easyAnimation(navBackgroundRect, 'left', 30, 0, -100, 90);
+                        easyAnimation(entranceRect, 'left', 30, 30, 0, 90);
+                        easyAnimation(constantRect, 'left', 30, 30, 0, 90);
+                        easyAnimation(label, 'left', 30, 30, 0, 90);
+                        easyAnimation(greyBoxBlurRoomImage, 'left', 30, 30, 0, 90);
+                    });
+                    navBackgroundRect.addControl(entranceHallButton);
+
                     var entranceHallText = new TextBlockWithUnderlineColor("entranceHallText");
                     entranceHallText.fontFamily = "Calendas Plus";
                     entranceHallText.fontStyle = "italic";
@@ -2032,13 +2370,13 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     entranceHallText.color = "#235BA0";
                     entranceHallText.underline = true;
                     entranceHallText.underlineColor = "#235BA0";
-                    entranceHallText.left = "9.375%";
-                    entranceHallText.top = "19.26%";
+                    entranceHallText.left = "0%";
+                    entranceHallText.top = "0%";
                     entranceHallText.resizeToFit = true;
-                    entranceHallText.fontSize = "2.5%"; //"32px";
+                    entranceHallText.fontSize = "100%"; //"32px";
                     entranceHallText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                     entranceHallText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
-                    navBackgroundRect.addControl(entranceHallText);
+                    entranceHallButton.addControl(entranceHallText);
 
 //#region red room nav
                     var redRoomButton = Button.CreateSimpleButton("redRoom", "");
@@ -2570,8 +2908,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeTextImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         welBackgroundRect.addControl(welcomeTextImg);
 
-//#region Next Button          
-                        //Next Button
+//#region Start Button          
+                        //Start Button
                         var startButton = Button.CreateSimpleButton("startButton", "");
                         startButton.width = "12.5%"; //"240px"
                         startButton.height = "5.55%"; //"60px"; 
@@ -2582,8 +2920,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         //startButton.left = "43.75%"; //"840px";
                         startButton.top = "63%"; //"656px";
                         startButton.onPointerUpObservable.add(function() {
-                            console.log("start");
-                            easyFade(welBackgroundRect, 30, 1, 0, 90);
+                            startButton.isEnabled = false;
+                            easyScale(welcomeSplashScreen, 30, 140, 230, 140, 230, 30);
                         });
                         welBackgroundRect.addControl(startButton);
             
@@ -2697,6 +3035,143 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welLogoRect.addControl(welcomeAWSLogo);
 //#endregion
 
+//#endregion
+
+//#region Language Selection Page
+                        var advancedTextureLanguage = AdvancedDynamicTexture.CreateFullscreenUI("uiLanguage");
+
+                        var lanBackgroundRect = new Rectangle("lanBackgroundRect" );
+                        lanBackgroundRect.height = "100%"; //"50px";
+                        lanBackgroundRect.width = "100%"; //"230px";
+                        lanBackgroundRect.color = "#D9D9D9";
+                        lanBackgroundRect.background = "#D9D9D9";
+                        //lanBackgroundRect.left = canvas.width * -1;
+                        lanBackgroundRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        lanBackgroundRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                        advancedTextureLanguage.addControl( lanBackgroundRect);
+
+                        var lanWhiteHouseIconImg = new Image();
+                        lanWhiteHouseIconImg.color = "transparent";
+                        lanWhiteHouseIconImg.width = "46.875%"; //900px
+                        lanWhiteHouseIconImg.height = "43.89%"; //474px
+                        lanWhiteHouseIconImg.alpha = .10;
+                        lanWhiteHouseIconImg.source = "https://i.imgur.com/ij7gPpq.png";
+                        lanWhiteHouseIconImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
+                        lanWhiteHouseIconImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
+                        lanBackgroundRect.addControl(lanWhiteHouseIconImg);
+
+                        var lanBackgroundStroke = new Rectangle("label for background stroke" );
+                        lanBackgroundStroke.width = "97.4%"; //"114px";
+                        lanBackgroundStroke.height = "95.37%" //"74px";
+                        lanBackgroundStroke.color = "#959BA1";
+                        lanBackgroundStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        lanBackgroundStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        lanBackgroundRect.addControl(lanBackgroundStroke);
+//#endregion
+
+//#region Language selection buttons
+                        var lanChooseRect = new Rectangle("lanChooseRect" );
+                        lanChooseRect.width = "44.53%"; //"855px";
+                        lanChooseRect.height = "4%"; //"40px";
+                        lanChooseRect.color = "transparent";
+                        lanChooseRect.background = "transparent";
+                        lanChooseRect.top = "-10%";
+                        lanChooseRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        lanChooseRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                        lanBackgroundRect.addControl( lanChooseRect);
+
+                        var languageButtonText = new TextBlock("LanguageButtonText");
+                        languageButtonText.fontFamily = "Calendas Plus";
+                        languageButtonText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        languageButtonText.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                        languageButtonText.width = "100%"; //"61px";
+                        languageButtonText.height = "100%"; //"27px";
+                        languageButtonText.text = "Choose a language";
+                        languageButtonText.color = "#363D45";
+                        languageButtonText.top = "-20%";
+                        languageButtonText.fontSize = "90%"; //"32px";
+                        languageButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        languageButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        lanChooseRect.addControl(languageButtonText);
+//#endregion
+
+//#region Selection Buttons          
+                        //English Button
+                        var englishButton = Button.CreateSimpleButton("englishButton", "");
+                        englishButton.width = "12.5%"; //"240px"
+                        englishButton.height = "5.55%"; //"60px"; 
+                        englishButton.color = "transparent";
+                        englishButton.background = "#235BA0";
+                        englishButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                        englishButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                        englishButton.left = "34.375%"; //"660px";
+                        englishButton.top = "47%"; //"656px";
+                        englishButton.onPointerUpObservable.add(function() {
+                            console.log("english");
+                            easyFade(lanBackgroundRect, 30, 1, 0, 90);
+                            englishButton.isEnabled = false;
+                        });
+                        lanBackgroundRect.addControl(englishButton);
+            
+                        var englishButtonStroke = new Rectangle("englishButtonStroke" );
+                        englishButtonStroke.height = "83.33%"; //"50px";
+                        englishButtonStroke.width = "95.83%"; //"230px";
+                        englishButtonStroke.color = "white";
+                        englishButtonStroke.background = "transparent";
+                        englishButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        englishButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                        englishButton.addControl( englishButtonStroke);
+            
+                        var englishButtonText = new TextBlock("englishButtonText");
+                        englishButtonText.fontFamily = "Calendas Plus";
+                        englishButtonText.fontStyle = "italic";
+                        englishButtonText.textWrapping = true;
+                        englishButtonText.width = "100%"; //"61px";
+                        englishButtonText.height = "100%"; //"27px";
+                        englishButtonText.text = "English";
+                        englishButtonText.color = "white";
+                        englishButtonText.fontSize = "50%"; //"26px";
+                        englishButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        englishButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        englishButton.addControl(englishButtonText);
+
+                        //Spanish Button
+                        var spanishButton = Button.CreateSimpleButton("spanishButton", "");
+                        spanishButton.width = "12.5%"; //"240px"
+                        spanishButton.height = "5.55%"; //"60px"; 
+                        spanishButton.color = "transparent";
+                        spanishButton.background = "#235BA0";
+                        spanishButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                        spanishButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
+                        spanishButton.left = "53.125%"; //"660px";
+                        spanishButton.top = "47%"; //"656px";
+                        spanishButton.onPointerUpObservable.add(function() {
+                            console.log("spanish");
+                            //easyFade(lanBackgroundRect, 30, 1, 0, 90);
+                        });
+                        lanBackgroundRect.addControl(spanishButton);
+            
+                        var spanishButtonStroke = new Rectangle("spanishButtonStroke" );
+                        spanishButtonStroke.height = "83.33%"; //"50px";
+                        spanishButtonStroke.width = "95.83%"; //"230px";
+                        spanishButtonStroke.color = "white";
+                        spanishButtonStroke.background = "transparent";
+                        spanishButtonStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        spanishButtonStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                        spanishButton.addControl( spanishButtonStroke);
+            
+                        var spanishButtonText = new TextBlock("spanishButtonText");
+                        spanishButtonText.fontFamily = "Calendas Plus";
+                        spanishButtonText.fontStyle = "italic";
+                        spanishButtonText.textWrapping = true;
+                        spanishButtonText.width = "100%"; //"61px";
+                        spanishButtonText.height = "100%"; //"27px";
+                        spanishButtonText.text = "Spanish";
+                        spanishButtonText.color = "white";
+                        spanishButtonText.fontSize = "50%"; //"26px";
+                        spanishButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        spanishButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        spanishButton.addControl(spanishButtonText);
 //#endregion
 
             return scene;
