@@ -1771,23 +1771,29 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         expandImageBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         labelForLearnAboutWaiting.addControl( expandImageBox);
 
-                        var exapndImg = new Image();
+                        var expandImageBoxMoreStroke = new Rectangle("expandImageBoxMoreStroke" );
+                        expandImageBoxMoreStroke.width = "86.36%"; //"38px";
+                        expandImageBoxMoreStroke.height = "86.36%"; //"38px";
+                        expandImageBoxMoreStroke.color = "#959BA1";
+                        expandImageBoxMoreStroke.background = "transparent";
+                        expandImageBoxMoreStroke.isPointerBlocker = false;
+                        expandImageBoxMoreStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        expandImageBoxMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                        expandImageBox.addControl( expandImageBoxMoreStroke);
+
+                        var exapndImg = Button.CreateImageOnlyButton("", "https://i.imgur.com/3H5Dtxo.png");
                         exapndImg.color = "transparent";
                         exapndImg.width = "65%"; //"22px";
                         exapndImg.height = "65%"; //"22px";
                         exapndImg.source = "https://i.imgur.com/3H5Dtxo.png";
                         exapndImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         exapndImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        exapndImg.isPointerBlocker = true;
+                        exapndImg.onPointerClickObservable.add(function() {
+                            learnMoreExpandedImgHolder.alpha = 1;
+                            learnMoreExpandedImgHolder.isEnabled = true;
+                        });
                         expandImageBox.addControl(exapndImg);
-
-                        var expandImageBoxMoreStroke = new Rectangle("expandImageBoxMoreStroke" );
-                        expandImageBoxMoreStroke.width = "86.36%"; //"38px";
-                        expandImageBoxMoreStroke.height = "86.36%"; //"38px";
-                        expandImageBoxMoreStroke.color = "#959BA1";
-                        expandImageBoxMoreStroke.background = "transparent";
-                        expandImageBoxMoreStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
-                        expandImageBoxMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
-                        expandImageBox.addControl( expandImageBoxMoreStroke);
 
                         //Learn More Menu
                         var learnMoreMenuMaskBox = new Rectangle("label for menu box mask learn more" );
@@ -3368,6 +3374,124 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         spanishButton.addControl(spanishButtonText);
 //#endregion
 
+//#region overlay image for learn more
+                            var advancedTextureOverlay = AdvancedDynamicTexture.CreateFullscreenUI("uiOverlay");
+                            //Learn more Expanded Image
+                            var learnMoreExpandedImgHolder = new Rectangle("learnMoreExpandedImgHolder" );
+                            learnMoreExpandedImgHolder.width = "100%"; //"1500px";
+                            learnMoreExpandedImgHolder.height = "100%"; //"780px";
+                            learnMoreExpandedImgHolder.color = "transparent";
+                            learnMoreExpandedImgHolder.background = "#000000";
+                            learnMoreExpandedImgHolder.left = "0%"; //"360px";
+                            learnMoreExpandedImgHolder.top = "0%"; //"180px";
+                            learnMoreExpandedImgHolder.alpha = 0;
+                            learnMoreExpandedImgHolder.isEnabled = false;
+                            learnMoreExpandedImgHolder.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            learnMoreExpandedImgHolder.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            advancedTextureOverlay.addControl( learnMoreExpandedImgHolder);
+
+                            var waitingExpandedImgBoxLearnMore = new Image();
+                            waitingExpandedImgBoxLearnMore.color = "transparent";
+                            waitingExpandedImgBoxLearnMore.width = "70.3125%"; //"1350px";
+                            waitingExpandedImgBoxLearnMore.height = "100%"; //"1080px";
+                            waitingExpandedImgBoxLearnMore.source = "https://i.imgur.com/FosX3Gu.jpg";
+                            waitingExpandedImgBoxLearnMore.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            waitingExpandedImgBoxLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            learnMoreExpandedImgHolder.addControl(waitingExpandedImgBoxLearnMore);
+
+                            var leftArrowBoxExpandedLearnMore = new Rectangle("leftArrowBoxExpandedLearnMore" );
+                            leftArrowBoxExpandedLearnMore.width = "3.33%"; //"64px";
+                            leftArrowBoxExpandedLearnMore.height = "5.926%"; //"64px";
+                            leftArrowBoxExpandedLearnMore.color = "transparent";
+                            leftArrowBoxExpandedLearnMore.background = "#FFFFFF";
+                            leftArrowBoxExpandedLearnMore.left = "2.917%"; //"56px";
+                            leftArrowBoxExpandedLearnMore.top = "47%"; //"508px";
+                            leftArrowBoxExpandedLearnMore.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            leftArrowBoxExpandedLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            learnMoreExpandedImgHolder.addControl( leftArrowBoxExpandedLearnMore);
+
+                            var leftArrowBoxExpandedLearnMoreStroke = new Rectangle("leftArrowBoxExpandedLearnMoreStroke" );
+                            leftArrowBoxExpandedLearnMoreStroke.width = "84.375%"; //"54px";
+                            leftArrowBoxExpandedLearnMoreStroke.height = "84.375%"; //"54px";
+                            leftArrowBoxExpandedLearnMoreStroke.color = "#959BA1";
+                            leftArrowBoxExpandedLearnMoreStroke.background = "transparent";
+                            leftArrowBoxExpandedLearnMoreStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            leftArrowBoxExpandedLearnMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                            leftArrowBoxExpandedLearnMore.addControl( leftArrowBoxExpandedLearnMoreStroke);
+
+                            var leftArrowBoxExpandedLearnMoreImg = new Image();
+                            leftArrowBoxExpandedLearnMoreImg.color = "transparent";
+                            leftArrowBoxExpandedLearnMoreImg.width = "40.74%"; //"22px";
+                            leftArrowBoxExpandedLearnMoreImg.height = "40.74%"; //"22px";
+                            leftArrowBoxExpandedLearnMoreImg.source = "https://i.imgur.com/FsQy7Oh.png";
+                            leftArrowBoxExpandedLearnMoreImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            leftArrowBoxExpandedLearnMoreImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            leftArrowBoxExpandedLearnMoreStroke.addControl(leftArrowBoxExpandedLearnMoreImg);
+
+                            var rightArrowBoxExpandedLearnMore = new Rectangle("rightArrowBoxExpandedLearnMore" );
+                            rightArrowBoxExpandedLearnMore.width = "3.33%"; //"64px";
+                            rightArrowBoxExpandedLearnMore.height = "5.926%"; //"64px";
+                            rightArrowBoxExpandedLearnMore.color = "transparent";
+                            rightArrowBoxExpandedLearnMore.background = "#FFFFFF";
+                            rightArrowBoxExpandedLearnMore.left = "94%"; //"1805px";
+                            rightArrowBoxExpandedLearnMore.top = "47%"; //"508px";
+                            rightArrowBoxExpandedLearnMore.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                            rightArrowBoxExpandedLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            learnMoreExpandedImgHolder.addControl( rightArrowBoxExpandedLearnMore);
+
+                            var rightArrowBoxExpandedLearnMoreStroke = new Rectangle("rightArrowBoxExpandedLearnMoreStroke" );
+                            rightArrowBoxExpandedLearnMoreStroke.width = "84.375%"; //"54px";
+                            rightArrowBoxExpandedLearnMoreStroke.height = "84.375%"; //"54px";
+                            rightArrowBoxExpandedLearnMoreStroke.color = "#959BA1";
+                            rightArrowBoxExpandedLearnMoreStroke.background = "transparent";
+                            rightArrowBoxExpandedLearnMoreStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            rightArrowBoxExpandedLearnMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                            rightArrowBoxExpandedLearnMore.addControl( rightArrowBoxExpandedLearnMoreStroke);
+
+                            var rightArrowBoxExpandedLearnMoreImg = new Image();
+                            rightArrowBoxExpandedLearnMoreImg.color = "transparent";
+                            rightArrowBoxExpandedLearnMoreImg.width = "40.74%"; //"22px";
+                            rightArrowBoxExpandedLearnMoreImg.height = "40.74%"; //"22px";
+                            rightArrowBoxExpandedLearnMoreImg.source = "https://i.imgur.com/FsQy7Oh.png";
+                            rightArrowBoxExpandedLearnMoreImg.rotation = 3.1;
+                            rightArrowBoxExpandedLearnMoreImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            rightArrowBoxExpandedLearnMoreImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            rightArrowBoxExpandedLearnMoreStroke.addControl(rightArrowBoxExpandedLearnMoreImg);
+
+                            var expandExpandedImageBox = new Rectangle("expandExpandedImageBox" );
+                            expandExpandedImageBox.width = "2.3%"; //"44px";
+                            expandExpandedImageBox.height = "4.07%"; //"44px";
+                            expandExpandedImageBox.color = "transparent";
+                            expandExpandedImageBox.background = "#235BA0";
+                            expandExpandedImageBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
+                            expandExpandedImageBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;  
+                            learnMoreExpandedImgHolder.addControl( expandExpandedImageBox);
+
+                            var expandExpandedImageBoxMoreStroke = new Rectangle("expandExpandedImageBoxMoreStroke" );
+                            expandExpandedImageBoxMoreStroke.width = "86.36%"; //"38px";
+                            expandExpandedImageBoxMoreStroke.height = "86.36%"; //"38px";
+                            expandExpandedImageBoxMoreStroke.color = "#FFFFFF";
+                            expandExpandedImageBoxMoreStroke.background = "transparent";
+                            expandExpandedImageBoxMoreStroke.isPointerBlocker = false;
+                            expandExpandedImageBoxMoreStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            expandExpandedImageBoxMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                            expandExpandedImageBox.addControl( expandExpandedImageBoxMoreStroke);
+
+                            var exapndExpandedImg = Button.CreateImageOnlyButton("", "https://i.imgur.com/sVzTWjl.png");
+                            exapndExpandedImg.color = "transparent";
+                            exapndExpandedImg.width = "65%"; //"22px";
+                            exapndExpandedImg.height = "65%"; //"22px";
+                            exapndExpandedImg.source = "https://i.imgur.com/sVzTWjl.png";
+                            exapndExpandedImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            exapndExpandedImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                            exapndExpandedImg.isPointerBlocker = true;
+                            exapndExpandedImg.onPointerClickObservable.add(function() {
+                                console.log("hit!");
+                                learnMoreExpandedImgHolder.alpha = 0;
+                                learnMoreExpandedImgHolder.isEnabled = false;
+                            });
+                            expandExpandedImageBox.addControl(exapndExpandedImg);
+//#endregion
             return scene;
         };
 
