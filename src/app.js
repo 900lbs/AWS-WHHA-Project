@@ -1075,6 +1075,17 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             blueRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             blueRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             blueRoomMaskBox.addControl(blueRoom);
+
+                            var blueRoomMaskBoxStroke = new Rectangle("label for blue room mask" );
+                            blueRoomMaskBoxStroke.width = "95.83%"; //"540px";
+                            blueRoomMaskBoxStroke.height = "90%"; //"300px";
+                            blueRoomMaskBoxStroke.color = "white";
+                            blueRoomMaskBoxStroke.alpha = 0;
+                            blueRoomMaskBoxStroke.background = "transparent";
+                            blueRoomMaskBoxStroke.cornerRadius = 10;
+                            blueRoomMaskBoxStroke.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                            blueRoomMaskBoxStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
+                            blueRoomMaskBox.addControl(blueRoomMaskBoxStroke);
                 
                             var blueRoomButton = Button.CreateSimpleButton("blueRoomButton", "");
                             blueRoomButton.width = "28.125%"; //"540px";
@@ -1085,6 +1096,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             blueRoomButton.top = "33.46%"; //361.33px"
                             blueRoomButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             blueRoomButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                            blueRoomButton._onPointerEnter = function()
+                            {
+                                blueRoomMaskBoxStroke.alpha = 1;
+                            }
+                            blueRoomButton._onPointerOut = function()
+                            {
+                                blueRoomMaskBoxStroke.alpha = 0;
+                            }
                             blueRoomButton.onPointerUpObservable.add(function() {
                                 updateText('forward');
                             });
@@ -1874,6 +1893,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPosition();
                         });
                         learnMoreMenuBoxStroke.addControl(learnMoreMenuBoxButton);
+
+//#endregion
                 
 //#region Constant UI
                         var advancedTextureConstant = AdvancedDynamicTexture.CreateFullscreenUI("uiConstant");
@@ -2469,6 +2490,16 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             nextButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                             nextButton.left = "-3.125%"; //"-60px";
                             nextButton.top = "40%"; //"80px";
+                            nextButton._onPointerEnter = function()
+                            {
+                                nextButtonStroke.height = "100%";
+                                nextButtonStroke.width = "100%";
+                            }
+                            nextButton._onPointerOut = function()
+                            {
+                                nextButtonStroke.height = "83.33%";
+                                nextButtonStroke.width = "95.83%";
+                            }
                             nextButton.onPointerUpObservable.add(function() {
                                 updateText('forward');
                             });
@@ -3119,6 +3150,16 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         startButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                         //startButton.left = "43.75%"; //"840px";
                         startButton.top = "63%"; //"656px";
+                        startButton._onPointerEnter = function()
+                        {
+                            startButtonStroke.height = "100%";
+                            startButtonStroke.width = "100%";
+                        }
+                        startButton._onPointerOut = function()
+                        {
+                            startButtonStroke.height = "83.33%";
+                            startButtonStroke.width = "95.83%";
+                        }
                         startButton.onPointerUpObservable.add(function() {
                             startButton.isEnabled = false;
                             easyScale(welcomeSplashScreen, 30, 140, 230, 140, 230, 30);
@@ -3306,6 +3347,16 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         englishButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                         englishButton.left = "34.375%"; //"660px";
                         englishButton.top = "47%"; //"656px";
+                        englishButton._onPointerEnter = function()
+                        {
+                            englishButtonStroke.height = "100%";
+                            englishButtonStroke.width = "100%";
+                        }
+                        englishButton._onPointerOut = function()
+                        {
+                            englishButtonStroke.height = "83.33%";
+                            englishButtonStroke.width = "95.83%";
+                        }
                         englishButton.onPointerUpObservable.add(function() {
                             console.log("english");
                             easyFade(lanBackgroundRect, 30, 1, 0, 90);
@@ -3376,6 +3427,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
 //#region overlay image for learn more
                             var advancedTextureOverlay = AdvancedDynamicTexture.CreateFullscreenUI("uiOverlay");
+
                             //Learn more Expanded Image
                             var learnMoreExpandedImgHolder = new Rectangle("learnMoreExpandedImgHolder" );
                             learnMoreExpandedImgHolder.width = "100%"; //"1500px";
@@ -3482,13 +3534,19 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             exapndExpandedImg.width = "65%"; //"22px";
                             exapndExpandedImg.height = "65%"; //"22px";
                             exapndExpandedImg.source = "https://i.imgur.com/sVzTWjl.png";
+                            exapndExpandedImg.alpha = 1;
                             exapndExpandedImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             exapndExpandedImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
-                            exapndExpandedImg.isPointerBlocker = true;
-                            exapndExpandedImg.onPointerClickObservable.add(function() {
-                                console.log("hit!");
-                                learnMoreExpandedImgHolder.alpha = 0;
+                            exapndExpandedImg.pointerEnterAnimation = function(){
+
+                            }
+                            exapndExpandedImg.pointerOutAnimation = function(){
+                                
+                            }
+                            exapndExpandedImg.onPointerUpObservable.add(function() {
+                                //console.log("hit!");
                                 learnMoreExpandedImgHolder.isEnabled = false;
+                                learnMoreExpandedImgHolder.alpha = 0;
                             });
                             expandExpandedImageBox.addControl(exapndExpandedImg);
 //#endregion
