@@ -464,6 +464,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 labelForLearnAboutWaiting.isEnabled = false;
                                 learnMoreMenuMaskBox.alpha = 0;
                                 learnMoreMenuMaskBox.isEnabled = false;
+                                dragging = false;
                             }
                 
                             menuBarText.text = textForMenu[currentTextIndex];
