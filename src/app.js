@@ -130,6 +130,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             if(menuIsOpen)
                             {
                                 //learnMoreMenuMaskBox.left = "-15.65%";
+                                easyAnimation(leftArrowBoxLearnMoreMenuImg, 'rotation', 30, 3.1416, 0, 90);
                                 easyAnimation(labelForLearnAboutWaiting, 'left', 30, 10.9375, 18.75, 90);
                                 easyAnimation(learnMoreMenuMaskBox, 'left', 30, -15.65, 0, 90);
                             }
@@ -137,6 +138,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             else
                             {
                                 //learnMoreMenuMaskBox.leftInPixels = 0;
+                                easyAnimation(leftArrowBoxLearnMoreMenuImg, 'rotation', 30, 0, 3.1416, 90);
                                 easyAnimation(labelForLearnAboutWaiting, 'left', 30, 18.75, 10.9375, 90);
                                 easyAnimation(learnMoreMenuMaskBox, 'left', 30, 0, -15.65, 90);
                             }
@@ -619,6 +621,12 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             {
                                 var endPosConvert = (canvas.width / 100) * endPos;
                                 var startPosConvert = (canvas.width / 100) * startPos;
+                            }
+
+                            if(direction != 'left' && direction != 'top')
+                            {
+                                var endPosConvert = endPos;
+                                var startPosConvert = startPos;
                             }
     
                             var ease = new CubicEase();
