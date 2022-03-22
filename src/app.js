@@ -420,6 +420,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 fifthMaskBox.isEnabled = false;
                                 fifthText1.alpha = 0;
                                 fifthText1.isEnabled = false;
+                                dragging = false;
+                                scrollModal.isPointerBlocker = true;
                             }
         
                             if(currentTextIndex == 10)
@@ -1667,9 +1669,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         textBodyLearnMore.textWrapping = true;
                         textBodyLearnMore.width = "32%"; //"480px";
                         textBodyLearnMore.height = "89.74%"; //"700px";
-                        textBodyLearnMore.text = "The Emancipation Proclamation was signed on January 1, 1863, and granted freedom to enslaved people in Confederate states that remained in rebellion. It’s important to note that the Emancipation Proclamation did not free enslaved people in the Border States of Kentucky, Missouri, Maryland, and Delaware because those states were not in rebellion against the Union. The proclamation also changed the meaning of the war, as Union troops were no longer just fighting to save the Union but also abolish slavery. Additionally, by issuing this order, Lincoln opened the door for Black Americans (and formerly enslaved men) to enlist in the fight against the Confederacy. By the end of the war, some 200,000 Black soldiers and sailors had joined the Union cause to defeat the Confederacy and end slavery. \n\nThe Confederate states didn’t recognize Abraham Lincoln as their president—instead, they elected Jefferson Davis to serve as the provisional president of the Confederacy. How do you think enslaved people in Confederate states reacted? How do you think enslaved ";
+                        textBodyLearnMore.text = "The Emancipation Proclamation was signed on January 1, 1863, and granted freedom to enslaved people in Confederate states that remained in rebellion. It’s important to note that the Emancipation Proclamation did not free enslaved people in the Border States of Kentucky, Missouri, Maryland, and Delaware because those states were not in rebellion against the Union. The proclamation also changed the meaning of the war, as Union troops were no longer just fighting to save the Union but also abolish slavery. Additionally, by issuing this order, Lincoln opened the door for Black Americans (and formerly enslaved men) to enlist in the fight against the Confederacy. By the end of the war, some 200,000 Black soldiers and sailors had joined the Union cause to defeat the Confederacy and end slavery. \n\nThe Confederate states didn’t recognize Abraham Lincoln as their president—instead, they elected Jefferson Davis to serve as the provisional president of the Confederacy. How do you think enslaved people in Confederate states reacted?";
                         textBodyLearnMore.color = "black";
-                        textBodyLearnMore.fontSize = "2.6%"; //"21.5px";
+                        textBodyLearnMore.fontSize = "2.63%"; //"21.5px";
                         textBodyLearnMore.top = "6.41%"; //"50px";
                         textBodyLearnMore.left = "4%"; //"60px";
                         textBodyLearnMore.lineSpacing = 5;
@@ -1759,8 +1761,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         rightArrowBoxLearnMoreStroke.addControl(rightArrowBoxLearnMoreImg);
 
                         var expandImageBox = new Rectangle("expandImageBox" );
-                        expandImageBox.width = "2.93%"; //"44px";
-                        expandImageBox.height = "5.64%"; //"44px";
+                        expandImageBox.width = "3.2%"; //"44px";
+                        expandImageBox.height = "6%"; //"44px";
                         expandImageBox.color = "transparent";
                         expandImageBox.background = "#FFFFFF";
                         expandImageBox.left = "93.1%"; //"1396px";
@@ -1768,6 +1770,15 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         expandImageBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         expandImageBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         labelForLearnAboutWaiting.addControl( expandImageBox);
+
+                        var exapndImg = new Image();
+                        exapndImg.color = "transparent";
+                        exapndImg.width = "65%"; //"22px";
+                        exapndImg.height = "65%"; //"22px";
+                        exapndImg.source = "https://i.imgur.com/3H5Dtxo.png";
+                        exapndImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        exapndImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        expandImageBox.addControl(exapndImg);
 
                         var expandImageBoxMoreStroke = new Rectangle("expandImageBoxMoreStroke" );
                         expandImageBoxMoreStroke.width = "86.36%"; //"38px";
