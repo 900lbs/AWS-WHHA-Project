@@ -507,6 +507,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             fifthText1.alpha = 0;
                             fifthText1.isEnabled = false;
 
+                            dragging = false;
+
                             greyBoxExplore.alpha = 0;
                             greyBoxExplore.isEnabled = false;
                             redRoomMaskBox.width = "0%";
