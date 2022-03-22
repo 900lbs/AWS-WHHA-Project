@@ -590,7 +590,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         {
                             if(menuIsUp)
                             {
-                                easyAnimation(menuPicMain, 'top', 30, 0, -27.65, 60);
+                                easyAnimation(menuPicMain, 'top', 30, 0, -27.65, 60); //27.65 used to be 18.4
                                 easyFade(menuBarPicAMain, 30, 1, 0, 90);
                                 easyFade(menuBarPicBMain, 30, 1, 0, 90);
                                 easyFade(menuTabText, 30, 0, 1, 90);
