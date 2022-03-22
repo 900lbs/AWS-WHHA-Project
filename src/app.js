@@ -35,10 +35,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
             let currentIndex = 0;
             let previousIndex = 0;
             var sources = [
-            "https://i.imgur.com/ZnXnhdS.jpg",
-            "https://i.imgur.com/xYtAzOs.jpg", 
-            "https://i.imgur.com/69C1I9p.jpg",
-            "https://i.imgur.com/e1I6I9J.jpg"];
+            "https://i.imgur.com/7FFbnuK.png",
+            "https://i.imgur.com/UdjG5kC.png", 
+            "https://i.imgur.com/h3wWL3D.png",
+            "https://i.imgur.com/I4AN2Jp.png",
+            "https://i.imgur.com/ca27F5t.png",
+            "https://i.imgur.com/J95LnGX.png", 
+            "https://i.imgur.com/qmbQS2A.png",
+            "https://i.imgur.com/Kl5pWYR.png"];
         
             let currentTextIndex = 0;
             let previousTextIndex = 0;
@@ -585,20 +589,20 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         {
                             if(menuIsUp)
                             {
-                                easyAnimation(menuPicMain, 'top', 30, 0, -18.4, 60);
+                                easyAnimation(menuPicMain, 'top', 30, 0, -27.65, 60);
                                 easyFade(menuBarPicAMain, 30, 1, 0, 90);
                                 easyFade(menuBarPicBMain, 30, 1, 0, 90);
                                 easyFade(menuTabText, 30, 0, 1, 90);
-                                easyAnimation(menuPicMainRect, 'top', 30, 18.4, 0, 60);
+                                easyAnimation(menuPicMainRect, 'top', 30, 27.65, 0, 60);
                             }
                             
                             else
                             {
-                                easyAnimation(menuPicMain, 'top', 30, -18.4, 0, 60);
+                                easyAnimation(menuPicMain, 'top', 30, -27.65, 0, 60);
                                 easyFade(menuBarPicAMain, 30, 0, 1, 90);
                                 easyFade(menuBarPicBMain, 30, 0, 1, 90);
                                 easyFade(menuTabText, 30, 1, 0, 90);
-                                easyAnimation(menuPicMainRect, 'top', 30, 0, 18.4, 60);
+                                easyAnimation(menuPicMainRect, 'top', 30, 0, 27.65, 60);
                             }
                         }
 
@@ -1189,14 +1193,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var img1 = new Image();
                         img1.width = "100%";
                         img1.height = "100%";
-                        img1.source = "https://i.imgur.com/XRTE8dS.jpg";
+                        img1.source = "https://i.imgur.com/UdjG5kC.png";
                         img1.color = "transparent";
                         label.addControl(img1);
                 
                         var img2 = new Image();
                         img2.width = "100%";
                         img2.height = "100%";
-                        img2.source = "https://i.imgur.com/ZnXnhdS.jpg";
+                        img2.source = "https://i.imgur.com/7FFbnuK.png";
                         img2.color = "transparent";
                         img2.zIndex = 1;
                         label.addControl(img2);
@@ -1222,7 +1226,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         blueRoomImgBox.width = "34.42%"; //"660.92px";
                         blueRoomImgBox.height = "42%"; //"453.91px";
                         blueRoomImgBox.top = "24.81%"; //"268px"
-                        blueRoomImgBox.source = "https://i.imgur.com/OKpC4ma.jpg";
+                        blueRoomImgBox.source = "https://i.imgur.com/Tp1vaBN.jpg";
                         blueRoomImgBox.alpha = 0;
                         blueRoomImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         blueRoomImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
@@ -2154,10 +2158,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#region Main menu rect
                             var menuPicMainRect = new Rectangle("menuPicRect" );
                             menuPicMainRect.width = "100%";
-                            menuPicMainRect.height = "18.52%"; //"200px";
+                            menuPicMainRect.height = "27.77%"; //"300px"; used to be 200
                             menuPicMainRect.color = "transparent";
                             menuPicMainRect.background = "#2B3E56";
-                            menuPicMainRect.top = "18.4%";
+                            menuPicMainRect.top = "27.65%"; //used to be 18.52
                             menuPicMainRect.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                             menuPicMainRect.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                             constantRect.addControl( menuPicMainRect);
@@ -2167,7 +2171,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             var menuStarAImg = new Image();
                             menuStarAImg.color = "transparent";
                             menuStarAImg.width = ".65%"; //8.36px
-                            menuStarAImg.height = "6.5%"; //8.36px
+                            menuStarAImg.height = "5.11%"; //8.36px used to be 6.5%
                             menuStarAImg.top = "8%"; //8px
                             menuStarAImg.left = "-.7%";
                             menuStarAImg.source = "https://i.imgur.com/6fRUrr7.png";
@@ -2178,7 +2182,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             var menuStarBImg = new Image();
                             menuStarBImg.color = "transparent";
                             menuStarBImg.width = ".65%"; //8.36px
-                            menuStarBImg.height = "6.5%"; //8.36px
+                            menuStarBImg.height = "5.11%"; //8.36px
                             menuStarBImg.top = "8%"; //8px
                             menuStarBImg.source = "https://i.imgur.com/6fRUrr7.png";
                             menuStarBImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
@@ -2188,7 +2192,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             var menuStarCImg = new Image();
                             menuStarCImg.color = "transparent";
                             menuStarCImg.width = ".65%"; //8.36px
-                            menuStarCImg.height = "6.5%"; //8.36px
+                            menuStarCImg.height = "5.11%"; //8.36px
                             menuStarCImg.top = "8%"; //8px
                             menuStarCImg.left = ".65%";
                             menuStarCImg.source = "https://i.imgur.com/6fRUrr7.png";
@@ -2232,9 +2236,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuBarText.height = "82.5%"; //"122px";
                             menuBarText.text = "Welcome to the White House located in Washington, D.C. at 1600 Pennsylvania Avenue! Constructed from 1792-1800, the White House was built with the labor of free and enslaved people. John Adams was the first president to live in the White House and since then the building has served as the official workplace and residence for the President of the United States and their family.";
                             menuBarText.color = "white";
-                            menuBarText.fontSize = "11%"; //21.5;
+                            menuBarText.fontSize = "8.25%"; //21.5; used to be 11.5%
                             menuBarText.lineSpacing = "5%";
-                            menuBarText.top = "21.82%";
+                            menuBarText.top = "21.82%"; //"43.64px";
                             menuBarText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             menuBarText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuBarText);
@@ -2404,7 +2408,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#region Audio Button
                             var audioButton = Button.CreateSimpleButton("audio", "");
                             audioButton.width = "3.125%"; //"60px"
-                            audioButton.height = "30%"; //"60px";
+                            audioButton.height = "20%"; //"60px";
                             audioButton.color = "transparent";
                             audioButton.cornerRadius = 0;
                             audioButton.background = "#D9D9D9";
@@ -2442,7 +2446,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#region Back Button
                             var backButton = Button.CreateSimpleButton("back", "");
                             backButton.width = "3.645%"; //"70px"
-                            backButton.height = "9.5%"; //"19px";
+                            backButton.height = "6.33%"; //"19px";
                             backButton.color = "transparent";
                             backButton.background = "transparent";
                             backButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
@@ -2473,7 +2477,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             backButtonText.left = "17.14%"; //"12px";
                             backButtonText.text = "Back";
                             backButtonText.color = "white";
-                            backButtonText.fontSize = "100%"; //"18px";
+                            backButtonText.fontSize = "110%"; //"18px";
                             backButtonText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             backButtonText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             backButton.addControl(backButtonText);
@@ -2483,7 +2487,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         //Next Button
                             var nextButton = Button.CreateSimpleButton("next", "");
                             nextButton.width = "12.5%"; //"240px"
-                            nextButton.height = "30%"; //"60px"; 
+                            nextButton.height = "20%"; //"60px"; 
                             nextButton.color = "transparent";
                             nextButton.background = "#235BA0";
                             nextButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
