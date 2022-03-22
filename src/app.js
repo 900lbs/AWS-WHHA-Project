@@ -95,7 +95,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                         var learnMoreWaiting = function()
                         {
-                            console.log("hit");
                             examineText.alpha = 0;
                             lincolnMaskBox.alpha = 0;
                             lincolnMaskBox.isEnabled = false;
@@ -113,6 +112,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             frederickMaskBox.isEnabled = false;
                             frederickText1.alpha = 0;
                             frederickText1.isEnabled = false;
+                            fifthMaskBox.alpha = 0;
+                            fifthMaskBox.isEnabled = false;
+                            fifthText1.alpha = 0;
+                            fifthText1.isEnabled = false;
                             labelForLearnAboutWaiting.alpha = 1;
                             labelForLearnAboutWaiting.isEnabled = true;
                             learnMoreMenuMaskBox.alpha = 1;
@@ -122,12 +125,16 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var menuPosition = function(){
                             if(menuIsOpen)
                             {
-                                learnMoreMenuMaskBox.left = "-15.65%";
+                                //learnMoreMenuMaskBox.left = "-15.65%";
+                                easyAnimation(labelForLearnAboutWaiting, 'left', 30, 10.9375, 18.75, 90);
+                                easyAnimation(learnMoreMenuMaskBox, 'left', 30, -15.65, 0, 90);
                             }
 
                             else
                             {
-                                learnMoreMenuMaskBox.leftInPixels = 0;
+                                //learnMoreMenuMaskBox.leftInPixels = 0;
+                                easyAnimation(labelForLearnAboutWaiting, 'left', 30, 18.75, 10.9375, 90);
+                                easyAnimation(learnMoreMenuMaskBox, 'left', 30, 0, -15.65, 90);
                             }
                         }
 
@@ -409,6 +416,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 frederickMaskBox.isEnabled = false;
                                 frederickText1.alpha = 0;
                                 frederickText1.isEnabled = false;
+                                fifthMaskBox.alpha = 0;
+                                fifthMaskBox.isEnabled = false;
+                                fifthText1.alpha = 0;
+                                fifthText1.isEnabled = false;
                             }
         
                             if(currentTextIndex == 10)
@@ -435,6 +446,10 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 frederickMaskBox.isEnabled = true;
                                 frederickText1.alpha = 1;
                                 frederickText1.isEnabled = true;
+                                fifthMaskBox.alpha = 1;
+                                fifthMaskBox.isEnabled = true;
+                                fifthText1.alpha = 1;
+                                fifthText1.isEnabled = true;
                                 menuIsUp = false;
                                 openMenu();
 
@@ -468,6 +483,30 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var clearTheExperience = function()
                         {
                             //Turn off if necessary
+                            examineText.alpha = 0;
+                            scrollModal.alpha = 0;
+                            scrollModal.isEnabled = false;
+                            lincolnMaskBox.alpha = 0;
+                            lincolnMaskBox.isEnabled = false;
+                            lincolnText1.alpha = 0;
+                            lincolnText1.isEnabled = false;
+                            waitingMaskBox.alpha = 0;
+                            waitingMaskBox.isEnabled = false;
+                            waitingText1.alpha = 0;
+                            waitingText1.isEnabled = false;
+                            engravingMaskBox.alpha = 0;
+                            engravingMaskBox.isEnabled = false;
+                            engravingText1.alpha = 0;
+                            engravingText1.isEnabled = false;
+                            frederickMaskBox.alpha = 0;
+                            frederickMaskBox.isEnabled = false;
+                            frederickText1.alpha = 0;
+                            frederickText1.isEnabled = false;
+                            fifthMaskBox.alpha = 0;
+                            fifthMaskBox.isEnabled = false;
+                            fifthText1.alpha = 0;
+                            fifthText1.isEnabled = false;
+
                             greyBoxExplore.alpha = 0;
                             greyBoxExplore.isEnabled = false;
                             redRoomMaskBox.width = "0%";
@@ -480,8 +519,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greenRoomMaskBox.height = "0%";
                             greenRoomText.alpha = 0;
                             exploreText.alpha = 0;
-                            greyBoxBlurRoomImage.isEnabled = false;
-
+                                                    
                             //architectCalloutButton.alpha = 0;
                             //architectCalloutButton.isEnabled = false;
                             advancedTextureEntrance.isForeground = true;
@@ -496,7 +534,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 openMenu();
                             }
 
-                            greyBoxBlurRoomImage.alpha = 0;
                             redRoomMaskBox.width = "0%";
                             redRoomMaskBox.height = "0%";
                             redRoomText.alpha = 0;
@@ -507,7 +544,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greenRoomMaskBox.height = "0%";
                             greenRoomText.alpha = 0;
                             exploreText.alpha = 0;
-                            greyBoxBlurRoomImage.isEnabled = false;
 
                             blueRoomImgBox.alpha = 0;
                             blueRoomImgBox.isEnabled = false;
@@ -534,25 +570,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                             greyBoxBlurRoomImage.alpha = 0;
                             greyBoxBlurRoomImage.isEnabled = false;
-                            examineText.alpha = 0;
-                            scrollModal.alpha = 0;
-                            scrollModal.isEnabled = false;
-                            lincolnMaskBox.alpha = 0;
-                            lincolnMaskBox.isEnabled = false;
-                            lincolnText1.alpha = 0;
-                            lincolnText1.isEnabled = false;
-                            waitingMaskBox.alpha = 0;
-                            waitingMaskBox.isEnabled = false;
-                            waitingText1.alpha = 0;
-                            waitingText1.isEnabled = false;
-                            engravingMaskBox.alpha = 0;
-                            engravingMaskBox.isEnabled = false;
-                            engravingText1.alpha = 0;
-                            engravingText1.isEnabled = false;
-                            frederickMaskBox.alpha = 0;
-                            frederickMaskBox.isEnabled = false;
-                            frederickText1.alpha = 0;
-                            frederickText1.isEnabled = false;
+
+                            labelForLearnAboutWaiting.alpha = 0;
+                            labelForLearnAboutWaiting.isEnabled = false;
+                            learnMoreMenuMaskBox.alpha = 0;
+                            learnMoreMenuMaskBox.isEnabled = false;
                         }
                 
                         var openMenu = function()
@@ -1155,6 +1177,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         img2.color = "transparent";
                         img2.zIndex = 1;
                         label.addControl(img2);
+//#endregion
                 
 //#region Grey Box Blur                
                         var greyBoxBlurRoomImage = new Rectangle("label for blue room box" );
@@ -1168,6 +1191,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         greyBoxBlurRoomImage.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         greyBoxBlurRoomImage.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         advancedTextureBlueRoom.addControl(greyBoxBlurRoomImage);
+//#endregion
 
 //#region Blue room Modal
                         var blueRoomImgBox = new Image();
@@ -1539,9 +1563,53 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         frederickText1.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         scrollModal.addControl(frederickText1);
 //#endregion
+
+//#region Fifth Option
+                        var fifthMaskBox = new Rectangle("label for fifth mask" );
+                        fifthMaskBox.width = "18%"; //"540px";
+                        fifthMaskBox.height = "62.5%"; //"300px";
+                        fifthMaskBox.color = "transparent";
+                        fifthMaskBox.background = "white";
+                        fifthMaskBox.cornerRadius = 10;
+                        fifthMaskBox.top = "12.5%"; //"60px";
+                        fifthMaskBox.left = "76%"; //"2460px";
+                        fifthMaskBox.alpha = 0;
+                        fifthMaskBox.isEnabled = false;
+                        fifthMaskBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        fifthMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                        scrollModal.addControl(fifthMaskBox);
+
+                        /*var fifthImgBox = new Image();
+                        fifthImgBox.color = "transparent";
+                        fifthImgBox.width = "101.48%"; //"548px";
+                        fifthImgBox.height = "102.66%"; //"308px";
+                        fifthImgBox.source = "https://i.imgur.com/406NGIR.jpg";
+                        fifthImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
+                        fifthImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
+                        fifthMaskBox.addControl(fifthImgBox);*/
+
+                        var fifthText1 = new TextBlock("fifthText1");
+                        fifthText1.fontFamily = "Calendas Plus";
+                        fifthText1.underline = true;
+                        fifthText1.textWrapping = true;
+                        fifthText1.width = "16.17%"; //"485px";
+                        fifthText1.height = "6.46%"; //"31px";
+                        fifthText1.text = "Negative Reactions";
+                        fifthText1.color = "white";
+                        fifthText1.fontSize = "6.25%"; //"30px";
+                        fifthText1.top = "82.1%"; //"394px";
+                        fifthText1.left = "76.33%"; //"1900px";
+                        fifthText1.alpha = 0;
+                        fifthText1.isEnabled = false;
+                        fifthText1.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT; 
+                        fifthText1.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
+                        fifthText1.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                        scrollModal.addControl(fifthText1);
 //#endregion
 
-                        //Learn More Box
+//#endregion
+
+//#region Learn More Box
                         var labelForLearnAboutWaiting = new Rectangle("labelForLearnAboutWaiting" );
                         labelForLearnAboutWaiting.width = "78.125%"; //"1500px";
                         labelForLearnAboutWaiting.height = "72.22%"; //"780px";
