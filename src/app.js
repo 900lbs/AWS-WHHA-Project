@@ -48,14 +48,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
             let previousTextIndex = 0;
             var textForMenu = [
             "Welcome to the White House located in Washington, D.C. at 1600 Pennsylvania Avenue! Constructed from 1792-1800, the White House was built with the labor of free and enslaved people. John Adams was the first president to live in the White House and since then the building has served as the official workplace and residence for the President of the United States and their family.",
-            "The White House is also a symbol of American democracy and is often referred to as the \“People’s House.\” Citizens ultimately choose who resides in the White House, and that person and their presidency, must answer to the American people. As you travel through the room of the White House, you will explore and experience the diverse history of the \“People’s House.\"", 
+            "The White House is also a symbol of American democracy and is often referred to as the \“People’s House.\” Citizens ultimately choose who resides in the White House, and that person and their presidency, must answer to the American people. As you travel through the rooms of the White House, you will explore and experience America’s diverse history through the lens of the \“People’s House.\”", 
             "Want to learn about different rooms within the White House? Select a room for the images above.",
-            "This is the Blue Room, an oval shaped room on the State Floor of the White House. The Blue Room was designed to be an elegant space by White House architect James Hoban, and has been used often as a reception room. However, did you know that the Blue Room was not always blue? At different times, the room was red and green until 1837, when President Martin Van Buren turned it into the Blue Room.",
-            "Image caption:\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+            "This is the Blue Room, an oval-shaped room on the State Floor of the White House. The Blue Room was designed to be an elegant space by White House architect James Hoban, and has been used often as a reception room. However, did you know that the Blue Room was not always blue? At different times, the room was red and green until 1837, when President Martin Van Buren turned it into the Blue Room.",
+            "This hand-colored wood engraving by Alfred R. Waud appeared in the centerfold of Harper's Weekly on January 25, 1862.",
             "",
             "On the morning of January 1, 1863, President Abraham Lincoln hosted the annual New Year’s Day reception at the White House, spending several hours here in the Blue Room shaking hands with hundreds of citizens. During Lincoln’s presidency from 1861-1865, the Civil War was fought between the Union and the Confederacy.",
             "Following Lincoln’s election in 1860, pro-slavery southern states began to secede from the Union, prompting the start of the Civil War in the spring of 1861. Throughout the war, Lincoln considered all approaches to giving the Union a wartime advantage. One of the options put forth included the Emancipation Proclamation, which granted freedom to enslaved people in Confederate States that remained in rebellion.",
-            "Lincoln believed this document would hurt the southern economy, negatively impact the South’s ability to continue the war, and further the cause of freedom for enslaved people. After the reception, President Lincoln left the Blue Room and went upstairs to his office, ready to sign the Emancipation Proclamation. With a slightly trembling hand, stiff and numb from greeting so many people, Lincoln signed the document.",
+            "Lincoln believed the Proclamation would hurt the southern economy, negatively impact the South’s ability to continue the war, and further the cause of freedom for enslaved people. After the reception, President Lincoln left the Blue Room and went upstairs to his office, ready to sign the Emancipation Proclamation. With a slightly trembling hand, stiff and numb from greeting so many people, Lincoln signed the document.",
             "Watch this short video on how the Emancipation Proclamation signed by President Abraham Lincoln during the Civil War laid the groundwork for future legislation abolishing, or ending, slavery.",
             "",
             ""];
@@ -1686,7 +1686,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         textTitleLearnMore.textWrapping = true;
                         textTitleLearnMore.width = "32%"; //"480px";
                         textTitleLearnMore.height = "6%"; //"40px";
-                        textTitleLearnMore.text = "Waiting on the Hour";
+                        textTitleLearnMore.text = "Waiting for the Hour";
                         textTitleLearnMore.color = "black";
                         textTitleLearnMore.fontSize = "5.128%"; //"40px";
                         textTitleLearnMore.top = "7.69%"; //"60px";
@@ -1701,13 +1701,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         textBodyLearnMore.textWrapping = true;
                         textBodyLearnMore.width = "32%"; //"480px";
                         textBodyLearnMore.height = "89.74%"; //"700px";
-                        textBodyLearnMore.text = "The Emancipation Proclamation was signed on January 1, 1863, and granted freedom to enslaved people in Confederate states that remained in rebellion. It’s important to note that the Emancipation Proclamation did not free enslaved people in the Border States of Kentucky, Missouri, Maryland, and Delaware because those states were not in rebellion against the Union. The proclamation also changed the meaning of the war, as Union troops were no longer just fighting to save the Union but also abolish slavery. Additionally, by issuing this order, Lincoln opened the door for Black Americans (and formerly enslaved men) to enlist in the fight against the Confederacy. By the end of the war, some 200,000 Black soldiers and sailors had joined the Union cause to defeat the Confederacy and end slavery. \n\nThe Confederate states didn’t recognize Abraham Lincoln as their president—instead, they elected Jefferson Davis to serve as the provisional president of the Confederacy. How do you think enslaved people in Confederate states reacted?";
+                        textBodyLearnMore.text = "This painting by William Tolman Carlton captures the moments before the Emancipation Proclamation took effect at midnight on Thursday, January 1, 1863. A group of enslaved people surround a crate with an older man at the center holding a large pocket watch as the group counts down the remaining time till New Year's Day. A copy of the Emancipation Proclamation is posted to the wall.";
                         textBodyLearnMore.color = "black";
                         textBodyLearnMore.fontSize = "2.63%"; //"21.5px";
-                        textBodyLearnMore.top = "6.41%"; //"50px";
+                        textBodyLearnMore.top = "18.1%"; //"141px";
                         textBodyLearnMore.left = "4%"; //"60px";
                         textBodyLearnMore.lineSpacing = 5;
                         textBodyLearnMore.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                        textBodyLearnMore.textVerticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
                         textBodyLearnMore.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         textBodyLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         labelForLearnAboutWaiting.addControl(textBodyLearnMore);
