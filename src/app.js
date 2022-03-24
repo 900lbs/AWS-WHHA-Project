@@ -39,55 +39,55 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
             //Blue room images
             var blueRoomSources = [
-            "https://i.imgur.com/7FFbnuK.png", //Blue Room 1
-            "https://i.imgur.com/UdjG5kC.png", //Blue Room 2
-            "https://i.imgur.com/h3wWL3D.png", //Blue Room 3
-            "https://i.imgur.com/I4AN2Jp.png", //Blue Room 4
-            "https://i.imgur.com/ca27F5t.png", //Blue Room 5
-            "https://i.imgur.com/J95LnGX.png", //Blue Room 6
-            "https://i.imgur.com/qmbQS2A.png", //Blue Room 7
-            "https://i.imgur.com/Kl5pWYR.png"]; //Blue Room 8
+            "https://i.imgur.com/7FFbnuK.png", //BlueRoom1.png
+            "https://i.imgur.com/UdjG5kC.png", //BlueRoom2.png
+            "https://i.imgur.com/h3wWL3D.png", //BlueRoom3.png
+            "https://i.imgur.com/I4AN2Jp.png", //BlueRoom4.png
+            "https://i.imgur.com/ca27F5t.png", //BlueRoom5.png
+            "https://i.imgur.com/J95LnGX.png", //BlueRoom6.png
+            "https://i.imgur.com/qmbQS2A.png", //BlueRoom7.png
+            "https://i.imgur.com/Kl5pWYR.png"]; //BlueRoom8.png
 
             //Entrance hall images
-            var entranceHallimg = "https://i.imgur.com/pQo0dPM.jpg"; //Entrance Hall
+            var entranceHallimg = "https://i.imgur.com/pQo0dPM.jpg"; //mainEntrance.jpeg
 
             //Welcome Page Images
-            var welcomePageImg = "https://i.imgur.com/mVFHZmz.jpg"; //Welcome Page White House Image
-            var welcomePageTitleImg = "https://i.imgur.com/8Wc9d2D.png"; //Welcome Page Title
-            var welcomePageAWSLogo = "https://i.imgur.com/smOUoJv.png"; //Welcome Page AWS Logo
-            var welcomePageWHHALogo = "https://i.imgur.com/cPdvEX4.png"; //Welcome Page WHHA Logo
+            var welcomePageImg = "https://i.imgur.com/mVFHZmz.jpg"; //the_white_house.jpeg
+            var welcomePageTitleImg = "https://i.imgur.com/8Wc9d2D.png"; //PortalPeoplesHouse.png
+            var welcomePageAWSLogo = "https://i.imgur.com/smOUoJv.png"; //AWS-Logo.png
+            var welcomePageWHHALogo = "https://i.imgur.com/cPdvEX4.png"; //WHHA_LogoMark.png
             
             //WHHA Sprite Images
-            var whhaNextArrowImg = "https://i.imgur.com/BSDPais.png";
-            var whhaNavButtonImg = "https://i.imgur.com/cmNSnse.png";
-            var whhaArrowImgA = "https://i.imgur.com/obU8TgU.png";
-            var whhaXButtonImg = "https://i.imgur.com/YH78eY3.png";
-            var whhaMainMenuStarImg = "https://i.imgur.com/6fRUrr7.png";
-            var whhaAudioImg = "https://i.imgur.com/89lytUS.png";
-            var whhaAudioMuteImg = "https://i.imgur.com/ZF77q5h.png";
-            var whhaWhiteHouseIconImg = "https://i.imgur.com/ij7gPpq.png";
-            var whhaResetImg = "https://i.imgur.com/wiaNJ05.png";
-            var whhaLearnMoreNextArrowImg = "https://i.imgur.com/FsQy7Oh.png";
-            var whhaLearnMoreExpandImg = "https://i.imgur.com/3H5Dtxo.png";
-            var whhaLearnMoreContractImg = "https://i.imgur.com/sVzTWjl.png";
-            var whhaLearnMoreMenuArrowImg = "https://i.imgur.com/4vveLLN.png";
+            var whhaNextArrowImg = "https://i.imgur.com/BSDPais.png"; //Arrow-wStem.png
+            var whhaNavButtonImg = "https://i.imgur.com/cmNSnse.png"; //WhiteHouse_Icon.png
+            var whhaArrowImgA = "https://i.imgur.com/obU8TgU.png"; //ArrowImgA.png
+            var whhaXButtonImg = "https://i.imgur.com/YH78eY3.png"; //x.png
+            var whhaMainMenuStarImg = "https://i.imgur.com/6fRUrr7.png"; //Star.png
+            var whhaAudioImg = "https://i.imgur.com/89lytUS.png"; //Unmute.png
+            var whhaAudioMuteImg = "https://i.imgur.com/ZF77q5h.png"; //Mute.png
+            var whhaWhiteHouseIconImg = "https://i.imgur.com/ij7gPpq.png"; //whitehouse-illustration.png
+            var whhaResetImg = "https://i.imgur.com/wiaNJ05.png"; //Refresh.png
+            var whhaLearnMoreNextArrowImg = "https://i.imgur.com/FsQy7Oh.png"; //LearnMoreNextArrowImg.png
+            var whhaLearnMoreExpandImg = "https://i.imgur.com/3H5Dtxo.png"; //FullScreen_Carrots.png
+            var whhaLearnMoreContractImg = "https://i.imgur.com/sVzTWjl.png"; //Minimize_Carrots.png
+            var whhaLearnMoreMenuArrowImg = "https://i.imgur.com/4vveLLN.png"; //LearnMoreArrowImg.png
 
             //Room Selection Images
-            var whhaRedRoomButtonImg = "https://i.imgur.com/Tjrsr1N.jpg";
-            var whhaBlueRoomButtonImg = "https://i.imgur.com/oE5zBb7.jpg";
-            var whhaGreenRoomButtonImg = "https://i.imgur.com/OKpC4ma.jpg";
+            var whhaRedRoomButtonImg = "https://i.imgur.com/Tjrsr1N.jpg"; //RedRoomModal.jpeg
+            var whhaBlueRoomButtonImg = "https://i.imgur.com/oE5zBb7.jpg"; //BlueRoomModal.jpeg
+            var whhaGreenRoomButtonImg = "https://i.imgur.com/OKpC4ma.jpg"; //GreenRoomModal.jpeg
 
             //Grand Reception Image
-            var whhaGrandReceptionImg = "https://i.imgur.com/Tp1vaBN.jpg";;
+            var whhaGrandReceptionImg = "https://i.imgur.com/Tp1vaBN.jpg"; //grandReception.jpeg
 
             //King Kalahaua Image
-            var whhaKingKalahauaImg = "https://i.imgur.com/AFVeTwe.jpg";
+            var whhaKingKalahauaImg = "https://i.imgur.com/AFVeTwe.jpg"; //Kalakaua.jpeg
 
             //Examine Modal Images
-            var whhaLincolnImage = "https://i.imgur.com/H0DrJX2.jpg";
-            var whhaWaitingImage = "https://i.imgur.com/FosX3Gu.jpg";
-            var whhaEngravingImage = "https://i.imgur.com/Vk7p04O.jpg";
-            var whhaFrederickImage = "https://i.imgur.com/406NGIR.jpg";
+            var whhaLincolnImage = "https://i.imgur.com/H0DrJX2.jpg"; //ALincoln.jpeg
+            var whhaWaitingImage = "https://i.imgur.com/FosX3Gu.jpg"; //WaitingHour.jpeg
+            var whhaEngravingImage = "https://i.imgur.com/Vk7p04O.jpg"; //First-Reading.jpeg
+            var whhaFrederickImage = "https://i.imgur.com/406NGIR.jpg"; //FrederickDouglas.jpeg
             var whhaNegativeImage = ""; //still needs an image
 
 //#endregion
@@ -647,7 +647,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                                 if(currentTextIndex == 3)
                                 {
-                                    easyAnimation(architectCalloutButton, 'top', 30, 0, -27.77, 60);
+                                    easyAnimation(architectCalloutButton, 'top', 30, 0, -27.65, 60);
                                     architectCalloutButton.isEnabled = true;
                                     easyFade(architectCalloutButton, 30, 0, 1, 90);
                                 }
@@ -664,7 +664,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                                 if(currentTextIndex == 3)
                                 {
-                                    easyAnimation(architectCalloutButton, 'top', 30, -27.77, 0, 60);
+                                    easyAnimation(architectCalloutButton, 'top', 30, -27.65, 0, 60);
                                     architectCalloutButton.isEnabled = false;
                                     easyFade(architectCalloutButton, 30, 1, 0, 90);
                                 }
@@ -2345,11 +2345,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                 
 //#region Menu Callouts
                             var architectCalloutButton = Button.CreateSimpleButton("architect", "architect");
-                            architectCalloutButton.width = "4.43%"; //"82px"
-                            architectCalloutButton.height = "2.96%"; //"32px";
+                            architectCalloutButton.width = "6.25%"; //"82px"
+                            architectCalloutButton.height = "4.63%"; //"50px";
                             architectCalloutButton.fontFamily = "Calendas Plus";
-                            architectCalloutButton.fontSizeInPixels = "40%"; //21.5;
-                            architectCalloutButton.color = "#FFFFFF";
+                            architectCalloutButton.fontSize = "2%"; //21.5;
+                            architectCalloutButton.color = "white";
                             architectCalloutButton.cornerRadius = 0;
                             architectCalloutButton.background = "#2B3E56";
                             architectCalloutButton.alpha = 0;
