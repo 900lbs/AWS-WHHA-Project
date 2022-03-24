@@ -2342,9 +2342,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuPicMainRect.addControl(menuBarText);
 //#endregion
 //#endregion
-
                 
-                        //Menu Callouts
+//#region Menu Callouts
                             var architectCalloutButton = Button.CreateSimpleButton("architect", "architect");
                             architectCalloutButton.width = "4.43%"; //"82px"
                             architectCalloutButton.height = "2.96%"; //"32px";
@@ -2357,8 +2356,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             architectCalloutButton.isEnabled = false;
                             architectCalloutButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                             architectCalloutButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM;
-                            //architectCalloutButton.left = "896px";
-                            //architectCalloutButton.top = "-90px";
                             architectCalloutButton.onPointerUpObservable.add(function() {
                                 architectCallout.alpha = 1;
                                 architectCallout.isEnabled = true;
@@ -2444,7 +2441,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             calloutBody_archText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             calloutBody_archText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             architectCallout.addControl(calloutBody_archText);
+//#endregion
 
+//#region Old Callouts
                             /*var unionCalloutButton = Button.CreateSimpleButton("Union", "Union");
                             unionCalloutButton.width = "60px"
                             unionCalloutButton.height = "32px";
@@ -2501,7 +2500,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 
                             });
                             menuPicMainRect.addControl(secCalloutButton);*/
-                
+ //#endregion
+                            
 //#region Audio Button
                             var audioButton = Button.CreateSimpleButton("audio", "");
                             audioButton.width = "3.125%"; //"60px"
@@ -2540,7 +2540,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             speakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             audioButton.addControl(speakerButton);
 //#endregion
-
                 
 //#region Back Button
                             var backButton = Button.CreateSimpleButton("back", "");
