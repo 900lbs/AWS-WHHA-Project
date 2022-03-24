@@ -34,15 +34,63 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
         
             let currentIndex = 0;
             let previousIndex = 0;
-            var sources = [
-            "https://i.imgur.com/7FFbnuK.png",
-            "https://i.imgur.com/UdjG5kC.png", 
-            "https://i.imgur.com/h3wWL3D.png",
-            "https://i.imgur.com/I4AN2Jp.png",
-            "https://i.imgur.com/ca27F5t.png",
-            "https://i.imgur.com/J95LnGX.png", 
-            "https://i.imgur.com/qmbQS2A.png",
-            "https://i.imgur.com/Kl5pWYR.png"];
+
+//#region Images
+
+            //Blue room images
+            var blueRoomSources = [
+            "https://i.imgur.com/7FFbnuK.png", //Blue Room 1
+            "https://i.imgur.com/UdjG5kC.png", //Blue Room 2
+            "https://i.imgur.com/h3wWL3D.png", //Blue Room 3
+            "https://i.imgur.com/I4AN2Jp.png", //Blue Room 4
+            "https://i.imgur.com/ca27F5t.png", //Blue Room 5
+            "https://i.imgur.com/J95LnGX.png", //Blue Room 6
+            "https://i.imgur.com/qmbQS2A.png", //Blue Room 7
+            "https://i.imgur.com/Kl5pWYR.png"]; //Blue Room 8
+
+            //Entrance hall images
+            var entranceHallimg = "https://i.imgur.com/pQo0dPM.jpg"; //Entrance Hall
+
+            //Welcome Page Images
+            var welcomePageImg = "https://i.imgur.com/mVFHZmz.jpg"; //Welcome Page White House Image
+            var welcomePageTitleImg = "https://i.imgur.com/8Wc9d2D.png"; //Welcome Page Title
+            var welcomePageAWSLogo = "https://i.imgur.com/smOUoJv.png"; //Welcome Page AWS Logo
+            var welcomePageWHHALogo = "https://i.imgur.com/cPdvEX4.png"; //Welcome Page WHHA Logo
+            
+            //WHHA Sprite Images
+            var whhaNextArrowImg = "https://i.imgur.com/BSDPais.png";
+            var whhaNavButtonImg = "https://i.imgur.com/cmNSnse.png";
+            var whhaArrowImgA = "https://i.imgur.com/obU8TgU.png";
+            var whhaXButtonImg = "https://i.imgur.com/YH78eY3.png";
+            var whhaMainMenuStarImg = "https://i.imgur.com/6fRUrr7.png";
+            var whhaAudioImg = "https://i.imgur.com/89lytUS.png";
+            var whhaAudioMuteImg = "https://i.imgur.com/ZF77q5h.png";
+            var whhaWhiteHouseIconImg = "https://i.imgur.com/ij7gPpq.png";
+            var whhaResetImg = "https://i.imgur.com/wiaNJ05.png";
+            var whhaLearnMoreNextArrowImg = "https://i.imgur.com/FsQy7Oh.png";
+            var whhaLearnMoreExpandImg = "https://i.imgur.com/3H5Dtxo.png";
+            var whhaLearnMoreContractImg = "https://i.imgur.com/sVzTWjl.png";
+            var whhaLearnMoreMenuArrowImg = "https://i.imgur.com/4vveLLN.png";
+
+            //Room Selection Images
+            var whhaRedRoomButtonImg = "https://i.imgur.com/Tjrsr1N.jpg";
+            var whhaBlueRoomButtonImg = "https://i.imgur.com/oE5zBb7.jpg";
+            var whhaGreenRoomButtonImg = "https://i.imgur.com/OKpC4ma.jpg";
+
+            //Grand Reception Image
+            var whhaGrandReceptionImg = "https://i.imgur.com/Tp1vaBN.jpg";;
+
+            //King Kalahaua Image
+            var whhaKingKalahauaImg = "https://i.imgur.com/AFVeTwe.jpg";
+
+            //Examine Modal Images
+            var whhaLincolnImage = "https://i.imgur.com/H0DrJX2.jpg";
+            var whhaWaitingImage = "https://i.imgur.com/FosX3Gu.jpg";
+            var whhaEngravingImage = "https://i.imgur.com/Vk7p04O.jpg";
+            var whhaFrederickImage = "https://i.imgur.com/406NGIR.jpg";
+            var whhaNegativeImage = ""; //still needs an image
+
+//#endregion
         
             let currentTextIndex = 0;
             let previousTextIndex = 0;
@@ -62,14 +110,15 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
         
             let menuIsUp = false;
             let menuIsOpen = true;
-            let dragging = null;
+            let audioMuted = false;
+            let dragging = false;
             let mouseStart = new Vector2.Zero();
         
             // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-            var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+            //var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
         
             // Default intensity is 1. Let's dim the light a small amount
-            light.intensity = 0.7;
+            //light.intensity = 0.7;
 
             //Class
             class TextBlockWithUnderlineColor extends TextBlock {
@@ -80,15 +129,15 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                 }
             }
                 
-                    //Functions
+//#region Functions
                         var imageCarousel = function (control, startPos, endPos, speed, controlImg) {
                             var ease = new CubicEase();
                             var ease2 = new CubicEase();
                             control.isForeground = true;
                             ease.setEasingMode(EasingFunction.EASINGMODE_EASEIN);
                             ease2.setEasingMode(EasingFunction.EASINGMODE_EASEINOUT);
-                            control.source = sources[currentIndex];
-                            controlImg.source = sources[previousIndex];
+                            control.source = blueRoomSources[currentIndex];
+                            controlImg.source = blueRoomSources[previousIndex];
                             control.zIndex = 1;
                             controlImg.zIndex = 0;
                             Animation.CreateAndStartAnimation('at1', control, 'left', speed * 1.5, 120, startPos,endPos, 0, ease);
@@ -178,6 +227,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                     welcomeSplashScreen.height = "140%";
                                     easyFade(welBackgroundRect, 30, 0, 1, 90);
                                     startButton.isEnabled = true;
+                                    welcomeAudioButton.isEnabled = true;
                                     if(menuIsUp)
                                     {
                                         menuIsUp = false;
@@ -609,6 +659,24 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             }
                         }
 
+                        var muteAudio = function()
+                        {
+                            //Will need to add mute functionality here once sounds are in
+                            if(audioMuted)
+                            {
+                                speakerButton.source = whhaAudioMuteImg;
+                                navSpeakerButton.source = whhaAudioMuteImg;
+                                welcomeSpeakerButton.source = whhaAudioMuteImg;
+                            }
+                            
+                            else
+                            {
+                                speakerButton.source = whhaAudioImg;
+                                navSpeakerButton.source = whhaAudioImg;
+                                welcomeSpeakerButton.source = whhaAudioImg;
+                            }
+                        }
+
                         var easyAnimation = function(control, direction, totalFrames, startPos, endPos, speed)
                         {
                             if(direction == 'top')
@@ -666,6 +734,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                             easyFade(welcomeBox, 30, 0, 0.97, 90);
                                             easyFade(exitMenuButton, 30, 0, 1, 90);
                                             exitMenuButton.isEnabled = true;
+                                            welcomeAudioButton.isEnabled = false;
                                         }
                                         });
                                 }
@@ -746,7 +815,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             easyAnimation(label, 'left', 30, 30, 0, 90);
                             easyAnimation(greyBoxBlurRoomImage, 'left', 30, 30, 0, 90);
                         }
-                
+//#endregion
+
 //#region Entrance
                         var advancedTextureEntrance = AdvancedDynamicTexture.CreateFullscreenUI("ui0");
                         advancedTextureEntrance.isForeground = true;
@@ -759,13 +829,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                         var imgA = new Image();
                         imgA.color = "transparent";
-                        imgA.source = "https://i.imgur.com/pQo0dPM.jpg";
+                        imgA.source = entranceHallimg;
                         entranceRect.addControl(imgA);
-
-                        var imgB = new Image();
-                        imgB.color = "transparent";
-                        imgB.source = "https://i.imgur.com/pQo0dPM.jpg";
-                        entranceRect.addControl(imgB);
             
                     
 //#region Menu Box
@@ -827,7 +892,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         navButtonMenuImg.width = "50%"; //57.4px
                         navButtonMenuImg.height = "47%"; //35.43px
                         navButtonMenuImg.top = "16%"; //11.23px
-                        navButtonMenuImg.source = "https://i.imgur.com/cmNSnse.png";
+                        navButtonMenuImg.source = whhaNavButtonImg;
                         navButtonMenuImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         navButtonMenuImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         navButtonMenu.addControl(navButtonMenuImg);
@@ -865,7 +930,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgMenuA.height = "10.71%"; //36px
                         arrowImgMenuA.top = "43%"; //193.5px
                         arrowImgMenuA.left = "-1.25%"; //-12px
-                        arrowImgMenuA.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgMenuA.source = whhaArrowImgA;
                         arrowImgMenuA.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         arrowImgMenuA.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         welcomeBox.addControl(arrowImgMenuA);
@@ -877,7 +942,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgMenuB.height = "10.71%"; //36px
                         arrowImgMenuB.top = "43%"; //193.5px
                         arrowImgMenuB.left = "0px";
-                        arrowImgMenuB.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgMenuB.source = whhaArrowImgA;
                         arrowImgMenuB.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         arrowImgMenuB.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         welcomeBox.addControl(arrowImgMenuB);
@@ -889,7 +954,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgMenuC.height = "10.71%"; //36px
                         arrowImgMenuC.top = "43%"; //193.5px
                         arrowImgMenuC.left = "1.25%"; //12px
-                        arrowImgMenuC.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgMenuC.source = whhaArrowImgA;
                         arrowImgMenuC.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         arrowImgMenuC.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         welcomeBox.addControl(arrowImgMenuC);
@@ -970,6 +1035,12 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         exitMenuButton.left = "-23.85%"; //1418px
                         exitMenuButton.top = "25.74%"; //278px
                         exitMenuButton.alpha = 0;
+                        exitMenuButton.pointerEnterAnimation = function(){
+
+                        }
+                        exitMenuButton.pointerOutAnimation = function(){
+                            
+                        }
                         exitMenuButton.onPointerUpObservable.add(function() {
                             exitMenuButton.isEnabled = false;
                             leftArrowBox.scaleX = .65;
@@ -989,7 +1060,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         xButton.color = "black";
                         xButton.width = "35%"; //12px
                         xButton.height = "35%"; //12px
-                        xButton.source = "https://i.imgur.com/YH78eY3.png";
+                        xButton.source = whhaXButtonImg;
                         xButton.left = ".75%";
                         xButton.top = ".75%";
                         xButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
@@ -1043,7 +1114,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             redRoom.color = "transparent";
                             redRoom.width = "100%"; //"540px";
                             redRoom.height = "100%"; //"300px";
-                            redRoom.source = "https://i.imgur.com/Tjrsr1N.jpg";
+                            redRoom.source = whhaRedRoomButtonImg;
                             redRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             redRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             redRoomMaskBox.addControl(redRoom);
@@ -1084,7 +1155,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             blueRoom.color = "transparent";
                             blueRoom.width = "100%"; //"540px";
                             blueRoom.height = "100%"; //"300px";
-                            blueRoom.source = "https://i.imgur.com/oE5zBb7.jpg";
+                            blueRoom.source = whhaBlueRoomButtonImg;
                             blueRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             blueRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             blueRoomMaskBox.addControl(blueRoom);
@@ -1158,7 +1229,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greenRoom.color = "transparent";
                             greenRoom.width = "100%"; //"540px";
                             greenRoom.height = "100%"; //"300px";
-                            greenRoom.source = "https://i.imgur.com/OKpC4ma.jpg";
+                            greenRoom.source = whhaGreenRoomButtonImg;
                             greenRoom.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             greenRoom.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             greenRoomMaskBox.addControl(greenRoom);
@@ -1202,14 +1273,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var img1 = new Image();
                         img1.width = "100%";
                         img1.height = "100%";
-                        img1.source = "https://i.imgur.com/UdjG5kC.png";
+                        img1.source =  blueRoomSources[1];
                         img1.color = "transparent";
                         label.addControl(img1);
                 
                         var img2 = new Image();
                         img2.width = "100%";
                         img2.height = "100%";
-                        img2.source = "https://i.imgur.com/7FFbnuK.png";
+                        img2.source = blueRoomSources[0];
                         img2.color = "transparent";
                         img2.zIndex = 1;
                         label.addControl(img2);
@@ -1235,7 +1306,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         blueRoomImgBox.width = "34.42%"; //"660.92px";
                         blueRoomImgBox.height = "42%"; //"453.91px";
                         blueRoomImgBox.top = "24.81%"; //"268px"
-                        blueRoomImgBox.source = "https://i.imgur.com/Tp1vaBN.jpg";
+                        blueRoomImgBox.source = whhaGrandReceptionImg;
                         blueRoomImgBox.alpha = 0;
                         blueRoomImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                         blueRoomImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
@@ -1274,7 +1345,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         learnMoreMaskBox1.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         greyBoxBlurRoomImage.addControl(learnMoreMaskBox1);
                 
-                        var learnMoreImgBox1 = Button.CreateImageOnlyButton("but1", "https://i.imgur.com/Tp1vaBN.jpg");
+                        var learnMoreImgBox1 = Button.CreateImageOnlyButton("but1", whhaGrandReceptionImg);
                         learnMoreImgBox1.color = "white";
                         learnMoreImgBox1.width = "104.64%"; //"565px";
                         learnMoreImgBox1.height = "129%"; //"387px";
@@ -1323,7 +1394,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         learnMoreImgBox2.width = "103.5%"; //"559px";
                         learnMoreImgBox2.height = "110.66%"; //"332px";
                         learnMoreImgBox2.top = "-2%"; //"-6px";
-                        learnMoreImgBox2.source = "https://i.imgur.com/AFVeTwe.jpg";
+                        learnMoreImgBox2.source = whhaKingKalahauaImg;
                         learnMoreImgBox2.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         learnMoreImgBox2.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         learnMoreMaskBox2.addControl(learnMoreImgBox2);
@@ -1443,7 +1514,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         lincolnImgBox.width = "120.55%"; //"651px";
                         lincolnImgBox.height = "287.33%"; //"862px";
                         lincolnImgBox.top = "55%"; //"165px";
-                        lincolnImgBox.source = "https://i.imgur.com/H0DrJX2.jpg";
+                        lincolnImgBox.source = whhaLincolnImage;
                         lincolnImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         lincolnImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         lincolnMaskBox.addControl(lincolnImgBox);
@@ -1482,11 +1553,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         waitingMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         scrollModal.addControl(waitingMaskBox);
                 
-                        var waitingImgBox = Button.CreateImageOnlyButton("", "https://i.imgur.com/FosX3Gu.jpg");
+                        var waitingImgBox = Button.CreateImageOnlyButton("", whhaWaitingImage);
                         waitingImgBox.color = "transparent";
                         waitingImgBox.width = "100.37%"; //"542px";
                         waitingImgBox.height = "145.66%"; //"437px";
-                        waitingImgBox.source = "https://i.imgur.com/FosX3Gu.jpg";
+                        waitingImgBox.source = whhaWaitingImage;
                         waitingImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         waitingImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         waitingImgBox.onPointerClickObservable.add(function() {
@@ -1533,7 +1604,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         engravingImgBox.color = "transparent";
                         engravingImgBox.width = "124.25%"; //"671px";
                         engravingImgBox.height = "156.66%"; //"470px";
-                        engravingImgBox.source = "https://i.imgur.com/Vk7p04O.jpg";
+                        engravingImgBox.source = whhaEngravingImage;
                         engravingImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         engravingImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         engravingMaskBox.addControl(engravingImgBox);
@@ -1576,7 +1647,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         frederickImgBox.color = "transparent";
                         frederickImgBox.width = "101.48%"; //"548px";
                         frederickImgBox.height = "102.66%"; //"308px";
-                        frederickImgBox.source = "https://i.imgur.com/406NGIR.jpg";
+                        frederickImgBox.source = whhaFrederickImage;
                         frederickImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         frederickImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         frederickMaskBox.addControl(frederickImgBox);
@@ -1615,14 +1686,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         fifthMaskBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                         scrollModal.addControl(fifthMaskBox);
 
-                        /*var fifthImgBox = new Image();
+                        var fifthImgBox = new Image();
                         fifthImgBox.color = "transparent";
                         fifthImgBox.width = "101.48%"; //"548px";
                         fifthImgBox.height = "102.66%"; //"308px";
-                        fifthImgBox.source = "https://i.imgur.com/406NGIR.jpg";
+                        fifthImgBox.source = whhaNegativeImage;
                         fifthImgBox.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         fifthImgBox.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
-                        fifthMaskBox.addControl(fifthImgBox);*/
+                        fifthMaskBox.addControl(fifthImgBox);
 
                         var fifthText1 = new TextBlock("fifthText1");
                         fifthText1.fontFamily = "Calendas Plus";
@@ -1758,7 +1829,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         leftArrowBoxLearnMoreImg.color = "transparent";
                         leftArrowBoxLearnMoreImg.width = "40.74%"; //"22px";
                         leftArrowBoxLearnMoreImg.height = "40.74%"; //"22px";
-                        leftArrowBoxLearnMoreImg.source = "https://i.imgur.com/FsQy7Oh.png";
+                        leftArrowBoxLearnMoreImg.source = whhaLearnMoreNextArrowImg;
                         leftArrowBoxLearnMoreImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         leftArrowBoxLearnMoreImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         leftArrowBoxLearnMoreStroke.addControl(leftArrowBoxLearnMoreImg);
@@ -1787,8 +1858,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         rightArrowBoxLearnMoreImg.color = "transparent";
                         rightArrowBoxLearnMoreImg.width = "40.74%"; //"22px";
                         rightArrowBoxLearnMoreImg.height = "40.74%"; //"22px";
-                        rightArrowBoxLearnMoreImg.source = "https://i.imgur.com/FsQy7Oh.png";
-                        rightArrowBoxLearnMoreImg.rotation = 3.1;
+                        rightArrowBoxLearnMoreImg.source = whhaLearnMoreNextArrowImg;
+                        rightArrowBoxLearnMoreImg.rotation = 3.14159;
                         rightArrowBoxLearnMoreImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         rightArrowBoxLearnMoreImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         rightArrowBoxLearnMoreStroke.addControl(rightArrowBoxLearnMoreImg);
@@ -1814,11 +1885,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         expandImageBoxMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                         expandImageBox.addControl( expandImageBoxMoreStroke);
 
-                        var exapndImg = Button.CreateImageOnlyButton("", "https://i.imgur.com/3H5Dtxo.png");
+                        var exapndImg = Button.CreateImageOnlyButton("", whhaLearnMoreExpandImg);
                         exapndImg.color = "transparent";
                         exapndImg.width = "65%"; //"22px";
                         exapndImg.height = "65%"; //"22px";
-                        exapndImg.source = "https://i.imgur.com/3H5Dtxo.png";
+                        exapndImg.source = whhaLearnMoreExpandImg;
                         exapndImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         exapndImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         exapndImg.isPointerBlocker = true;
@@ -1891,7 +1962,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         leftArrowBoxLearnMoreMenuImg.color = "transparent";
                         leftArrowBoxLearnMoreMenuImg.width = "107.69%"; //"28px";
                         leftArrowBoxLearnMoreMenuImg.height = "24.56%"; //"28px";
-                        leftArrowBoxLearnMoreMenuImg.source = "https://i.imgur.com/4vveLLN.png";
+                        leftArrowBoxLearnMoreMenuImg.source = whhaLearnMoreMenuArrowImg;
                         leftArrowBoxLearnMoreMenuImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         leftArrowBoxLearnMoreMenuImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         learnMoreMenuBoxStroke.addControl(leftArrowBoxLearnMoreMenuImg);
@@ -1933,7 +2004,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             currentIndex--;
                             if(currentIndex < 0)
                             {
-                                currentIndex = sources.length - 1;
+                                currentIndex = blueRoomSources.length - 1;
                             }
                             imageCarousel(img1, (screen.width / 2) * -1, 0, 100, img2);
                         });
@@ -1944,7 +2015,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgA.width = "36px";
                         arrowImgA.height = "36px";
                         arrowImgA.left = "0";
-                        arrowImgA.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgA.source = whhaArrowImgA;
                         arrowImgA.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         arrowImgA.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                         leftArrowBox.addControl(arrowImgA);
@@ -1955,7 +2026,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgB.width = "36px";
                         arrowImgB.height = "36px";
                         arrowImgB.left = "12px";
-                        arrowImgB.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgB.source = whhaArrowImgA;
                         arrowImgB.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         arrowImgB.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                         leftArrowBox.addControl(arrowImgB);
@@ -1966,7 +2037,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgC.width = "36px";
                         arrowImgC.height = "36px";
                         arrowImgC.left = "24px";
-                        arrowImgC.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgC.source = whhaArrowImgA;
                         arrowImgC.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         arrowImgC.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                         leftArrowBox.addControl(arrowImgC);
@@ -1998,7 +2069,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         rightArrowBox.onPointerClickObservable.add(function() {
                             previousIndex = currentIndex;
                             currentIndex++;
-                            if(currentIndex > sources.length - 1)
+                            if(currentIndex > blueRoomSources.length - 1)
                             {
                                 currentIndex = 0;
                             }
@@ -2011,8 +2082,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgARight.width = "36px";
                         arrowImgARight.height = "36px";
                         arrowImgARight.left = "-2";
-                        arrowImgARight.rotation = 3.15;
-                        arrowImgARight.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgARight.rotation = 3.14159;
+                        arrowImgARight.source = whhaArrowImgA;
                         arrowImgARight.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         arrowImgARight.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                         rightArrowBox.addControl(arrowImgARight);
@@ -2023,8 +2094,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgBRight.width = "36px";
                         arrowImgBRight.height = "36px";
                         arrowImgBRight.left = "-14px";
-                        arrowImgBRight.rotation = 3.15;
-                        arrowImgBRight.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgBRight.rotation = 3.14159;
+                        arrowImgBRight.source = whhaArrowImgA;
                         arrowImgBRight.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         arrowImgBRight.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                         rightArrowBox.addControl(arrowImgBRight);
@@ -2035,8 +2106,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         arrowImgCRight.width = "36px";
                         arrowImgCRight.height = "36px";
                         arrowImgCRight.left = "-26px";
-                        arrowImgCRight.rotation = 3.15;
-                        arrowImgCRight.source = "https://i.imgur.com/obU8TgU.png";
+                        arrowImgCRight.rotation = 3.14159;
+                        arrowImgCRight.source = whhaArrowImgA;
                         arrowImgCRight.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         arrowImgCRight.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                         rightArrowBox.addControl(arrowImgCRight);
@@ -2092,7 +2163,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             navButtonImg.width = "50%"; //57.4px
                             navButtonImg.height = "47%"; //35.43px
                             navButtonImg.top = "16%"; //11.23px
-                            navButtonImg.source = "https://i.imgur.com/cmNSnse.png";
+                            navButtonImg.source = whhaNavButtonImg;
                             navButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             navButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             navButton.addControl(navButtonImg);
@@ -2184,7 +2255,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuStarAImg.height = "5.11%"; //8.36px used to be 6.5%
                             menuStarAImg.top = "8%"; //8px
                             menuStarAImg.left = "-.7%";
-                            menuStarAImg.source = "https://i.imgur.com/6fRUrr7.png";
+                            menuStarAImg.source = whhaMainMenuStarImg;
                             menuStarAImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             menuStarAImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuStarAImg);
@@ -2194,7 +2265,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuStarBImg.width = ".65%"; //8.36px
                             menuStarBImg.height = "5.11%"; //8.36px
                             menuStarBImg.top = "8%"; //8px
-                            menuStarBImg.source = "https://i.imgur.com/6fRUrr7.png";
+                            menuStarBImg.source = whhaMainMenuStarImg;
                             menuStarBImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             menuStarBImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuStarBImg);
@@ -2205,7 +2276,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuStarCImg.height = "5.11%"; //8.36px
                             menuStarCImg.top = "8%"; //8px
                             menuStarCImg.left = ".65%";
-                            menuStarCImg.source = "https://i.imgur.com/6fRUrr7.png";
+                            menuStarCImg.source = whhaMainMenuStarImg;
                             menuStarCImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             menuStarCImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             menuPicMainRect.addControl(menuStarCImg);
@@ -2428,6 +2499,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             audioButton.top = "40%"; //"80px";
                             audioButton.onPointerUpObservable.add(function() {
                                 fullscreenGo();
+                                audioMuted = !audioMuted;
+                                muteAudio();
                             });
                             menuPicMainRect.addControl(audioButton);
                 
@@ -2446,7 +2519,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             speakerButton.color = "transparent";
                             speakerButton.width = "46.66%"; //"28px";
                             speakerButton.height = "46.66%"; //"28px";
-                            speakerButton.source = "https://i.imgur.com/89lytUS.png";
+                            speakerButton.source = whhaAudioImg;
                             speakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             speakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             audioButton.addControl(speakerButton);
@@ -2473,7 +2546,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             backButtonImg.width = "22px";
                             backButtonImg.height = "22px";
                             backButtonImg.left = "0px";
-                            backButtonImg.source = "https://i.imgur.com/u2mV0JU.png";
+                            backButtonImg.source = whhaNextArrowImg;
                             backButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             backButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             backButton.addControl(backButtonImg);
@@ -2532,9 +2605,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             nextButtonImg.color = "transparent";
                             nextButtonImg.width = "21px";
                             nextButtonImg.height = "21px";
-                            nextButtonImg.rotation = 3.15;
+                            nextButtonImg.rotation = 3.14159;
                             nextButtonImg.left = "63.33%"; //"152px";
-                            nextButtonImg.source = "https://i.imgur.com/u2mV0JU.png";
+                            nextButtonImg.source = whhaNextArrowImg;
                             nextButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             nextButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             nextButton.addControl(nextButtonImg);
@@ -2573,7 +2646,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     whiteHouseIconImg.width = "46.875%"; //900px
                     whiteHouseIconImg.height = "43.89%"; //474px
                     whiteHouseIconImg.alpha = .10;
-                    whiteHouseIconImg.source = "https://i.imgur.com/ij7gPpq.png";
+                    whiteHouseIconImg.source = whhaWhiteHouseIconImg;
                     whiteHouseIconImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                     whiteHouseIconImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                     navBackgroundRect.addControl(whiteHouseIconImg);
@@ -2994,7 +3067,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     closeNavButtonImg.width = "23%"; //57.4px
                     closeNavButtonImg.height = "35%"; //35.43px
                     closeNavButtonImg.top = "-6%"; //11.23px
-                    closeNavButtonImg.source = "https://i.imgur.com/YH78eY3.png";
+                    closeNavButtonImg.source = whhaXButtonImg;
                     closeNavButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                     closeNavButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                     closeNavButton.addControl(closeNavButtonImg);
@@ -3014,7 +3087,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#endregion
 
 //#region Nav Audio Button
-                    var navAudioButton = Button.CreateSimpleButton("audio", "");
+                    var navAudioButton = Button.CreateSimpleButton("navAudio", "");
                     navAudioButton.width = "3.125%"; //"60px"
                     navAudioButton.height = "5.55%"; //"60px";
                     navAudioButton.color = "transparent";
@@ -3025,11 +3098,12 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     navAudioButton.left = "3.125%"; //"60px";
                     navAudioButton.top = "88.88%"; //"960px";
                     navAudioButton.onPointerUpObservable.add(function() {
-                        fullscreenGo();
+                        audioMuted = !audioMuted;
+                        muteAudio();
                     });
                     navBackgroundRect.addControl(navAudioButton);
 
-                    var navAudioButtonStroke = new Rectangle("audioButtonStroke" );
+                    var navAudioButtonStroke = new Rectangle("navAudioButtonStroke" );
                     navAudioButtonStroke.height = "95%"; //"54px";
                     navAudioButtonStroke.width = "95%"; //"54px";
                     navAudioButtonStroke.color = "black";
@@ -3044,7 +3118,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     navSpeakerButton.color = "transparent";
                     navSpeakerButton.width = "46.66%"; //"28px";
                     navSpeakerButton.height = "46.66%"; //"28px";
-                    navSpeakerButton.source = "https://i.imgur.com/89lytUS.png";
+                    navSpeakerButton.source = whhaAudioImg;
                     navSpeakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                     navSpeakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                     navAudioButton.addControl(navSpeakerButton);
@@ -3083,7 +3157,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                     navResetImg.height = "23.63%"; //"14.18px";
                     navResetImg.left = "16.1%"; //"17.67px";
                     navResetImg.resizeToFit = true;
-                    navResetImg.source = "https://i.imgur.com/wiaNJ05.png";
+                    navResetImg.source = whhaResetImg;
                     navResetImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                     navResetImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                     navResetButton.addControl(navResetImg);
@@ -3118,7 +3192,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeSplashScreen.color = "transparent";
                         welcomeSplashScreen.width = "140%"; //1920px
                         welcomeSplashScreen.height = "140%"; //1080px
-                        welcomeSplashScreen.source = "https://i.imgur.com/mVFHZmz.jpg";
+                        welcomeSplashScreen.source = welcomePageImg; //Welcome page
                         welcomeSplashScreen.top = "15%";
                         welcomeSplashScreen.left = "-1.25%";
                         welcomeSplashScreen.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
@@ -3147,7 +3221,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeTextImg.color = "transparent";
                         welcomeTextImg.width = "35.47%"; //680px
                         welcomeTextImg.height = "20.37%"; //220px
-                        welcomeTextImg.source = "https://i.imgur.com/8Wc9d2D.png";
+                        welcomeTextImg.source = welcomePageTitleImg; //Welcome title image
                         welcomeTextImg.top = "-5%";
                         welcomeTextImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         welcomeTextImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
@@ -3193,9 +3267,9 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         startButtonImg.color = "transparent";
                         startButtonImg.width = "21px";
                         startButtonImg.height = "21px";
-                        startButtonImg.rotation = 3.15;
+                        startButtonImg.rotation = 3.14159;
                         startButtonImg.left = "63.33%"; //"152px";
-                        startButtonImg.source = "https://i.imgur.com/u2mV0JU.png";
+                        startButtonImg.source = whhaNextArrowImg
                         startButtonImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         startButtonImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                         startButton.addControl(startButtonImg);
@@ -3214,7 +3288,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         startButton.addControl(startButtonText);
 //#endregion
 
-//#region Nav Audio Button
+//#region Welcome Audio Button
                         var welcomeAudioButton = Button.CreateSimpleButton("welcomeaudio", "");
                         welcomeAudioButton.width = "3.125%"; //"60px"
                         welcomeAudioButton.height = "5.55%"; //"60px";
@@ -3226,7 +3300,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeAudioButton.left = "3.125%"; //"60px";
                         welcomeAudioButton.top = "88.88%"; //"960px";
                         welcomeAudioButton.onPointerUpObservable.add(function() {
-                            fullscreenGo();
+                            audioMuted = !audioMuted;
+                            muteAudio();
                         });
                         welBackgroundRect.addControl(welcomeAudioButton);
 
@@ -3245,7 +3320,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeSpeakerButton.color = "transparent";
                         welcomeSpeakerButton.width = "46.66%"; //"28px";
                         welcomeSpeakerButton.height = "46.66%"; //"28px";
-                        welcomeSpeakerButton.source = "https://i.imgur.com/89lytUS.png";
+                        welcomeSpeakerButton.source = whhaAudioImg;
                         welcomeSpeakerButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         welcomeSpeakerButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                         welcomeAudioButton.addControl(welcomeSpeakerButton);
@@ -3266,7 +3341,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeWhitehouseLogo.color = "transparent";
                         welcomeWhitehouseLogo.width = "62.22%"; //"224px";
                         welcomeWhitehouseLogo.height = "59.68%"; //"36px";
-                        welcomeWhitehouseLogo.source = "https://i.imgur.com/cPdvEX4.png";
+                        welcomeWhitehouseLogo.source = welcomePageWHHALogo;
                         welcomeWhitehouseLogo.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         welcomeWhitehouseLogo.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                         welLogoRect.addControl(welcomeWhitehouseLogo);
@@ -3284,7 +3359,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         welcomeAWSLogo.color = "transparent";
                         welcomeAWSLogo.width = "25.23%"; //"120px";
                         welcomeAWSLogo.height = "90%"; //"72px";
-                        welcomeAWSLogo.source = "https://i.imgur.com/smOUoJv.png";
+                        welcomeAWSLogo.source = welcomePageAWSLogo;
                         welcomeAWSLogo.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                         welcomeAWSLogo.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                         welLogoRect.addControl(welcomeAWSLogo);
@@ -3310,7 +3385,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         lanWhiteHouseIconImg.width = "46.875%"; //900px
                         lanWhiteHouseIconImg.height = "43.89%"; //474px
                         lanWhiteHouseIconImg.alpha = .10;
-                        lanWhiteHouseIconImg.source = "https://i.imgur.com/ij7gPpq.png";
+                        lanWhiteHouseIconImg.source = whhaWhiteHouseIconImg;
                         lanWhiteHouseIconImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
                         lanWhiteHouseIconImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                         lanBackgroundRect.addControl(lanWhiteHouseIconImg);
@@ -3460,7 +3535,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             waitingExpandedImgBoxLearnMore.color = "transparent";
                             waitingExpandedImgBoxLearnMore.width = "70.3125%"; //"1350px";
                             waitingExpandedImgBoxLearnMore.height = "100%"; //"1080px";
-                            waitingExpandedImgBoxLearnMore.source = "https://i.imgur.com/FosX3Gu.jpg";
+                            waitingExpandedImgBoxLearnMore.source = whhaWaitingImage; //"https://i.imgur.com/FosX3Gu.jpg";
                             waitingExpandedImgBoxLearnMore.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             waitingExpandedImgBoxLearnMore.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             learnMoreExpandedImgHolder.addControl(waitingExpandedImgBoxLearnMore);
@@ -3489,7 +3564,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             leftArrowBoxExpandedLearnMoreImg.color = "transparent";
                             leftArrowBoxExpandedLearnMoreImg.width = "40.74%"; //"22px";
                             leftArrowBoxExpandedLearnMoreImg.height = "40.74%"; //"22px";
-                            leftArrowBoxExpandedLearnMoreImg.source = "https://i.imgur.com/FsQy7Oh.png";
+                            leftArrowBoxExpandedLearnMoreImg.source = whhaLearnMoreNextArrowImg;
                             leftArrowBoxExpandedLearnMoreImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             leftArrowBoxExpandedLearnMoreImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             leftArrowBoxExpandedLearnMoreStroke.addControl(leftArrowBoxExpandedLearnMoreImg);
@@ -3518,8 +3593,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             rightArrowBoxExpandedLearnMoreImg.color = "transparent";
                             rightArrowBoxExpandedLearnMoreImg.width = "40.74%"; //"22px";
                             rightArrowBoxExpandedLearnMoreImg.height = "40.74%"; //"22px";
-                            rightArrowBoxExpandedLearnMoreImg.source = "https://i.imgur.com/FsQy7Oh.png";
-                            rightArrowBoxExpandedLearnMoreImg.rotation = 3.1;
+                            rightArrowBoxExpandedLearnMoreImg.source = whhaLearnMoreNextArrowImg;
+                            rightArrowBoxExpandedLearnMoreImg.rotation = 3.14159;
                             rightArrowBoxExpandedLearnMoreImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             rightArrowBoxExpandedLearnMoreImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             rightArrowBoxExpandedLearnMoreStroke.addControl(rightArrowBoxExpandedLearnMoreImg);
@@ -3543,11 +3618,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             expandExpandedImageBoxMoreStroke.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;  
                             expandExpandedImageBox.addControl( expandExpandedImageBoxMoreStroke);
 
-                            var exapndExpandedImg = Button.CreateImageOnlyButton("", "https://i.imgur.com/sVzTWjl.png");
+                            var exapndExpandedImg = Button.CreateImageOnlyButton("", whhaLearnMoreContractImg);
                             exapndExpandedImg.color = "transparent";
                             exapndExpandedImg.width = "65%"; //"22px";
                             exapndExpandedImg.height = "65%"; //"22px";
-                            exapndExpandedImg.source = "https://i.imgur.com/sVzTWjl.png";
+                            exapndExpandedImg.source = whhaLearnMoreContractImg;
                             exapndExpandedImg.alpha = 1;
                             exapndExpandedImg.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             exapndExpandedImg.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
