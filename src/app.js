@@ -148,6 +148,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                         var learnMoreWaiting = function()
                         {
+                            dragging = false;
                             examineText.alpha = 0;
                             lincolnMaskBox.alpha = 0;
                             lincolnMaskBox.isEnabled = false;
