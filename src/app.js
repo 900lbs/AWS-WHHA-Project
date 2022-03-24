@@ -288,8 +288,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 pickRoomModals(30, 0, 28.125, 0, 27.77, 30);
 
                                 //Turn off if necessary
-                                //architectCalloutButton.alpha = 0;
-                                //architectCalloutButton.isEnabled = false;
+                                architectCalloutButton.alpha = 0;
+                                architectCalloutButton.isEnabled = false;
                                 advancedTextureEntrance.isForeground = true;
                                 blueRoomButton.isEnabled = true;
                                 menuTabText.text = "Welcome";
@@ -316,8 +316,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                     menuIsUp = !menuIsUp;
                                     openMenu();
                                 }
-                                //architectCalloutButton.alpha = 1;
-                                //architectCalloutButton.isEnabled = true;
+                                architectCalloutButton.alpha = 1;
+                                architectCalloutButton.isEnabled = true;
 
                                 //Turn off if necessary
                                 greyBoxBlurRoomImage.alpha = 0;
@@ -336,8 +336,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                 
                             if(currentTextIndex == 4)
                             {
-                                //architectCalloutButton.alpha = 0;
-                                //architectCalloutButton.isEnabled = false;
+                                architectCalloutButton.alpha = 0;
+                                architectCalloutButton.isEnabled = false;
                                 greyBoxBlurRoomImage.alpha = 1;
                                 greyBoxBlurRoomImage.isEnabled = true;
                                 blueRoomImgBox.alpha = 1;
@@ -644,6 +644,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             if(menuIsUp)
                             {
                                 easyAnimation(menuPicMain, 'top', 30, 0, -27.65, 60); //27.65 used to be 18.4
+
+                                if(currentTextIndex == 3)
+                                {
+                                    easyAnimation(architectCalloutButton, 'top', 30, 0, -27.77, 60);
+                                    architectCalloutButton.isEnabled = true;
+                                    easyFade(architectCalloutButton, 30, 0, 1, 90);
+                                }
+                                
                                 easyFade(menuBarPicAMain, 30, 1, 0, 90);
                                 easyFade(menuBarPicBMain, 30, 1, 0, 90);
                                 easyFade(menuTabText, 30, 0, 1, 90);
@@ -653,6 +661,14 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             else
                             {
                                 easyAnimation(menuPicMain, 'top', 30, -27.65, 0, 60);
+
+                                if(currentTextIndex == 3)
+                                {
+                                    easyAnimation(architectCalloutButton, 'top', 30, -27.77, 0, 60);
+                                    architectCalloutButton.isEnabled = false;
+                                    easyFade(architectCalloutButton, 30, 1, 0, 90);
+                                }
+                                
                                 easyFade(menuBarPicAMain, 30, 0, 1, 90);
                                 easyFade(menuBarPicBMain, 30, 0, 1, 90);
                                 easyFade(menuTabText, 30, 1, 0, 90);
@@ -2329,51 +2345,50 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                 
                         //Menu Callouts
-                            /*var architectCalloutButton = Button.CreateSimpleButton("architect", "architect");
-                            architectCalloutButton.width = "4.27%"; //"82px"
-                            architectCalloutButton.height = "21.33%"; //"32px";
+                            var architectCalloutButton = Button.CreateSimpleButton("architect", "architect");
+                            architectCalloutButton.width = "4.43%"; //"82px"
+                            architectCalloutButton.height = "2.96%"; //"32px";
                             architectCalloutButton.fontFamily = "Calendas Plus";
-                            architectCalloutButton.fontSizeInPixels = "11%"; //21.5;
-                            architectCalloutButton.color = "#2B3E56";
+                            architectCalloutButton.fontSizeInPixels = "40%"; //21.5;
+                            architectCalloutButton.color = "#FFFFFF";
                             architectCalloutButton.cornerRadius = 0;
-                            architectCalloutButton.background = "#ECDE81";
+                            architectCalloutButton.background = "#2B3E56";
                             architectCalloutButton.alpha = 0;
                             architectCalloutButton.isEnabled = false;
-                            architectCalloutButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
+                            architectCalloutButton.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;
                             architectCalloutButton.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM;
-                            architectCalloutButton.left = "896px";
-                            architectCalloutButton.top = "-90px";
+                            //architectCalloutButton.left = "896px";
+                            //architectCalloutButton.top = "-90px";
                             architectCalloutButton.onPointerUpObservable.add(function() {
                                 architectCallout.alpha = 1;
                                 architectCallout.isEnabled = true;
                                 exitCalloutButton_arch.isEnabled = true;
                                 exitCalloutButton_arch.isVisible = true;
                             });
-                            menuPicMainRect.addControl(architectCalloutButton);
+                            constantRect.addControl(architectCalloutButton);
                 
                             var architectCallout = new Rectangle("menuPicRect" );
-                            architectCallout.width = "300px";
-                            architectCallout.height = "240px";
+                            architectCallout.width = "15.625%"; //"300px";
+                            architectCallout.height = "22.22%"; //"240px";
                             architectCallout.alpha = 0;
                             architectCallout.isEnabled = false;
                             architectCallout.color = "transparent";
-                            architectCallout.background = "#235BA0";
-                            architectCallout.leftInPixels = 1620;
-                            architectCallout.topInPixels = 641;
-                            architectCallout.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
-                            architectCallout.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
+                            architectCallout.background = "#2B3E56";
+                            architectCallout.top = "-27.65%";
+                            architectCallout.verticalAlignment = Control.VERTICAL_ALIGNMENT_BOTTOM; 
+                            architectCallout.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_RIGHT;  
                             advancedTextureConstant.addControl( architectCallout);
                 
-                            var exitCalloutButton_arch = Button.CreateSimpleButton("exitCalloutButton_arch", "X");
-                            exitCalloutButton_arch.width = "44px"
-                            exitCalloutButton_arch.height = "44px";
+                            var exitCalloutButton_arch = Button.CreateSimpleButton("exitCalloutButton_arch", "");
+                            exitCalloutButton_arch.width = "14.67%"//"44px"
+                            exitCalloutButton_arch.height = "18.33%" //"44px";
                             exitCalloutButton_arch.color = "transparent";
                             exitCalloutButton_arch.cornerRadius = 0;
                             exitCalloutButton_arch.background = "white";
                             exitCalloutButton_arch.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             exitCalloutButton_arch.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP;
-                            exitCalloutButton_arch.left = "248px";
-                            exitCalloutButton_arch.top = "10px";
+                            exitCalloutButton_arch.left = "82.67%" //"248px";
+                            exitCalloutButton_arch.top = "4.17%" //"10px";
                             exitCalloutButton_arch.onPointerUpObservable.add(function() {
                                 architectCallout.alpha = 0;
                                 architectCallout.isEnabled = false;
@@ -2384,20 +2399,20 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             
                             var xButton_arch = new Image();
                             xButton_arch.color = "transparent";
-                            xButton_arch.width = "12px";
-                            xButton_arch.height = "12px";
-                            xButton_arch.source = "https://i.imgur.com/NjbQrlP.png";
+                            xButton_arch.width = "27.28%" //"12px";
+                            xButton_arch.height = "27.28%" //"12px";
+                            xButton_arch.source = whhaXButtonImg;
                             xButton_arch.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             xButton_arch.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             exitCalloutButton_arch.addControl(xButton_arch);
                 
                             var calloutTitle_arch = new Rectangle("archTitle");
-                            calloutTitle_arch.height = "32px";
-                            calloutTitle_arch.width = "85px";
-                            calloutTitle_arch.color = "transparent";
-                            calloutTitle_arch.background = "#ECDE81";
-                            calloutTitle_arch.left = "18px";
-                            calloutTitle_arch.top = "22px";
+                            calloutTitle_arch.height = "13.33%"; //"32px";
+                            calloutTitle_arch.width = "28.33%"; //"85px";
+                            calloutTitle_arch.color = "white";
+                            calloutTitle_arch.background = "#2B3E56";
+                            calloutTitle_arch.left = "6%"; //"18px";
+                            calloutTitle_arch.top = "9.17%"; //"22px";
                             calloutTitle_arch.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             calloutTitle_arch.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;  
                             architectCallout.addControl( calloutTitle_arch);
@@ -2405,11 +2420,11 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             var calloutTitle_archText = new TextBlock("nextButtonText");
                             calloutTitle_archText.fontFamily = "Calendas Plus";
                             calloutTitle_archText.textWrapping = true;
-                            calloutTitle_archText.width = "80px";
-                            calloutTitle_archText.height = "20px";
+                            calloutTitle_archText.width = "94%"; //"80px";
+                            calloutTitle_archText.height = "62.5%"; //"20px";
                             calloutTitle_archText.text = "architect";
-                            calloutTitle_archText.color = "black";
-                            calloutTitle_archText.fontSize = "20px";
+                            calloutTitle_archText.color = "white";
+                            calloutTitle_archText.fontSize = "62.5%"; //"20px";
                             calloutTitle_archText.verticalAlignment = Control.VERTICAL_ALIGNMENT_CENTER; 
                             calloutTitle_archText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_CENTER;
                             calloutTitle_arch.addControl(calloutTitle_archText);
@@ -2417,20 +2432,20 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             var calloutBody_archText = new TextBlock("nextButtonText");
                             calloutBody_archText.fontFamily = "Calendas Plus";
                             calloutBody_archText.textWrapping = true;
-                            calloutBody_archText.width = "263px";
-                            calloutBody_archText.height = "115px";
+                            calloutBody_archText.width = "87.67%"; //"263px";
+                            calloutBody_archText.height = "48%"; //"115px";
                             calloutBody_archText.text = "An architect is a person who designs buildings and in many cases also supervises their construction.";
                             calloutBody_archText.color = "white";
-                            calloutBody_archText.fontSize = "20px";
+                            calloutBody_archText.fontSize = "8.3%"; //"20px";
                             calloutBody_archText.lineSpacing = 4;
-                            calloutBody_archText.left = "18px";
-                            calloutBody_archText.top = "91px";
+                            calloutBody_archText.left = "6%"; //"18px";
+                            calloutBody_archText.top = "38%"; //"91px";
                             calloutBody_archText.textHorizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             calloutBody_archText.verticalAlignment = Control.VERTICAL_ALIGNMENT_TOP; 
                             calloutBody_archText.horizontalAlignment = Control.HORIZONTAL_ALIGNMENT_LEFT;
                             architectCallout.addControl(calloutBody_archText);
 
-                            var unionCalloutButton = Button.CreateSimpleButton("Union", "Union");
+                            /*var unionCalloutButton = Button.CreateSimpleButton("Union", "Union");
                             unionCalloutButton.width = "60px"
                             unionCalloutButton.height = "32px";
                             unionCalloutButton.fontFamily = "Calendas Plus";
