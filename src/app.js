@@ -149,6 +149,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         var learnMoreWaiting = function()
                         {
                             dragging = false;
+                            scrollModal.left = "9.375%"; //"180px";
                             examineText.alpha = 0;
                             lincolnMaskBox.alpha = 0;
                             lincolnMaskBox.isEnabled = false;
@@ -518,6 +519,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 learnMoreMenuMaskBox.alpha = 0;
                                 learnMoreMenuMaskBox.isEnabled = false;
                                 dragging = false;
+                                scrollModal.left = "9.375%"; //"180px";
                             }
                 
                             menuBarText.text = textForMenu[currentTextIndex];
