@@ -3490,6 +3490,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         }
                         englishButton.onPointerUpObservable.add(function() {
                             Engine.audioEngine.unlock();
+                            Engine.audioEngine.setGlobalVolume(1);
                             easyFade(lanBackgroundRect, 30, 1, 0, 90);
                             englishButton.isEnabled = false;
                         });
