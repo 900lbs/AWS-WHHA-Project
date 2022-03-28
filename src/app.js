@@ -35,7 +35,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
             let currentIndex = 0;
             let previousIndex = 0;
 
-//#region Images
+//#region Images, image files can be found in Images folders
 
             //Blue room images
             var blueRoomSources = [
@@ -88,24 +88,24 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
             var whhaWaitingImage = "https://i.imgur.com/FosX3Gu.jpg"; //WaitingHour.jpeg
             var whhaEngravingImage = "https://i.imgur.com/Vk7p04O.jpg"; //First-Reading.jpeg
             var whhaFrederickImage = "https://i.imgur.com/406NGIR.jpg"; //FrederickDouglas.jpeg
-            var whhaNegativeImage = ""; //still needs an image
+            var whhaNegativeImage = ""; //still needs an image here
 
 //#endregion
         
-//#region Audio Files
+//#region Audio Files, audio files can be found in Audio folder
             var speeches =[
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_0.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_1.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_2.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_3.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_4.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_5.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_6.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_7.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_8.mp3", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}),
-                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_0.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_1.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_2.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_3.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_4.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}), //Empty URL will play no audio
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_5.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_6.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_7.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_8.mp3", scene, null, {loop: false, autoplay: false}), //WHHA_Text_0.mp3
+                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}), //Empty URL will play no audio
+                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}), //Empty URL will play no audio
             ];
 //#endregion
 
