@@ -3489,7 +3489,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             englishButtonStroke.width = "95.83%";
                         }
                         englishButton.onPointerUpObservable.add(function() {
-                            console.log("english");
+                            Engine.audioEngine.unlock();
                             easyFade(lanBackgroundRect, 30, 1, 0, 90);
                             englishButton.isEnabled = false;
                         });
