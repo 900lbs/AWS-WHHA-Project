@@ -1099,6 +1099,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             menuIsUp = true;
                             openMenu();
                             speeches[0].play();
+                            Engine.audioEngine.setGlobalVolume(1);
                         });
                         entranceRect.addControl(exitMenuButton);
                         
