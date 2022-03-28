@@ -1,4 +1,4 @@
-import { Engine, Scene, Color3, Animation, setAndStartTimer, CubicEase, EasingFunction, ArcRotateCamera, TransformNode, Vector3, Vector2, Tools, HemisphericLight, PointerEventTypes} from "@babylonjs/core";
+import { Engine, Scene, Color3, Animation, setAndStartTimer, CubicEase, Sound, EasingFunction, ArcRotateCamera, TransformNode, Vector3, Vector2, Tools, HemisphericLight, PointerEventTypes} from "@babylonjs/core";
 import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} from "@babylonjs/gui";
 
         var canvas = document.createElement("canvas");
@@ -92,6 +92,25 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
 //#endregion
         
+//#region Audio Files
+            var speechSound = new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_1.mp3", scene, null, {loop: false, autoplay: false});
+
+            var speeches =[
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_0.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_1.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_2.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_3.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_4.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_5.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_6.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_7.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_8.mp3", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}),
+                new Sound("Speeches", "", scene, null, {loop: false, autoplay: false}),
+            ];
+//#endregion
+
             let currentTextIndex = 0;
             let previousTextIndex = 0;
             var textForMenu = [
@@ -214,6 +233,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                 
                         var updateText = function(direction)
                         {
+                            speeches[currentTextIndex].stop();
                             previousTextIndex = currentTextIndex;
 
                             if(direction == 'back')
@@ -279,6 +299,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 greenRoomText.alpha = 0;
                                 exploreText.alpha = 0;
                                 greyBoxBlurRoomImage.isEnabled = false;
+
                             }
                 
                             if(currentTextIndex == 2)
@@ -523,7 +544,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             }
                 
                             menuBarText.text = textForMenu[currentTextIndex];
-                
+                            speeches[currentTextIndex].play();
                         }
 
                         var jumpToEmanicpation = function()
@@ -544,6 +565,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
                         var clearTheExperience = function()
                         {
+                            speeches[currentTextIndex].stop();
                             //Turn off if necessary
                             examineText.alpha = 0;
                             scrollModal.alpha = 0;
@@ -584,8 +606,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             greenRoomText.alpha = 0;
                             exploreText.alpha = 0;
                                                     
-                            //architectCalloutButton.alpha = 0;
-                            //architectCalloutButton.isEnabled = false;
+                            architectCalloutButton.alpha = 0;
+                            architectCalloutButton.isEnabled = false;
                             advancedTextureEntrance.isForeground = true;
                             blueRoomButton.isEnabled = true;
                             menuTabText.text = "Welcome";
@@ -686,6 +708,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 speakerButton.source = whhaAudioMuteImg;
                                 navSpeakerButton.source = whhaAudioMuteImg;
                                 welcomeSpeakerButton.source = whhaAudioMuteImg;
+
+                                Engine.audioEngine.setGlobalVolume(0);
                             }
                             
                             else
@@ -693,6 +717,8 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                 speakerButton.source = whhaAudioImg;
                                 navSpeakerButton.source = whhaAudioImg;
                                 welcomeSpeakerButton.source = whhaAudioImg;
+
+                                Engine.audioEngine.setGlobalVolume(1);
                             }
                         }
 
@@ -1072,6 +1098,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             easyFade(exitMenuButton, 30, 1, 0, 60);
                             menuIsUp = true;
                             openMenu();
+                            speeches[0].play();
                         });
                         entranceRect.addControl(exitMenuButton);
                         
@@ -2516,7 +2543,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                             audioButton.left = "3.125%"; //"60px";
                             audioButton.top = "40%"; //"80px";
                             audioButton.onPointerUpObservable.add(function() {
-                                fullscreenGo();
                                 audioMuted = !audioMuted;
                                 muteAudio();
                             });
