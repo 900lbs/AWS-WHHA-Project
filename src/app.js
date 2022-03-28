@@ -253,6 +253,7 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                                         menuIsUp = false;
                                         openMenu();
                                     }
+                                    return;
                                     //window.location.reload();
                                 }
                             }
