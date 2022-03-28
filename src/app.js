@@ -93,8 +93,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 //#endregion
         
 //#region Audio Files
-            var speechSound = new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_1.mp3", scene, null, {loop: false, autoplay: false});
-
             var speeches =[
                 new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_0.mp3", scene, null, {loop: false, autoplay: false}),
                 new Sound("Speeches", "https://raw.githubusercontent.com/900lbs/MyFiles/master/WHHA_Text_1.mp3", scene, null, {loop: false, autoplay: false}),
