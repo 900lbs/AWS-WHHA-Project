@@ -3528,7 +3528,6 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
                         spanishButton.left = "53.125%"; //"660px";
                         spanishButton.top = "47%"; //"656px";
                         spanishButton.onPointerUpObservable.add(function() {
-                            console.log("spanish");
                             //easyFade(lanBackgroundRect, 30, 1, 0, 90);
                         });
                         lanBackgroundRect.addControl(spanishButton);
