@@ -39,14 +39,19 @@ import { AdvancedDynamicTexture, Control, Rectangle, Image, TextBlock, Button} f
 
             //Blue room images
             var blueRoomSources = [
-            "https://i.imgur.com/7FFbnuK.png", //BlueRoom1.png
-            "https://i.imgur.com/UdjG5kC.png", //BlueRoom2.png
-            "https://i.imgur.com/h3wWL3D.png", //BlueRoom3.png
-            "https://i.imgur.com/I4AN2Jp.png", //BlueRoom4.png
-            "https://i.imgur.com/ca27F5t.png", //BlueRoom5.png
-            "https://i.imgur.com/J95LnGX.png", //BlueRoom6.png
-            "https://i.imgur.com/qmbQS2A.png", //BlueRoom7.png
-            "https://i.imgur.com/Kl5pWYR.png"]; //BlueRoom8.png
+            "https://i.imgur.com/e8Lo0Hr.png", //BlueRoom1.png
+            "https://i.imgur.com/Ovr7GlQ.png", //BlueRoom2.png
+            "https://i.imgur.com/HQxBQzX.png", //BlueRoom3.png
+            "https://i.imgur.com/EUKotwp.png", //BlueRoom4.png
+            "https://i.imgur.com/mNa4Yew.png", //BlueRoom5.png
+            "https://i.imgur.com/xteMSIs.png", //BlueRoom6.png
+            "https://i.imgur.com/A3QPPRE.png", //BlueRoom7.png
+            "https://i.imgur.com/GurXuZe.png", //BlueRoom8.png
+            "https://i.imgur.com/YG2J9ta.png", //BlueRoom9.png
+            "https://i.imgur.com/phvCOho.png", //BlueRoom10.png
+            "https://i.imgur.com/8VTyCfk.png", //BlueRoom11.png
+            "https://i.imgur.com/zyKLliB.png", //BlueRoom12.png
+            "https://i.imgur.com/gIubreS.png"]; //BlueRoom13.png
 
             //Entrance hall images
             var entranceHallimg = "https://i.imgur.com/pQo0dPM.jpg"; //mainEntrance.jpeg
